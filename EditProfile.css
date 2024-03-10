@@ -1,0 +1,181 @@
+#profilecontainer {
+    background-color: #FFBD59;
+
+    width: 100%;
+    height: 75%;
+
+    margin: 20px;
+    padding: 10px;
+
+    border-radius: 20px;
+    border: 2px solid #FF7A00;
+
+    display: flex;
+}
+
+#profilepanel {
+    background-color: white;
+
+    width: 100%;
+
+    padding: 30px 50px;
+    
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#pagetitle {
+    height: 45px;
+    margin: 0 0 10px 30px;
+
+    font-size: 38px;
+    font-family: varela;
+    font-weight: bolder ;
+}
+
+#profileinfo {
+    height: 300px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#dpcontainer {
+    background-color: #F0F0E2;
+    width: 35%;
+    height: 270px;
+
+    margin: 15px;
+
+    border-radius: 20px;
+    border: 2px solid #CDCDCD;
+    
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+}
+#profiledp {
+    background-image: url(images/profilepic1.jpg);
+    background-size: contain;
+
+    border-radius: 100%;
+    border: 2px solid #CDCDCD;
+
+    margin-top: 10px;
+
+    width: 250px;
+    height: 250px;
+}
+
+#uploadbtn {
+    background-image: url(images/sprites.png) ;
+    background-position: -60px 0px;
+    
+    width: 35px;
+    height: 35px;
+
+    border-radius: 2px;
+    border: 2px solid #CDCDCD;
+
+    margin: 10px;
+}
+
+#uploadbtn:hover {
+    cursor: pointer;
+}
+
+#infocontainer {
+    width: 50%;
+    height: 270px;
+
+    margin: 15px 0 0 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#namebox, #biobox {
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.input {
+    background-color: #F0F0E2;
+
+    border-radius: 20px;
+    border: 2px solid #CDCDCD;
+
+    width: 100%;
+    height: 25px;
+
+    padding: 3px 8px;
+    resize: none;
+
+    font-family: varela;
+    font-size: 20px;
+    color: #424242;
+    
+    align-items: center; 
+}
+
+#biobox .input {
+    height: 160px;
+}
+
+.heading{
+    height: 25px;
+
+    margin-bottom: 5px;
+    font-size: 22px;
+    font-family: varela;
+    font-weight: bold;
+    
+}
+
+#footer {
+    height: 45px;
+    margin-top: 20px;
+
+    position: relative;
+}
+
+#btnholder {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#updatebtn,#homebtn {
+    background-color: white;
+    
+    border-radius: 20px;
+    border: 2px solid white;
+
+    font-size: 20px;
+
+    padding: 5px 0;
+
+    width: 200px;
+    height: auto;
+
+    text-align: center;
+    font-weight: bold;
+    font-family: varela;
+    color: #DD4343;
+}
+
+#updatebtn:hover, #homebtn:hover{
+    background-color: #E49E9E;
+
+    border-radius: 20px;
+    border: 2px solid #DD4343;
+    
+    color: white;
+}
+
+

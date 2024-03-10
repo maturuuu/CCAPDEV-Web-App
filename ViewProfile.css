@@ -1,0 +1,271 @@
+#profilecontainer {
+    background-color: #FFBD59;
+
+    width: 100%;
+    height: auto;
+
+    margin: 20px;
+    padding: 10px;
+
+    border-radius: 20px;
+    border: 2px solid #FF7A00; 
+
+    display: flex;
+
+}
+
+#profilepanel {
+    background-color: white;
+
+    width: 100%;
+    
+    border-radius: 20px;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+#profileinfo {
+    margin: 15px;
+    padding: 20px 15px;
+
+    height: 150px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    position: relative;
+}
+
+.userpfp {
+    background-image: url(profilepic2.jpg);
+    background-size: contain;
+    
+    border-radius: 100%;
+    border: 2px solid #CDCDCD;
+
+    width: 150px;
+    height: 150px;
+}
+
+#profileposts .userpfp {
+    width: 75px;
+    height: 75px;
+
+    margin: 20px 15px;
+}
+
+#profileinfo .dpholder1 {
+    width: 150px;
+    height: 150px;
+}
+
+#profileinfo .dpholder2 {
+    width: 150px;
+    height: 150px;
+}
+
+#infocontainer {
+    padding: 0px 20px;
+    width: 575px;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    font-family: varela;
+
+    position: relative;
+}
+
+#infocontainer .username {    
+    font-size: 25px;
+    height: 15%;
+    margin-bottom: 5px;
+}
+
+#profiledpname {    
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    height: auto;
+}
+
+#profilebio {
+    font-size: 16px;
+    font-style: italic;
+    color: #737373;
+    
+    width: auto;
+    height: 30%;
+    overflow: hidden;
+}
+
+#profilestats {
+    position:absolute;
+   bottom: 0;
+
+}
+
+#infocontainer .numposts {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#infocontainer .numlikes {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#profileoptions {
+    width: 35%;
+    height: auto; 
+
+    margin-right: 10px;
+
+    display: flex;
+    flex-direction: row;
+
+    position: absolute;
+    right: 0;
+}
+
+#editprofilebtn,#logoutbtn {
+    background-color: #F0F0E2;
+
+    border-radius: 20px;
+    border: 2px solid #CDCDCD;
+
+    font-size: 20px;
+
+    margin-right: 10px;
+    padding: 5px 0;
+
+    width: 200px;
+    height: auto;
+
+    text-align: center;
+    font-weight: bold;
+    font-family: varela;
+    color: #5f5f5f;
+}
+
+#editprofilebtn:hover, #logoutbtn:hover{
+    background-color: #CDCDCD;
+
+    border-radius: 20px;
+    border: 2px solid #F0F0E2;
+
+    color: #F0F0E2;
+
+}
+
+#profileposts {
+    background-color: #F0F0E2;
+
+    min-height: 200px;
+
+    margin: 0 15px 15px 15px;
+    padding: 20px 15px;
+
+    border-radius: 20px;
+    border: 2px solid #CDCDCD;
+
+    display: flex;
+    flex-direction:column;
+    align-content: flex-start;
+}
+
+.post {
+    background-color: white;
+
+    width: auto;
+    min-height: 150px;
+
+    margin: 10px 0 0 0;
+    border-radius: 20px;
+    border: 1px solid #CDCDCD;
+    
+    display: flex;
+    flex-direction:row;
+
+    font-family: varela;
+
+    position: relative;
+}
+
+.post .dpholder1 {
+    width: 75px;
+    height: 75px;
+
+    margin: 20px 15px;
+}
+
+.post .dpholder2 {
+    width: 75px;
+    height: 75px;
+
+    margin: 20px 15px;
+}
+
+.postinfocontainer {
+    width: 50%;
+    margin: 25px 0;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    position: relative;
+}
+
+.post .username {
+    font-size: 18px;
+}
+
+.posttitle {
+    height: auto;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.timestamp {
+    color: #737373;
+    position: absolute;
+    bottom: 0;
+}
+
+.poststats {
+    width: 150px;
+    height: 30px;
+
+    padding: 10px 0;
+    position: absolute;
+    top: 50px;
+    right: 0;
+
+    
+    display: flex;
+    flex-direction: row;
+}
+
+.commentsprite {
+    background-image: url(sprites.png);
+
+    width: 30px;
+    height: 30px;
+
+    margin: 0 10px;
+}
+
+.numcomments {
+    margin: 5px 0 0 0;
+
+    font-size: 18px;
+    font-weight: bold;
+    color: #737373;
+
+}

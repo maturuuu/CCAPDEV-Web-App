@@ -1,0 +1,90 @@
+@font-face {
+    font-family: varela;
+    src: url(VarelaRound-Regular.ttf);
+}
+
+:root{
+    display: flex;
+    background-color: #F6F6F6;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.proper{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    background-color: #FFBD59;
+    border: 3px solid #FF7A00;
+    height: 600px;
+    width: 700px;
+
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.title{
+    font-family: varela;
+    font-size: 50px;
+    color: #FF5757;
+    height: 20%;
+    width: 100%;
+    margin: 10px;
+}
+
+.loginproper{
+    display: flex;
+    flex-direction: column;
+    background-color: #F0F0E2;
+    border-radius: 20px;
+    width: 50%;
+    height: auto;
+    align-items: center;
+    border: 3px solid #CDCDCD;
+
+    margin-top: -65px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.datatype{
+    font-family: varela;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.textarea{
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    margin: 10px;
+    font-family: varela;
+    font-size: 25px;
+}
+
+.check{
+    font-family: varela;
+    font-size: 12px;
+}
+
+.btn{
+    font-family: varela;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    margin: 20px;
+    margin-top: 10px;
+}
+
+
+
+

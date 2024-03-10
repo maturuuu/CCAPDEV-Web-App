@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>Edit Profile</title>
+
+        <link rel="stylesheet" href="MainView.css">
+        <link rel="stylesheet" href="EditProfile.css">
+        <script src="control.js"></script>
+
+    </head>
+
+    <body>
+        
+        <div class="siteproper">
+
+            <div class="siteproper">
+
+                <div class="header">
+    
+                    <div class="sitename">
+                        <b>LTC</b>
+                    </div>
+        
+                    <div class="siteoptions">
+        
+                        <div class="home">
+                            <button onClick="goHome()" class="homebtn"><b class="optiontext">Home</b></button>
+                        </div>
+                        
+                        <div class="profile">
+                            <button onClick="gotoProfile()" class="profilebtn"><b class="optiontext">Profile</b></button>
+                        </div>
+        
+                        <div class="search">
+    
+                            <div class="searchbuttonimage">
+                                <a href=""><img src="images/search.png" height="40px" width="40px"></a>
+                            </div>
+    
+                            <div class="serarcharea">
+                                <textarea name="searcheditem" class="searchbar" cols="25" rows="1" placeholder="   Search..."></textarea>
+                            </div>
+    
+                        </div>
+        
+                    </div>
+    
+                    <script>
+    
+                        function goHome(){
+                            window.location.href = "RegMainView.html";
+                        }
+    
+                        function Login(){
+                            window.location.href = "LoginView.html";
+                        }
+    
+                        function Logout(){
+                            window.location.href = "nonRegMainView.html";
+                        }
+    
+                        function CreatePost(){
+                            window.location.href = "";
+                        }
+    
+                        function gotoProfile(){
+                            window.location.href = "ViewMyProfile.html";
+                        }
+    
+                        function EditProfile(){
+                            window.location.href = "EditProfile.html";
+                        }
+    
+                    </script>
+    
+    
+                </div>
+            <div class="body">
+
+                <div id="profilecontainer">
+                    <div id="profilepanel">
+                        <div id="pagetitle">Edit Profile</div>
+                        <div id="profileinfo">
+                            <div id="dpcontainer">
+                                <div id="profiledp"></div>
+                                <div id="btnholder">
+                                    <input type="file" accept="image/*" id="dpupload" onchange="loadFile(event)" hidden>
+                                    <label for="dpupload">
+                                        <div id="uploadbtn"></div>
+                                    </label>
+                                    <script type="text/javascript">
+                                        var profiledp = document.getElementById("profiledp");
+                                        var loadFile = function(event){
+                                            profiledp.style.backgroundImage = "url(" + URL.createObjectURL(event.target.files[0]) +")";
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                            <div id="infocontainer">
+                                <div class="heading">Name</div>
+                                <div id="namebox">
+                                    <textarea name="dpname" class="input" maxlength="14" placeholder="Max of 14 characters"></textarea>
+                                </div>
+                                <div class="heading">Bio</div>
+                                <div id="biobox">
+                                    <textarea name="profilebio" class="input" maxlength="140" placeholder="Max of 140 characters"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="footer">
+                            <div id="btnholder">
+                                <button id="homebtn">Back to Profile</button>
+                                <script type="text/javascript">
+                                    document.getElementById("homebtn").onclick = function () {
+                                        location.href = "ViewMyProfile.html";
+                                    };
+                                </script>
+                                <button id="updatebtn">Update</button>
+                                <script type="text/javascript">
+                                    document.getElementById("updatebtn").onclick = function () {
+                                        location.href = "ViewMyProfile.html";
+                                    };
+                                </script>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </body>
+
+</html>

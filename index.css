@@ -1,0 +1,15 @@
+@font-face {
+    font-family: varela;
+    src: url(VarelaRound-Regular.ttf);
+}
+
+.head{
+    font-family: varela;
+}
+
+.list{
+    font-family: varela;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}

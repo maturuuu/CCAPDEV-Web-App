@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>Let Them Cook!</title>
+
+        <link rel="stylesheet" href="MainView.css">
+        <link rel="stylesheet" href="ViewProfile.css">
+
+    </head>
+
+    <body>
+        
+        <div class="siteproper">
+
+            <div class="header">
+
+                <div class="sitename">
+                    <b>LTC</b>
+                </div>
+    
+                <div class="siteoptions">
+    
+                    <div class="home">
+                        <button onClick="NonGoHome()" class="homebtn"><b class="optiontext">Home</b></button>
+                    </div>
+                    
+                    <div class="profile">
+                        <button onClick="Register()" class="profilebtn"><b class="optiontext">Profile</b></button>
+                    </div>
+    
+                    <div class="search">
+
+                        <div class="searchbuttonimage">
+                            <a href=""><img src="search.png" height="40px" width="40px"></a>
+                        </div>
+
+                        <div class="serarcharea">
+                            <textarea name="searcheditem" class="searchbar" cols="25" rows="1" placeholder="   Search..."></textarea>
+                        </div>
+
+                    </div>
+    
+                </div>
+
+                <script>
+
+                    function goHome(){
+                        window.location.href = "RegMainView.html";
+                    }
+
+                    function Login(){
+                        window.location.href = "LoginView.html";
+                    }
+
+                    function Register(){
+                        window.location.href = "RegisterView.html";
+                    }
+
+                    function Search(){
+                        window.location.href = "";
+                    }
+
+                </script>
+
+            </div>
+
+            <div class="body">
+
+                <div class="miniprofile">
+
+                    <div class="mini">
+
+                        <div class="dpholder1">
+                        </div>
+
+                        <div class="username">
+                            <a class="postlinks" href="RegisterView.html"><b>Guest</b></a>
+                        </div>
+
+                        <div class="stats">
+
+                            <div class="numposts">
+                                0 <br>
+                                <b>Posts</b>
+                            </div>
+    
+                            <div class="numlikes">
+                                0 <br>
+                                <b>Likes</b>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="Register()" class="createpost"><b>Create a Post</b></button>
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="Register()" class="editprofile"><b>Register</b></button>
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="Login()" class="log"><b>Login</b></button>
+                    </div>
+
+                </div>
+
+                <div id="profilecontainer">
+
+            
+                        <div id="profilepanel">
+                            <div id="profileinfo">
+                                <div class="dpholder2"></div>
+                                <div id="infocontainer">
+                                    <div class="username">@chewbarka</div>
+                                    <div id="profiledpname">Chew Barka</div>
+                                    <div id="profilebio">I love treats!</div>
+                                    <div id="profilestats">
+                                        1 <span class="numposts"> Posts </span>
+                                        10 <span class="numlikes"> Likes </span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div id="profileposts">
+                                <div class="post">
+                                    <div class="dpholder2"></div>
+                                    <div class="postinfocontainer">
+                                        <div class="username">@chewbarka</div>
+                                        <div class="posttitle">
+                                            <a class="postlinks" href="post.html">[GENERAL] Best Wine and Kibble Pairings for Distinguished Gentlepups?</a>
+                                        </div>
+                                        <div class="date">
+                                            <i>1 hr ago</i>
+                                        </div>
+                                    </div>
+                                    <div class="poststats">
+                                        <div class="commentsprite"></div>
+                                        <div class="numcomments">4</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+            
+            </div>
+
+
+        </div>
+
+    </body>
+
+</html>

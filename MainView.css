@@ -1,0 +1,378 @@
+
+@font-face {
+    font-family: varela;
+    src: url(VarelaRound-Regular.ttf);
+}
+
+:root{
+    background-color: #F6F6F6;
+}
+
+.siteproper{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+
+    width: auto;
+    height: 120px;
+
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px;
+
+    margin-bottom: -30px;
+}
+
+.sitename{
+    font-family: varela;
+    font-size: 80px;
+    color: #FF5757;
+
+    height: 100px;
+    width: 15%;
+    align-items: center;
+    text-align: center;
+
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.siteoptions{
+    font-family: varela;
+
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    width: 85%;
+    border-radius: 30px;
+    background-color: #E87878;
+    border: 3px solid #DD4343;
+
+    justify-content: left;
+    align-items: center;
+    margin: 20px;
+
+}
+
+.optiontext{
+    color: white;
+    font-family: varela;
+}
+
+.home{
+    width: 20%;
+    margin-left: 20px;
+}
+
+.homebtn{
+    font-size: 20px;
+    background-color: #E49E9E;
+
+    height: 40px;
+    width: 150px;
+    border-radius: 20px;
+    border: 3px solid #DD4343;
+    
+}
+
+.profile{
+    width: 20%;
+}
+
+.profilebtn{
+    font-size: 20px;
+    background-color: #E49E9E;
+    height: 40px;
+    width: 150px;
+    border-radius: 20px;
+
+    border: 3px solid #DD4343;
+}
+
+.optionb{
+    width: 20%;
+}
+
+.optionbtn{
+    font-size: 20px;
+    background-color: #E49E9E;
+    height: 40px;
+    width: 150px;
+    border-radius: 20px;
+    border: 3px solid #DD4343;
+}
+
+
+.search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
+    margin-left: 150px;
+}
+
+.searchbar{
+
+    align-items: center;
+
+    width: auto;
+    font-size: 25px;
+    border-radius: 20px;
+}
+
+.searchbuttonimage{
+    width: 10%;
+}
+.searcharea{
+    width: 90%;
+}
+
+
+.body{
+    width: auto;
+    height:auto;
+
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.miniprofile{
+
+    position: sticky;
+    width: 15%;
+    height: auto;
+    background-color: #F0F0E2;
+    margin: 20px;
+    border-radius: 20px;
+    border: 3px solid #CDCDCD;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.mini{
+
+    width: 80%;
+    height: 40%;
+    margin: 20px;
+
+    font-family: varela;
+
+    background-color: #FDFDF5;
+    border: 3px solid #CDCDCD;
+    border-radius: 20px;
+
+    justify-content: center;
+    align-items: center;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.stats{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.numlikes{
+    margin: 10px;
+}
+
+.numposts{
+    margin: 10px;
+}
+
+.mpbuttons{
+    width: 100%;
+    height: auto;
+}
+
+.dpholder1{
+    height: 96px;
+    width: 96px;
+    background-image: url(blank.png);
+    background-size: contain;
+    border-radius: 100%;
+    border: 2px solid #CDCDCD;
+}
+
+.dpholder2{
+    height: 96px;
+    width: 96px;
+    background-image: url(images/profilepic1.jpg);
+    background-size: contain;
+    border-radius: 100%;
+    border: 2px solid #CDCDCD;
+}
+.display{
+    height: 100%;
+    width: 100%;
+}
+
+.createpost{
+    font-family: varela;
+    font-size: 15px;
+    width: 80%;
+    height: 40px;
+    
+    background-color: #F6F6F6;
+    text-align: center;
+    border: 3px solid #CDCDCD;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.editprofile{
+    font-family: varela;
+    font-size: 15px;
+    width: 80%;
+    height: 40px;
+    margin: 20px;
+    
+    background-color: #F6F6F6;
+    text-align: center;
+    border: 3px solid #CDCDCD;
+    border-radius: 20px;
+}
+
+.option{
+    font-family: varela;
+    font-size: 15px;
+    width: 80%;
+    height: 40px;
+    
+    background-color: #F6F6F6;
+    text-align: center;
+    border: 3px solid #CDCDCD;
+    border-radius: 20px;
+    margin:20px;
+}
+
+.log{
+    font-family: varela;
+    font-size: 15px;
+    width: 80%;
+    height: 40px;
+    
+    background-color: #F6F6F6;
+    text-align: center;
+    border: 3px solid #CDCDCD;
+    border-radius: 20px;
+    margin:20px;
+}
+
+.forumview{
+    width: 85%;
+    height: auto;
+    background-color: #FFBD59;
+    margin: 20px;
+    border-radius: 20px;
+    border: 3px solid #FF7A00;
+    display: flex;
+    flex-direction: column;
+}
+
+.filters{
+    font-family: varela;
+    background-color: #F0F0E2;
+    border: 3px solid #CDCDCD;
+
+    display: flex;
+    flex-direction: row;
+
+    height: 60px;
+    width: auto;
+
+    column-gap: 20px;
+    border-radius: 30px;
+
+    justify-content: left;
+    text-align: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.fil{
+    font-family: varela;
+    color: white;
+    background-color: #CDCDCD;
+    border: 3px solid ;
+    border-radius: 20px;
+    
+    height: 40px;
+    width: 150px;
+    margin: 10px;
+}
+
+.post1{
+    font-family: varela;
+    background-color: #FFFFFF;
+    height: 150px;
+    width: auto;
+    margin: 17px;
+    
+    border-radius: 20px;
+    border: 3px solid #CDCDCD;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+}
+
+.recipephoto{
+    height: 96px;
+    width: 96px;
+    margin: 20px;
+}
+
+.ulam{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.postmetadata{
+    margin-left: 30px;
+}
+
+.posteruser{
+    font-family: varela;
+    color: black;
+    font-size: 15px;
+}
+
+.forumtitle{
+    font-family: varela;
+    color: black;
+    font-size: 25px;
+}
+
+.date{
+    font-family: varela;
+    color: black;
+    font-size: 15px;
+}
+
+.commentcount{
+    font-family: varela;
+    color: #737373;
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.postlinks{
+    text-decoration: none;
+    color: black;
+}

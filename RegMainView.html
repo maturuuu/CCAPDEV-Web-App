@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>Let Them Cook!</title>
+
+        <link rel="stylesheet" href="MainView.css">
+
+    </head>
+
+    <body>
+        
+        <div class="siteproper">
+
+            <div class="header">
+
+                <div class="sitename">
+                    <b>LTC</b>
+                </div>
+    
+                <div class="siteoptions">
+    
+                    <div class="home">
+                        <button onClick="goHome()" class="homebtn"><b class="optiontext">Home</b></button>
+                    </div>
+                    
+                    <div class="profile">
+                        <button onClick="gotoProfile()" class="profilebtn"><b class="optiontext">Profile</b></button>
+                    </div>
+    
+                    <div class="search">
+
+                        <div class="searchbuttonimage">
+                            <a href=""><img src="images/search.png" height="40px" width="40px"></a>
+                        </div>
+
+                        <div class="serarcharea">
+                            <textarea name="searcheditem" class="searchbar" cols="25" rows="1" placeholder="   Search..."></textarea>
+                        </div>
+
+                    </div>
+    
+                </div>
+
+                <script>
+
+                    function goHome(){
+                        window.location.href = "RegMainView.html";
+                    }
+
+                    function Login(){
+                        window.location.href = "LoginView.html";
+                    }
+
+                    function Logout(){
+                        window.location.href = "nonRegMainView.html";
+                    }
+
+                    function CreatePost(){
+                        window.location.href = "new-post.html";
+                    }
+
+                    function gotoProfile(){
+                        window.location.href = "ViewMyProfile.html";
+                    }
+
+                    function EditProfile(){
+                        window.location.href = "EditProfile.html";
+                    }
+
+                </script>
+
+
+            </div>
+
+            <div class="body">
+
+                <div class="miniprofile">
+
+                    <div class="mini">
+
+                        <div class="dpholder">
+                            <img class="display" src="images/profilepic1.jpg">
+                        </div>
+
+                        <div class="username">
+                            <a class="postlinks" href="ViewMyProfile.html"><b>Chew Barka</b></a>
+                        </div>
+
+                        <div class="stats">
+
+                            <div class="numposts">
+                                1 <br>
+                                <b>Posts</b>
+                            </div>
+    
+                            <div class="numlikes">
+                                0 <br>
+                                <b>Likes</b>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="CreatePost()" class="createpost"><b>Create a Post</b></button>
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="EditProfile()" class="editprofile"><b>Edit Profile</b></button>
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="Logout()" class="log"><b>Logout</b></button>
+                    </div>
+
+                </div>
+
+                <div class="forumview">
+
+                    <div class="filters">
+                        
+                        <div>
+                            <button class="fil">Filter1</button>
+                        </div>
+
+                        <div>
+                            <button class="fil">Filter2</button>
+                        </div>
+
+                        <div>
+                            <button class="fil">Filter3</button>
+                        </div>
+
+                        <div>
+                            <select name="Filters" class="fil">
+                                <option value="mostpop">Most Popular</option>
+                                <option value="leastpop">Least Popular</option>
+                                <option value="alphaa">A-Z</option>
+                                <option value="alphaz">Z-A</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="post1">
+
+                        <div class="recipephoto">
+                            <img class="ulam" src="images/profilepic1.jpg">
+                        </div>
+
+                        <div class="postmetadata">
+
+                            <div class="posteruser">
+                                <a class="postlinks" href="RegViewUser.html">@Chew-Barka</a>
+                            </div>
+
+                            <div class="forumtitle">
+                                <a class="postlinks" href="post.html"><b>[GENERAL] Best Wine and Kibble Pairings for Distinguished Gentlepups?</b></a>
+                            </div>
+
+                            <div class="date">
+                                <i>01/01/2024</i>
+                            </div>
+
+                        </div>
+
+                        <div class="commentcount">
+                            #1000
+                        </div>
+
+                    </div>
+
+                    <div class="post1">
+
+                        <div class="recipephoto">
+                            <img class="ulam" src="images/profilepic2.jpg">
+                        </div>
+
+                        <div class="postmetadata">
+
+                            <div class="posteruser">
+                                <a class="postlinks" href="RegViewUser.html">@Mary-Puppins</a>
+                            </div>
+
+                            <div class="forumtitle">
+                                <a class="postlinks" href="post-2.html"><b>[SQUIRREL] I like squirrels do you like squirrels?</b></a>
+                            </div>
+
+                            <div class="date">
+                                <i>02/16/2024</i>
+                            </div>
+
+                        </div>
+
+                        <div class="commentcount">
+                            #1000
+                        </div>
+
+                    </div>
+
+                    <div class="post1">
+
+                        <div class="recipephoto">
+                            <img class="ulam" src="images/profilepic3.jpg">
+                        </div>
+
+                        <div class="postmetadata">
+
+                            <div class="posteruser">
+                                <a class="postlinks" href="RegViewUser.html">@B-E-O-woof</a>
+                            </div>
+
+                            <div class="forumtitle">
+                                <a class="postlinks" href="post-3.html"><b>Tips for Broke College Doggos</b></a>
+                            </div>
+
+                            <div class="date">
+                                <i>01/01/2024</i>
+                            </div>
+
+                        </div>
+
+                        <div class="commentcount">
+                            #1000
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </body>
+
+</html>

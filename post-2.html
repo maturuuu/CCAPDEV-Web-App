@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>[SQUIRREL] I like squirrels do you like squirrels?</title>
+        <link rel="stylesheet" type="text/css" media="all" href="post.css">
+    </head>
+
+    <body>
+
+        <script src="post.js"></script>
+
+        <div id="page-container">
+            <div id="header">
+                <button onclick="Home()" id="home-button" class="selected">HOME</button>
+                <button onclick="Profile()" id="profile-button" class="unselected">PROFILE</button>
+
+                <div id="searchbar-container">
+                    <input type="text" class="searchbar-input" name="search-input" placeholder="Search...">
+                    <button class="search-button">
+                        <img src="images/search.png">
+                    </button>
+                </div>  
+            </div>
+
+            <div id="content">
+                <div id="post-container">
+                    <div id="user-container">
+                        <img class="profile-pic" src = "images/profilepic2.jpg">
+                        <span class="username">Mary Puppins</span>
+                        <button id="post-options-button">
+                            <img src="images/threedots.png">
+                        </button>
+
+                        <div id="post-options-menu">
+                            <button onclick="EditPost()" id="edit-post-button">Edit</button>
+                            <button id="delete-post-button">Delete</button>
+                        </div>
+
+                    </div>
+
+                    <div id="post-title">
+                        [SQUIRREL] I like squirrels do you like squirrels?
+                    </div>
+
+                    <div id="other-post-info">
+                        Just now
+                        <span id="editedspace">•</span>
+                        <span class="underlined-bold">edited</span>
+                    </div>
+
+                    <div id="post-content-box">
+                        <div id="post-content-text">
+                            Squirrel? Squirrel!
+                            <br><br><br><br><br><br><br>
+                            ...squirrel
+                        </div>
+                    </div>
+                    <div id="post-footer">
+                        <span id="post-vote-holder">
+                            <button class="comment-upvote-button">
+                                <img src="images/upvote.png">
+                            </button>
+                            <button class="comment-downvote-button">
+                                <img src="images/downvote.png">
+                            </button>
+                        </span>
+                        <button onclick="NewReply()" id="post-reply-button">Reply</button>
+                    </div>
+                </div>
+
+                <div id="comments-container">
+                    <div class="comment">
+                        <div class="comment-header">
+                            <img class="comment-profile-pic" src = "images/profilepic1.jpg">
+                            <span class="comment-username">Chew Barka</span>
+                            <span class="vote-holder">
+                                <button class="comment-upvote-button">
+                                    <img src="images/upvote.png">
+                                </button>
+                                <button class="comment-downvote-button">
+                                    <img src="images/downvote.png">
+                                </button>
+                            </span>
+                        </div>
+                        <div class="comment-text">
+                            SQUIRREL!
+                        </div>
+                        <div class="comment-footer">
+                            <span class="comment-edited underlined-bold">edited</span>
+                            <button onclick="NewReply()" class="comment-reply-button">Reply</button>
+                        </div>
+                    </div>
+
+                    <div class="comment reply">
+                        <div class="comment-header">
+                            <img class="comment-profile-pic" src = "images/profilepic2.jpg">
+                            <span class="comment-username">Mary Puppins [OP]</span>
+                            <span class="vote-holder">
+
+                                <!--for replies made by [OP]-->
+                                <button class="comment-options-button"> 
+                                    <img src="images/threedots.png">
+                                </button>
+                                <button class="comment-upvote-button">
+                                    <img src="images/upvote.png">
+                                </button>
+                                <button class="comment-downvote-button">
+                                    <img src="images/downvote.png">
+                                </button>
+
+                                <div class="comment-options-menu">
+                                    <button onclick="EditReply()" class="edit-comment-button">Edit</button>
+                                    <button class="delete-comment-button">Delete</button>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="comment-text">
+                            SQUIRREL????
+                        </div>
+                        <div class="comment-footer">
+                            <span class="comment-edited underlined-bold"></span>
+                            <button onclick="NewReply()" class="comment-reply-button">Reply</button>
+                        </div>
+                    </div>
+
+                    <div class="comment reply">
+                        <div class="comment-header">
+                            <img class="comment-profile-pic" src = "images/profilepic3.jpg">
+                            <span class="comment-username">JK Growling</span>
+                            <span class="vote-holder">
+                                <button class="comment-upvote-button">
+                                    <img src="images/upvote.png">
+                                </button>
+                                <button class="comment-downvote-button">
+                                    <img src="images/downvote.png">
+                                </button>
+                            </span>
+                        </div>
+                        <div class="comment-text">
+                            SQUIRREL.
+                        </div>
+                        <div class="comment-footer">
+                            <span class="comment-edited underlined-bold"></span>
+                            <button onclick="NewReply()" class="comment-reply-button">Reply</button>
+                        </div>
+                    </div>
+
+                    <div class="comment">
+                        <div class="comment-header">
+                            <img class="comment-profile-pic" src = "images/profilepic4.jpg">
+                            <span class="comment-username">Beowolf</span>
+                            <span class="vote-holder">
+                                <button class="comment-upvote-button">
+                                    <img src="images/upvote.png">
+                                </button>
+                                <button class="comment-downvote-button">
+                                    <img src="images/downvote.png">
+                                </button>
+                            </span>
+                        </div>
+                        <div class="comment-text">
+                            still first lol woof
+                        </div>
+                        <div class="comment-footer">
+                            <span class="comment-edited underlined-bold">edited</span>
+                            <button onclick="NewReply()" class="comment-reply-button">Reply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function EditPost(){
+                window.location.href = "edit-post.html";
+            }
+
+            function EditReply(){
+                window.location.href = "edit-reply.html";
+            }
+
+            function NewReply(){
+                window.location.href = "new-reply.html";
+            }
+
+            function Home(){
+                window.location.href = "RegMainView.html"
+            }
+
+            function Profile(){
+                window.location.href = "RegViewUser.html"
+            }
+
+            /*
+            ADD:
+            1. Link to user profile (click on profile pic or username)
+            2. Home, Profile
+            3. Search bar
+            */
+        </script>
+
+    </body>
+</html>
+
