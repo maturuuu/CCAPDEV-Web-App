@@ -12,7 +12,7 @@ app.get('/', function(req, res){
 
 app.use(express.static(__dirname)); //allows use of static files like css
 
-var server = app.listen(5000, function(){
-    console.log("Web App running at port 5000")
+var server = app.listen(3000, function(){
+    console.log("Web App running at port 3000")
 });
 
