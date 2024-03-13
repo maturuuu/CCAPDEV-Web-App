@@ -16,13 +16,15 @@
                         "commentdislikes" : 0,
                         "isedited": false
                     },
-                    "replies" : {
-                        "user" : "",
-                        "replystring" : "",
-                        "replylikes" : 0,
-                        "replydislikes" : 0,
-                        "isedited": false
-                    }
+                    "replies" : [
+                        {
+                            "user" : "",
+                            "replystring" : "",
+                            "replylikes" : 0,
+                            "replydislikes" : 0,
+                            "isedited": false
+                        }
+                    ]
                 }
             ]
                 
@@ -49,13 +51,15 @@
                         "commentdislikes" : 0,
                         "isedited" : false
                     },
-                    "replies" : {
-                        "user" : "juan",
-                        "replystring" : "yes it is baby",
-                        "replylikes" : 7,
-                        "replydislikes" : 0,
-                        "isedited" : false
-                    }
+                    "replies" : [
+                        {
+                            "user" : "juan",
+                            "replystring" : "yes it is baby",
+                            "replylikes" : 7,
+                            "replydislikes" : 0,
+                            "isedited" : false
+                        }
+                    ]
                 }
             ]
                 
@@ -82,13 +86,15 @@
                         "commentdislikes" : 0,
                         "isedited" : false
                     },
-                    "replies" : {
-                        "user" : "jessica",
-                        "replystring" : "indeed it is baby",
-                        "replylikes" : 7,
-                        "replydislikes" : 0,
-                        "isedited" : false
-                    }
+                    "replies" : [
+                        {
+                            "user" : "jessica",
+                            "replystring" : "indeed it is baby",
+                            "replylikes" : 7,
+                            "replydislikes" : 0,
+                            "isedited" : false
+                        }
+                    ]
                 }
             ]
                 
