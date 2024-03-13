@@ -1,0 +1,12 @@
+{
+  "name": "ccapdev-web-app",
+  "version": "1.0.0",
+  "description": "Repository for our CCAPDEV Web Application project: Let Them Cook! (web forum)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
