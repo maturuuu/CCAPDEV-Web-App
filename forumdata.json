@@ -2,7 +2,7 @@
     {
         "user" : "",
         "metadata" : {
-            "recipeimg"  "",
+            "recipeimg" : "",
             "date" : "",
             "time" : "", 
             "likes" : 0,
@@ -33,12 +33,12 @@
         "recipename" : "",
         "ingridients" : [""],
         "procedure" : [""]
-     },
+    },
 
-     {
+    {
         "user" : "matthew",
         "metadata" : {
-            "recipeimg"  "adobo.png",
+            "recipeimg" : "adobo.jpg",
             "date" : "01/01/24",
             "time" : "11:56pm", 
             "likes" : 20,
@@ -69,12 +69,12 @@
         "recipename" : "pork adobo",
         "ingridients" : ["leaves", "meat", "vinegar"],
         "procedure" : ["mix the pot", "repeat"]
-     },
+    },
 
-     {
+    {
         "user" : "jasmine",
         "metadata" : {
-            "recipeimg"  "kawali.jpg",
+            "recipeimg" : "kawali.jpg",
             "date" : "01/02/24",
             "time" : "11:57pm", 
             "likes" : 10,
@@ -105,6 +105,6 @@
         "recipename" : "lechon kawali",
         "ingridients" : ["oil", "pork", "toyo"],
         "procedure" : ["mix the pot", "repeat"]
-     }
+    }
 
 ]
