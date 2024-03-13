@@ -13,7 +13,7 @@
 
         <div id="page-container">
             <div id="header">
-                <button onclick="Home()" id="home-button" class="selected">HOME</button>
+                <button onclick="NonRegHome()" id="home-button" class="selected">HOME</button>
                 <button onclick="Login()" id="profile-button" class="unselected">PROFILE</button>
 
                 <div id="searchbar-container">
@@ -178,11 +178,11 @@
 
         <script>
             function Login(){
-                window.location.href = "LoginView.html";
+                window.location.href = "/login";
             }
 
             function NonRegHome(){
-                window.location.href = "nonRegMainView.html";
+                window.location.href = "/";
             }
 
             /*

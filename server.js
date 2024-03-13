@@ -8,8 +8,7 @@ app.get('/', function(req, res){
 });
 
 //add routes here
-
-app.get('/rmv', function(req, res){
+app.get('/home', function(req, res){
     res.sendFile(__dirname + '/' + 'RegMainView.html')
 });
 
@@ -19,6 +18,26 @@ app.get('/register', function(req, res){
 
 app.get('/login', function(req, res){
     res.sendFile(__dirname + '/' + 'LoginView.html')
+});
+
+app.get('/profile', function(req, res){
+    res.sendFile(__dirname + '/' + 'RegViewUser.html')
+})
+
+app.get('/post', function(req, res){
+    res.sendFile(__dirname + '/' + 'post.html')
+});
+
+app.get('/editpost', function(req, res){
+    res.sendFile(__dirname + '/' + 'edit-post.html')
+});
+
+app.get('/editreply', function(req, res){
+    res.sendFile(__dirname + '/' + 'edit-reply.html')
+});
+
+app.get('/newreply', function(req, res){
+    res.sendFile(__dirname + '/' + 'new-reply.html')
 });
 
 app.use(express.static(__dirname)); //allows use of static files like css
