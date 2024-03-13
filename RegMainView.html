@@ -174,61 +174,31 @@
 
                     </div>
 
-                    <div class="post1">
-
-                        <div class="recipephoto">
-                            <img class="ulam" src="images/profilepic2.jpg">
-                        </div>
-
-                        <div class="postmetadata">
-
-                            <div class="posteruser">
-                                <a class="postlinks" href="RegViewUser.html">@Mary-Puppins</a>
+                                        <!-- Handlebars Template for Post -->
+                    <script id="post-template" type="text/x-handlebars-template">
+                        <div class="post1">
+                            <div class="recipephoto">
+                                <img class="ulam" src="images/{{metadata.recipeimg}}">
                             </div>
-
-                            <div class="forumtitle">
-                                <a class="postlinks" href="post-2.html"><b>[SQUIRREL] I like squirrels do you like squirrels?</b></a>
+                            <div class="postmetadata">
+                                <div class="posteruser">
+                                    <a class="postlinks" href="RegViewUser.html">@{{user}}</a>
+                                </div>
+                                <div class="forumtitle">
+                                    <a class="postlinks" href="post.html"><b>{{recipename}}</b></a>
+                                </div>
+                                <div class="date">
+                                    <i>{{metadata.date}}</i>
+                                </div>
                             </div>
-
-                            <div class="date">
-                                <i>02/16/2024</i>
+                            <div class="commentcount">
+                                #{{metadata.likes}}
                             </div>
-
                         </div>
+                    </script>
 
-                        <div class="commentcount">
-                            #1000
-                        </div>
-
-                    </div>
-
-                    <div class="post1">
-
-                        <div class="recipephoto">
-                            <img class="ulam" src="images/profilepic3.jpg">
-                        </div>
-
-                        <div class="postmetadata">
-
-                            <div class="posteruser">
-                                <a class="postlinks" href="RegViewUser.html">@B-E-O-woof</a>
-                            </div>
-
-                            <div class="forumtitle">
-                                <a class="postlinks" href="post-3.html"><b>Tips for Broke College Doggos</b></a>
-                            </div>
-
-                            <div class="date">
-                                <i>01/01/2024</i>
-                            </div>
-
-                        </div>
-
-                        <div class="commentcount">
-                            #1000
-                        </div>
-
-                    </div>
+                    <script src="post.js"></script>
+                    
 
                 </div>
 
