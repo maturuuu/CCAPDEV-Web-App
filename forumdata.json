@@ -2,6 +2,7 @@
     {
         "user" : "",
         "metadata" : {
+            "recipeimg"  "",
             "date" : "",
             "time" : "", 
             "likes" : 0,
@@ -37,6 +38,7 @@
      {
         "user" : "matthew",
         "metadata" : {
+            "recipeimg"  "adobo.png",
             "date" : "01/01/24",
             "time" : "11:56pm", 
             "likes" : 20,
@@ -72,6 +74,7 @@
      {
         "user" : "jasmine",
         "metadata" : {
+            "recipeimg"  "kawali.jpg",
             "date" : "01/02/24",
             "time" : "11:57pm", 
             "likes" : 10,
