@@ -19,3 +19,125 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+var data = [
+    {
+        "user" : "",
+        "metadata" : {
+            "recipeimg" : "",
+            "date" : "",
+            "time" : "", 
+            "likes" : 0,
+            "dislikes" : 0,
+            "isedited" : false,
+            "comments" : [
+                {
+                    "maincomment" : {
+                        "user" : "",
+                        "commentstring" : "",
+                        "commentlikes" : 0,
+                        "commentdislikes" : 0,
+                        "isedited": false
+                    },
+                    "replies" : [
+                        {
+                            "user" : "",
+                            "replystring" : "",
+                            "replylikes" : 0,
+                            "replydislikes" : 0,
+                            "isedited": false
+                        }
+                    ]
+                }
+            ]
+                
+        },
+        "recipename" : "",
+        "ingridients" : [""],
+        "procedure" : [""]
+    },
+
+    {
+        "user" : "matthew",
+        "metadata" : {
+            "recipeimg" : "adobo.jpg",
+            "date" : "01/01/24",
+            "time" : "11:56pm", 
+            "likes" : 20,
+            "dislikes" : 4,
+            "isedited" : false,
+            "comments" : [
+                {
+                    "maincomment" : {
+                        "user" : "jeff",
+                        "commentstring" : "wow this is good!",
+                        "commentlikes" : 14,
+                        "commentdislikes" : 0,
+                        "isedited" : false
+                    },
+                    "replies" : [
+                        {
+                            "user" : "juan",
+                            "replystring" : "yes it is baby",
+                            "replylikes" : 7,
+                            "replydislikes" : 0,
+                            "isedited" : false
+                        }
+                    ]
+                }
+            ]
+                
+        },
+        "recipename" : "pork adobo",
+        "ingridients" : ["leaves", "meat", "vinegar"],
+        "procedure" : ["mix the pot", "repeat"]
+    },
+
+    {
+        "user" : "jasmine",
+        "metadata" : {
+            "recipeimg" : "kawali.jpg",
+            "date" : "01/02/24",
+            "time" : "11:57pm", 
+            "likes" : 10,
+            "dislikes" : 0,
+            "isedited" : false,
+            "comments" : [
+                {
+                    "maincomment" : {
+                        "user" : "juan",
+                        "commentstring" : "wow this is godly!",
+                        "commentlikes" : 14,
+                        "commentdislikes" : 0,
+                        "isedited" : false
+                    },
+                    "replies" : [
+                        {
+                            "user" : "jessica",
+                            "replystring" : "indeed it is baby",
+                            "replylikes" : 7,
+                            "replydislikes" : 0,
+                            "isedited" : false
+                        }
+                    ]
+                }
+            ]
+                
+        },
+        "recipename" : "lechon kawali",
+        "ingridients" : ["oil", "pork", "toyo"],
+        "procedure" : ["mix the pot", "repeat"]
+    }
+
+]
+
+    // Compile the Handlebars template
+    var source = document.getElementById("post-template").innerHTML;
+    var template = Handlebars.compile(source);
+
+    // Loop through the data and append each post to the container
+    var container = document.querySelector(".forumview");
+    data.forEach(function(postData) {
+        var html = template(postData);
+        container.innerHTML += html;
+    });
