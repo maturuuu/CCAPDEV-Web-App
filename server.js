@@ -9,6 +9,9 @@ app.get('/', function(req, res){
 
 //add routes here
 
+app.get('/rmv', function(req, res){
+    res.sendFile(__dirname + '//' + 'RegMainView.html')
+});
 
 app.use(express.static(__dirname)); //allows use of static files like css
 
