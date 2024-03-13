@@ -10,15 +10,15 @@ app.get('/', function(req, res){
 //add routes here
 
 app.get('/rmv', function(req, res){
-    res.sendFile(__dirname + '//' + 'RegMainView.html')
+    res.sendFile(__dirname + '/' + 'RegMainView.html')
 });
 
 app.get('/register', function(req, res){
-    res.sendFile(__dirname + '//' + 'RegisterView.html')
+    res.sendFile(__dirname + '/' + 'RegisterView.html')
 });
 
 app.get('/login', function(req, res){
-    res.sendFile(__dirname + '//' + 'LoginView.html')
+    res.sendFile(__dirname + '/' + 'LoginView.html')
 });
 
 app.use(express.static(__dirname)); //allows use of static files like css
