@@ -1,0 +1,188 @@
+<div class="siteproper">
+
+            <div class="header">
+
+                <div class="sitename">
+                    <b>LTC</b>
+                </div>
+    
+                <div class="siteoptions">
+    
+                    <div class="home">
+                        <button onClick="goHome()" class="homebtn"><b class="optiontext">Home</b></button>
+                    </div>
+                    
+                    <div class="profile">
+                        <button onClick="gotoProfile()" class="profilebtn"><b class="optiontext">Profile</b></button>
+                    </div>
+    
+                    <div class="search">
+
+                            <div class="searchbuttonimage">
+                                <a href="Search.html">
+                                    <img src="images/search.png" height="40px" width="40px">
+                                </a>
+                            </div>
+        
+                    </div>
+    
+                </div>
+
+            </div>
+
+            <div class="body">
+
+                <div class="miniprofile">
+
+                    <div class="mini">
+
+                        <div class="dpholder">
+                            <img class="display" src="{{../images/mainviews.profilepic}}">
+                        </div>
+
+                        <div class="username">
+                            <a class="postlinks" href="ViewMyProfile.html"><b>{{mainviews.username}}</b></a>
+                        </div>
+
+                        <div class="stats">
+
+                            <div class="numposts">
+                                {{mainviews.posts.length}} <br>
+                                <b>Posts</b>
+                            </div>
+    
+                            <div class="numlikes">
+                                {{mainviews.totallikes}}<br>
+                                <b>Likes</b>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="CreatePost()" class="createpost"><b>Create a Post</b></button>
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="EditProfile()" class="editprofile"><b>Edit Profile</b></button>
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="Logout()" class="log"><b>Logout</b></button>
+                    </div>
+
+                </div>
+
+                <div class="forumview">
+
+                    <div class="filters">
+                        
+                        <div>
+                            <button class="fil">Filter1</button>
+                        </div>
+
+                        <div>
+                            <button class="fil">Filter2</button>
+                        </div>
+
+                        <div>
+                            <button class="fil">Filter3</button>
+                        </div>
+
+                        <div>
+                            <select name="Filters" class="fil">
+                                <option value="mostpop">Most Popular</option>
+                                <option value="leastpop">Least Popular</option>
+                                <option value="alphaa">A-Z</option>
+                                <option value="alphaz">Z-A</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="post1">
+
+                        <div class="recipephoto">
+                            <img class="ulam" src="images/profilepic1.jpg">
+                        </div>
+
+                        <div class="postmetadata">
+
+                            <div class="posteruser">
+                                <a class="postlinks" href="RegViewUser.html">@Chew-Barka</a>
+                            </div>
+
+                            <div class="forumtitle">
+                                <a class="postlinks" href="post.html"><b>[GENERAL] Best Wine and Kibble Pairings for Distinguished Gentlepups?</b></a>
+                            </div>
+
+                            <div class="date">
+                                <i>01/01/2024</i>
+                            </div>
+
+                        </div>
+
+                        <div class="commentcount">
+                            #1000
+                        </div>
+
+                    </div>
+
+                    <script id="post-template" type="text/x-handlebars-template">
+                        <div class="post1">
+                            <div class="recipephoto">
+                                <img class="ulam" src="images/{{metadata.recipeimg}}">
+                            </div>
+                            <div class="postmetadata">
+                                <div class="posteruser">
+                                    <a class="postlinks" href="RegViewUser.html">@{{user}}</a>
+                                </div>
+                                <div class="forumtitle">
+                                    <a class="postlinks" href="post.html"><b>{{recipename}}</b></a>
+                                </div>
+                                <div class="date">
+                                    <i>{{metadata.date}}</i>
+                                </div>
+                            </div>
+                            <div class="commentcount">
+                                #{{metadata.commentcount}}
+                            </div>
+                        </div>
+                    </script>
+
+                    <script src="post.js"></script>
+                    
+                </div>
+
+            </div>
+
+            <script src="../userdata.js"></script>
+
+                <script>
+
+                    function goHome(){
+                        window.location.href = "/rmv";
+                    }
+
+                    function Login(){
+                        window.location.href = "/login";
+                    }
+
+                    function Logout(){
+                        window.location.href = "/";
+                    }
+
+                    function CreatePost(){
+                        window.location.href = "new-post.html";
+                    }
+
+                    function gotoProfile(){
+                        window.location.href = "ViewMyProfile.html";
+                    }
+
+                    function EditProfile(){
+                        window.location.href = "EditProfile.html";
+                    }
+
+                </script>
