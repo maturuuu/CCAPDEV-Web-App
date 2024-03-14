@@ -48,6 +48,10 @@ app.get('/newreply', function(req, res){
     res.sendFile(__dirname + '/' + 'new-reply.html')
 });
 
+app.get('/search', function(req, res){
+    res.sendFile(__dirname + '/' + 'Search.html')
+});
+
 app.use(express.static(__dirname)); //allows use of static files like css
 
 var server = app.listen(3000, function(){
