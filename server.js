@@ -1,6 +1,14 @@
 var express = require('express');
 var app = express()
 
+const exphbs = require('express-handlebars');
+
+//importing serverdata.js
+const posts = require('./posts')
+
+//setting handlebars
+app.engine('hbs', exphbs());
+app.set('view engine', 'hbs');
 
 //default route to homepage
 app.get('/', function(req, res){
@@ -28,8 +36,19 @@ app.get('/userprofile', function(req, res){
     res.sendFile(__dirname + '/' + 'ViewUserProfile.html')
 });
 
-app.get('/post', function(req, res){
-    res.sendFile(__dirname + '/' + 'post.html')
+// app.get('/post', function(req, res){
+//     res.sendFile(__dirname + '/' + 'post.html')
+// });
+
+//finds posts dynamically based on post id
+app.get('/post/:postid', (req, res) => {
+    const postid = parseInt(req.params.postid);
+    const post = posts.find(post => post.id == postid);
+    if(!post){
+        res.status(404).send("Oops! That post doesn't exist!");
+        return;
+    }
+    res.render('post', {post});
 });
 
 app.get('/postnonreg', function(req, res){
