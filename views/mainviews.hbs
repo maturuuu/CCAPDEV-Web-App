@@ -19,8 +19,8 @@
                     <div class="search">
 
                             <div class="searchbuttonimage">
-                                <a href="Search.html">
-                                    <img src="images/search.png" height="40px" width="40px">
+                                <a href="/search">
+                                    <img src="../images/search.png" height="40px" width="40px">
                                 </a>
                             </div>
         
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="username">
-                            <a class="postlinks" href="ViewMyProfile.html"><b>{{mainviews.username}}</b></a>
+                            <a class="postlinks" href="/profile"><b>{{mainviews.username}}</b></a>
                         </div>
 
                         <div class="stats">
@@ -104,7 +104,7 @@
                     <div class="post1">
 
                         <div class="recipephoto">
-                            <img class="ulam" src="images/profilepic1.jpg">
+                            <img class="ulam" src="../images/profilepic1.jpg">
                         </div>
 
                         <div class="postmetadata">
@@ -136,7 +136,7 @@
                             </div>
                             <div class="postmetadata">
                                 <div class="posteruser">
-                                    <a class="postlinks" href="RegViewUser.html">@{{user}}</a>
+                                    <a class="postlinks" href="/userprofile">@{{user}}</a>
                                 </div>
                                 <div class="forumtitle">
                                     <a class="postlinks" href="post.html"><b>{{recipename}}</b></a>
@@ -162,7 +162,7 @@
                 <script>
 
                     function goHome(){
-                        window.location.href = "/rmv";
+                        window.location.href = "/home";
                     }
 
                     function Login(){
@@ -178,7 +178,7 @@
                     }
 
                     function gotoProfile(){
-                        window.location.href = "ViewMyProfile.html";
+                        window.location.href = "/userprofile";
                     }
 
                     function EditProfile(){
