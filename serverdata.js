@@ -1,4 +1,4 @@
-let posts = [
+let postlist = [
     {
         id: 1,
         authorid: 1,
@@ -26,6 +26,4 @@ let posts = [
 ];
 //add likes later, make it so if current user id matches author id, you can edit.
 
-module.exports = {
-    posts
-};
+module.exports = postlist;
