@@ -2,7 +2,7 @@ var express = require('express');
 var app = express()
 const exphbs = require('express-handlebars');
 const postlist = require('./serverdata');
-
+const userlist = require('./userdata');
 
 app.engine('hbs', exphbs.engine());
 app.set('view engine', 'hbs');
