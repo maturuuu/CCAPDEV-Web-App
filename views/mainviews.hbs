@@ -132,7 +132,7 @@
                     <script id="post-template" type="text/x-handlebars-template">
                         <div class="post1">
                             <div class="recipephoto">
-                                <img class="ulam" src="images/{{metadata.recipeimg}}">
+                                <img class="ulam" src="./images/{{metadata.recipeimg}}">
                             </div>
                             <div class="postmetadata">
                                 <div class="posteruser">
@@ -146,12 +146,12 @@
                                 </div>
                             </div>
                             <div class="commentcount">
-                                #{{metadata.commentcount}}
+                                #{{metadata.comments.length}}
                             </div>
                         </div>
                     </script>
 
-                    <script src="post.js"></script>
+                    <script src="../post.js"></script>
                     
                 </div>
 
