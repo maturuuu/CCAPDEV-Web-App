@@ -46,7 +46,7 @@ app.get('/post/:postId', function(req, res) {
 });
 
 //handlebars for user main views
-app.get('/:username', function(req, res) {
+app.get('/home/:username', function(req, res) {
     const username = req.params.username;
     const user = userlist.find(user => user.username === username);
     if (!user) {
