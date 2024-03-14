@@ -8,11 +8,16 @@ app.engine('hbs', exphbs.engine());
 app.set('view engine', 'hbs');
 
 //default route to homepage
+// app.get('/', function(req, res){
+//     res.sendFile(__dirname + '\\' + 'nonRegMainView.html')
+// });
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '\\' + 'nonRegMainView.html')
+    res.render('nonRegMainView', {post: postlist})
 });
 
+
 app.use(express.static(__dirname)); //allows use of static files like css
+
 
 //add routes here
 app.get('/home', function(req, res){
