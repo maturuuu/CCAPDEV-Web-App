@@ -58,4 +58,4 @@ function gotoSearch() {
 
     window.location.href = "Search.html";
     
-}
+} 
