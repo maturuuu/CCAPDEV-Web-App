@@ -3,14 +3,16 @@ var app = express()
 const exphbs = require('express-handlebars');
 const postlist = require('./serverdata');
 
+
 app.engine('hbs', exphbs.engine());
 app.set('view engine', 'hbs');
-
 
 //default route to homepage
 app.get('/', function(req, res){
     res.sendFile(__dirname + '\\' + 'nonRegMainView.html')
 });
+
+app.use(express.static(__dirname)); //allows use of static files like css
 
 //add routes here
 app.get('/home', function(req, res){
@@ -44,19 +46,19 @@ app.get('/post/:postId', function(req, res) {
 });
 
 //handlebars for user main views
-// app.get('/:username', function(req, res) {
-//     const username = req.params.username;
-//     const user = userlist.find(user => user.username === username);
-//     if (!user) {
-//         res.status(404).send('Oopsie, post not found!');
-//         return;
-//     }
-//     res.render('mainviews', { mainviews: user });
-// });
+app.get('/:username', function(req, res) {
+    const username = req.params.username;
+    const user = userlist.find(user => user.username === username);
+    if (!user) {
+        res.status(404).send('Oopsie, post not found!');
+        return;
+    }
+    res.render('mainviews', { mainviews: user });
+});
 
-// app.get('/post', function(req, res){
-//     res.render('post', {post: postlist});
-// });
+app.get('/post', function(req, res){
+    res.render('post', {post: postlist});
+});
 
 app.get('/postnonreg', function(req, res){
     res.sendFile(__dirname + '/' + 'post-nonReg.html')
@@ -77,8 +79,6 @@ app.get('/newreply', function(req, res){
 app.get('/search', function(req, res){
     res.sendFile(__dirname + '/' + 'Search.html')
 });
-
-app.use(express.static(__dirname)); //allows use of static files like css
 
 var server = app.listen(3000, function(){
     console.log("Web App running at port 3000")
