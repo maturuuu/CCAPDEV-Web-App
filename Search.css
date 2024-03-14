@@ -1,11 +1,11 @@
-.siteproper{
+.siteproper {
     display: flex;
     flex-direction: column;
     height: auto;
     width: auto;
 }
 
-.header{
+.header {
     display: flex;
     flex-direction: row;
     width: auto;
@@ -16,7 +16,7 @@
     margin-bottom: -30px;
 }
 
-.sitename{
+.sitename {
     font-family: varela;
     font-size: 80px;
     color: #FF5757;
@@ -28,7 +28,7 @@
     margin: 20px;
 }
 
-.siteoptions{
+.siteoptions {
     font-family: varela;
     display: flex;
     flex-direction: row;
@@ -41,25 +41,12 @@
     margin: 20px;
 }
 
-.home{
+.home {
     width: 20%;
     margin-left: 20px;
 }
 
-.homebtn{
-    font-size: 20px;
-    background-color: #E49E9E;
-    height: 40px;
-    width: 150px;
-    border-radius: 20px;
-    border: 3px solid #DD4343;   
-}
-
-.profile{
-    width: 20%;
-}
-
-.profilebtn{
+.homebtn {
     font-size: 20px;
     background-color: #E49E9E;
     height: 40px;
@@ -68,11 +55,11 @@
     border: 3px solid #DD4343;
 }
 
-.optionb{
+.profile {
     width: 20%;
 }
 
-.optionbtn{
+.profilebtn {
     font-size: 20px;
     background-color: #E49E9E;
     height: 40px;
@@ -81,49 +68,73 @@
     border: 3px solid #DD4343;
 }
 
-.search{
+.search {
     font-family: varela;
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 40%;
+    width: 60%;
     margin-left: 50px;
 }
 
-.searchbuttonimage{
+.searchbuttonimage {
     width: 10%;
 }
+
 .searchbtn {
     font-family: varela;
     background-color: #E49E9E;
     border-radius: 20px;
-    margin-left: 10px;
+    margin-left: 20px;
+    width: auto;
 }
 
 .searcheditem {
     padding: 10px;
     width: 300px;
     margin-right: 10px;
-  }
+}
 
-#searchcontainer {
-    margin: 20px;
-  }  
+.searchheader {
+    font-family: varela;
+    background-color: #F0F0E2;
+    border: 3px solid #CDCDCD;
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    width: 100;
+    column-gap: 20px;
+    border-radius: 30px;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 12px;
+}
 
 .profilecontainer {
     background-color: #FFBD59;
     width: 95%;
-    height: 630px;
+    height: auto; 
     margin: 20px;
     padding: 10px;
     border-radius: 20px;
-    border: 2px solid #FF7A00; 
+    border: 2px solid #FF7A00;
     display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+
+#searchcontainer {
+    margin-top: 20px; 
+    align-self: flex-start;
 }
 
 .post {
+    font-family: varela;
     padding: 10px;
     margin-bottom: 10px;
+    border-radius: 20px;
+    border: 3px solid #CDCDCD;
+    background-color: #FFFFFF;
 }
 
 .tag {
@@ -136,3 +147,4 @@
     font-size: 16px;
     margin-left: 9px;
 }
+ 

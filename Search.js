@@ -1,7 +1,7 @@
 const posts = [
-    { title: 'Post 1', body: 'May the Force be with you', tags: ['tag1', 'tag2', 'tag3'] },
-    { title: 'Post 2', body: 'You cant sit with us', tags: ['tag2'] },
-    { title: 'Post 3', body: 'Ohana means family', tags: ['tag3'] },
+    { title: 'Placeholder Text', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', tags: ['tag1', 'tag2', 'tag3'] },
+    { title: 'When Harry Met Sally.', body: 'I love that you get cold when its 71 degrees out. I love that it takes you an hour-and-a-half to order a sandwich. I love that you get a little crinkle above your nose when youre looking at me like Im nuts. I love that when I spend a day with you, I can still smell your perfume on my clothes; and I love that you are the last person I want to talk to before I go to sleep at night.', tags: ['tag2'] },
+    { title: 'Blank Space', body: 'So its gonna be forever or its gonna go down in flames. You can tell me when its over, if the high was worth the pain. Got a long list of ex-lovers They will tell you Im insane. Cause you know I love the players And you love the game', tags: ['tag3'] },
 ];
 
 function SearchPost() {
@@ -53,3 +53,9 @@ function gotoProfile() {
     window.location.href = "ViewMyProfile.html";
 
 }
+
+function gotoSearch() {
+
+    window.location.href = "Search.html";
+    
+} 
