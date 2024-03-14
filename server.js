@@ -24,8 +24,16 @@ app.get('/profile', function(req, res){
     res.sendFile(__dirname + '/' + 'RegViewUser.html')
 })
 
+app.get('/userprofile', function(req, res){
+    res.sendFile(__dirname + '/' + 'ViewUserProfile.html')
+});
+
 app.get('/post', function(req, res){
     res.sendFile(__dirname + '/' + 'post.html')
+});
+
+app.get('/postnonreg', function(req, res){
+    res.sendFile(__dirname + '/' + 'post-nonReg.html')
 });
 
 app.get('/editpost', function(req, res){
