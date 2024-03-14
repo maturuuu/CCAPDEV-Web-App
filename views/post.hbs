@@ -59,103 +59,31 @@
                 </div>
 
                 <div id="comments-container">
-                    <div class="comment">
-                        <div class="comment-header">
-                            <img class="comment-profile-pic" src = "../images/profilepic2.jpg">
-                            <span class="comment-username">Mary Puppins</span>
-                            <span class="vote-holder">
-                                <button class="comment-upvote-button">
-                                    <img src="../images/upvote.png">
-                                </button>
-                                <button class="comment-downvote-button">
-                                    <img src="../images/downvote.png">
-                                </button>
-                            </span>
+                    
+                    {{#each post.comments}}
+                        <div class="comment {{#if isreply}}reply{{/if}}">
+                            <div class="comment-header">
+                                <img class="comment-profile-pic" src = {{authorimg}}>
+                                <span class="comment-username">{{authorname}}</span>
+                                <span class="vote-holder">
+                                    <button class="comment-upvote-button">
+                                        <img src="../images/upvote.png">
+                                    </button>
+                                    <button class="comment-downvote-button">
+                                        <img src="../images/downvote.png">
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="comment-text">
+                                {{content}}
+                            </div>
+                            <div class="comment-footer">
+                                <span class="comment-edited underlined-bold">{{isedited}}</span>
+                                <button onclick="NewReply()" class="comment-reply-button">Reply</button>
+                            </div>
                         </div>
-                        <div class="comment-text">
-                            Yooo bro you should try the Mutt-ini it's like so borkin' good especially with those milk biscuit thingies
-                        </div>
-                        <div class="comment-footer">
-                            <span class="comment-edited underlined-bold">edited</span>
-                            <button onclick="NewReply()" class="comment-reply-button">Reply</button>
-                        </div>
-                    </div>
+                    {{/each}}
 
-                    <div class="comment reply">
-                        <div class="comment-header">
-                            <img class="comment-profile-pic" src = "../images/profilepic3.jpg">
-                            <span class="comment-username">JK Growling</span>
-                            <span class="vote-holder">
-                                <button class="comment-upvote-button">
-                                    <img src="../images/upvote.png">
-                                </button>
-                                <button class="comment-downvote-button">
-                                    <img src="../images/downvote.png">
-                                </button>
-                            </span>
-                        </div>
-                        <div class="comment-text">
-                            The Wolf-Whiskey Sour goes crazy my guy, 11/10 would shlurp again
-                        </div>
-                        <div class="comment-footer">
-                            <span class="comment-edited underlined-bold"></span>
-                            <button onclick="NewReply()" class="comment-reply-button">Reply</button>
-                        </div>
-                    </div>
-
-                    <div class="comment reply">
-                        <div class="comment-header">
-                            <img class="comment-profile-pic" src = "../images/profilepic1.jpg">
-                            <span class="comment-username">Chew Barka [OP]</span>
-                            <span class="vote-holder">
-
-                                <!--for replies made by [OP]-->
-                                <button class="comment-options-button"> 
-                                    <img src="../images/threedots.png">
-                                </button>
-                                <button class="comment-upvote-button">
-                                    <img src="../images/upvote.png">
-                                </button>
-                                <button class="comment-downvote-button">
-                                    <img src="../images/downvote.png">
-                                </button>
-
-                                <div class="comment-options-menu">
-                                    <button onclick="EditReply()" class="edit-comment-button">Edit</button>
-                                    <button class="delete-comment-button">Delete</button>
-                                </div>
-                            </span>
-                        </div>
-                        <div class="comment-text">
-                            I've tried this and it was terrific! Those puppers down at Bulldog Brew sure know what's up!
-                        </div>
-                        <div class="comment-footer">
-                            <span class="comment-edited underlined-bold"></span>
-                            <button onclick="NewReply()" class="comment-reply-button">Reply</button>
-                        </div>
-                    </div>
-
-                    <div class="comment reply">
-                        <div class="comment-header">
-                            <img class="comment-profile-pic" src = "../images/profilepic4.jpg">
-                            <span class="comment-username">Beowolf</span>
-                            <span class="vote-holder">
-                                <button class="comment-upvote-button">
-                                    <img src="../images/upvote.png">
-                                </button>
-                                <button class="comment-downvote-button">
-                                    <img src="../images/downvote.png">
-                                </button>
-                            </span>
-                        </div>
-                        <div class="comment-text">
-                            First lol AWOOOOOOOOOOOO WOOF WOOF
-                        </div>
-                        <div class="comment-footer">
-                            <span class="comment-edited underlined-bold">edited</span>
-                            <button onclick="NewReply()" class="comment-reply-button">Reply</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -180,11 +108,4 @@
             function Profile(){
                 window.location.href = "/profile"
             }
-
-            /*
-            ADD:
-            1. Link to user profile (click on profile pic or username)
-            2. Home, Profile
-            3. Search bar
-            */
         </script>

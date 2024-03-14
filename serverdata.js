@@ -27,6 +27,15 @@ let postlist = [
                 isedited: "",
                 isreply: true
             },
+            {
+                id: 13,
+                authorid: 3,
+                authorname: "THIRD of my name, User-generated author",
+                authorimg: "/images/profilepic3.jpg",
+                content: "This should be at the very bottom yay",
+                isedited: "",
+                isreply: false
+            }
         ]
     },
     {
@@ -40,20 +49,20 @@ let postlist = [
         isedited: "",
         comments: [
             {
-                id: 11,
+                id: 21,
                 authorid: 2,
                 authorname: "User-generated 2nd Author",
                 authorimg: "/images/profilepic2.jpg",
-                content: "This is my user-generated reply to the post :))",
+                content: "LEMAO",
                 isedited: "edited",
                 isreply: false
             },
             {
-                id: 12,
+                id: 22,
                 authorid: 1,
                 authorname: "User-generated Author",
                 authorimg: "/images/profilepic1.jpg",
-                content: "this is a reply to THAT reply MUWAHAHAHA",
+                content: "BORK BORK BORKEM",
                 isedited: "",
                 isreply: true
             },

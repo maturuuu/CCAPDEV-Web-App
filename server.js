@@ -44,15 +44,15 @@ app.get('/post/:postId', function(req, res) {
 });
 
 //handlebars for user main views
-app.get('/:username', function(req, res) {
-    const username = req.params.username;
-    const user = userlist.find(user => user.username === username);
-    if (!user) {
-        res.status(404).send('Oopsie, post not found!');
-        return;
-    }
-    res.render('mainviews', { post: user });
-});
+// app.get('/:username', function(req, res) {
+//     const username = req.params.username;
+//     const user = userlist.find(user => user.username === username);
+//     if (!user) {
+//         res.status(404).send('Oopsie, post not found!');
+//         return;
+//     }
+//     res.render('mainviews', { mainviews: user });
+// });
 
 // app.get('/post', function(req, res){
 //     res.render('post', {post: postlist});
