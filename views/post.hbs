@@ -9,7 +9,7 @@
                 <div id="searchbar-container">
                     <input type="text" class="searchbar-input" name="search-input" placeholder="Search...">
                     <button class="search-button">
-                        <img src="images/search.png">
+                        <img src="../images/search.png">
                     </button>
                 </div>  
             </div>
@@ -17,10 +17,10 @@
             <div id="content">
                 <div id="post-container">
                     <div id="user-container">
-                        <img class="profile-pic" src = "images/profilepic1.jpg">
-                        <span class="username">Chew Barka</span>
+                        <img class="profile-pic" src = {{post.authorimg}}>
+                        <span class="username">{{post.authorname}}</span>
                         <button id="post-options-button">
-                            <img src="images/threedots.png">
+                            <img src="../images/threedots.png">
                         </button>
 
                         <div id="post-options-menu">
@@ -31,32 +31,27 @@
                     </div>
 
                     <div id="post-title">
-                        [GENERAL] Best Wine and Kibble Pairings for Distinguished Gentlepups?
+                        {{post.title}}
                     </div>
 
                     <div id="other-post-info">
-                        1 hour ago
+                        {{post.timestamp}}
                         <span id="editedspace">•</span>
-                        <span class="underlined-bold">edited</span>
+                        <span class="underlined-bold">{{post.isedited}}</span>
                     </div>
 
                     <div id="post-content-box">
                         <div id="post-content-text">
-                            Hey guys! I've recently gotten interested in the finer delicacies in life, particularly wine. To all my fellow
-                            cultured gentlepups out there, what wine do you enjoy alongside different brands of kibble?
-                            <br><br>
-                            Thanks in advance my dapper broskis!
-                            <br><br><br><br><br><br><br><br><br>
-                            woof
+                            {{post.content}}
                         </div>
                     </div>
                     <div id="post-footer">
                         <span id="post-vote-holder">
                             <button class="comment-upvote-button">
-                                <img src="images/upvote.png">
+                                <img src="../images/upvote.png">
                             </button>
                             <button class="comment-downvote-button">
-                                <img src="images/downvote.png">
+                                <img src="../images/downvote.png">
                             </button>
                         </span>
                         <button onclick="NewReply()" id="post-reply-button">Reply</button>
@@ -66,14 +61,14 @@
                 <div id="comments-container">
                     <div class="comment">
                         <div class="comment-header">
-                            <img class="comment-profile-pic" src = "images/profilepic2.jpg">
+                            <img class="comment-profile-pic" src = "../images/profilepic2.jpg">
                             <span class="comment-username">Mary Puppins</span>
                             <span class="vote-holder">
                                 <button class="comment-upvote-button">
-                                    <img src="images/upvote.png">
+                                    <img src="../images/upvote.png">
                                 </button>
                                 <button class="comment-downvote-button">
-                                    <img src="images/downvote.png">
+                                    <img src="../images/downvote.png">
                                 </button>
                             </span>
                         </div>
@@ -88,14 +83,14 @@
 
                     <div class="comment reply">
                         <div class="comment-header">
-                            <img class="comment-profile-pic" src = "images/profilepic3.jpg">
+                            <img class="comment-profile-pic" src = "../images/profilepic3.jpg">
                             <span class="comment-username">JK Growling</span>
                             <span class="vote-holder">
                                 <button class="comment-upvote-button">
-                                    <img src="images/upvote.png">
+                                    <img src="../images/upvote.png">
                                 </button>
                                 <button class="comment-downvote-button">
-                                    <img src="images/downvote.png">
+                                    <img src="../images/downvote.png">
                                 </button>
                             </span>
                         </div>
@@ -110,19 +105,19 @@
 
                     <div class="comment reply">
                         <div class="comment-header">
-                            <img class="comment-profile-pic" src = "images/profilepic1.jpg">
+                            <img class="comment-profile-pic" src = "../images/profilepic1.jpg">
                             <span class="comment-username">Chew Barka [OP]</span>
                             <span class="vote-holder">
 
                                 <!--for replies made by [OP]-->
                                 <button class="comment-options-button"> 
-                                    <img src="images/threedots.png">
+                                    <img src="../images/threedots.png">
                                 </button>
                                 <button class="comment-upvote-button">
-                                    <img src="images/upvote.png">
+                                    <img src="../images/upvote.png">
                                 </button>
                                 <button class="comment-downvote-button">
-                                    <img src="images/downvote.png">
+                                    <img src="../images/downvote.png">
                                 </button>
 
                                 <div class="comment-options-menu">
@@ -142,14 +137,14 @@
 
                     <div class="comment reply">
                         <div class="comment-header">
-                            <img class="comment-profile-pic" src = "images/profilepic4.jpg">
+                            <img class="comment-profile-pic" src = "../images/profilepic4.jpg">
                             <span class="comment-username">Beowolf</span>
                             <span class="vote-holder">
                                 <button class="comment-upvote-button">
-                                    <img src="images/upvote.png">
+                                    <img src="../images/upvote.png">
                                 </button>
                                 <button class="comment-downvote-button">
-                                    <img src="images/downvote.png">
+                                    <img src="../images/downvote.png">
                                 </button>
                             </span>
                         </div>

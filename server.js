@@ -33,13 +33,19 @@ app.get('/userprofile', function(req, res){
     res.sendFile(__dirname + '/' + 'ViewUserProfile.html')
 });
 
-// app.get('/post', function(req, res){
-//     res.sendFile(__dirname + '/' + 'post.html')
-// });
-
-app.get('/post', function(req, res){
-    res.render('post', {post: postlist});
+app.get('/post/:postId', function(req, res) {
+    const postId = parseInt(req.params.postId);
+    const post = postlist.find(post => post.id === postId);
+    if (!post) {
+        res.status(404).send('Oopsie, post not found!');
+        return;
+    }
+    res.render('post', { post: post });
 });
+
+// app.get('/post', function(req, res){
+//     res.render('post', {post: postlist});
+// });
 
 app.get('/postnonreg', function(req, res){
     res.sendFile(__dirname + '/' + 'post-nonReg.html')
