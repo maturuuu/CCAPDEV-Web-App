@@ -1,7 +1,7 @@
 let userlist = [
     {
         authorid: 1,
-        authorname: "User-generated Author",
+        authorname: "KingOfKibble",
         authorusername: "@kibbleking",
         authorimg: "/images/profilepic1.jpg",
         authorbio: "Despite all my rage, I am still just a rat in a cage",
@@ -10,7 +10,7 @@ let userlist = [
     },
     {
         authorid: 2,
-        authorname: "User-generated 2nd Author",
+        authorname: "TotallyTurkey",
         authorusername: "@carnivroar",
         authorimg: "/images/profilepic2.jpg",
         authorbio: "We're goin' down, down, in an earlier round, and sugar we're goin' down swingin'",
@@ -19,7 +19,7 @@ let userlist = [
     },
     {
         authorid: 3,
-        authorname: "THIRD of my name, User-generated author",
+        authorname: "SquirrelThe3RD",
         authorusername: "@thegreatthirdwoof",
         authorimg: "/images/profilepic3.jpg",
         authorbio: "Never gonna give you up, never gonna let you down, never gonna run around and desert you",

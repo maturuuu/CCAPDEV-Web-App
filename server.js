@@ -37,8 +37,17 @@ app.get('/profile', function(req, res){
     res.render('viewMyProfile', {user: user, post: userposts});
 })
 
-app.get('/userprofile', function(req, res){
-    res.sendFile(__dirname + '/' + 'RegViewUser.html')
+app.get('/userprofile/:username', function(req, res){
+    const username = req.params.username;
+    const user = userlist.find(user => user.authorusername === username);
+    if (!user) {
+        res.status(404).send('Oopsie, user profile not found!');
+        return;
+    }
+    const userposts = postlist.filter(post => post.authorusername === username)
+    const activeusername = currentuser;
+    const activeuser = userlist.find(activeuser => activeuser.authorusername === activeusername);
+    res.render('regViewUserProfile', {user: user, post: userposts, activeuser: activeuser});
 });
 
 app.get('/editprofile', function(req, res){

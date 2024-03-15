@@ -1,0 +1,146 @@
+<div class="siteproper">
+
+            <div class="header">
+
+                <div class="sitename">
+                    <b>LTC</b>
+                </div>
+    
+                <div class="siteoptions">
+    
+                    <div class="home">
+                        <button onClick="goHome()" class="homebtn"><b class="optiontext">Home</b></button>
+                    </div>
+                    
+                    <div class="profile">
+                        <button onClick="gotoProfile()" class="profilebtn"><b class="optiontext">Profile</b></button>
+                    </div>
+    
+                    <div class="search">
+
+                            <div class="searchbuttonimage">
+                                <a href="Search.html">
+                                    <img src="../../images/search.png" height="40px" width="40px">
+                                </a>
+                            </div>
+                    </div>
+    
+                </div>
+
+                <script>
+
+                    function goHome(){
+                        window.location.href = "/home/@kibbleking";
+                    }
+
+                    function Login(){
+                        window.location.href = "/login";
+                    }
+
+                    function Logout(){
+                        window.location.href = "/";
+                    }
+
+                    function CreatePost(){
+                        window.location.href = "/newpost";
+                    }
+
+                    function gotoProfile(){
+                        window.location.href = "/profile";
+                    }
+
+                    function EditProfile(){
+                        window.location.href = "/editprofile";
+                    }
+
+                </script>
+
+
+            </div>
+
+            <div class="body">
+
+                <div class="miniprofile">
+
+                    <div class="mini">
+
+                        <img class="dpholder2" src={{activeuser.authorimg}}>
+
+                        <div class="username">
+                            <a class="postlinks" href="/userprofile/{{activeuser.authorusername}}"><b>{{activeuser.authorname}}</b></a>
+                        </div>
+
+                        <div class="stats">
+
+                            <div class="numposts">
+                                {{activeuser.postcount}} <br>
+                                <b>Posts</b>
+                            </div>
+    
+                            <div class="numlikes">
+                                {{activeuser.likecount}} <br>
+                                <b>Likes</b>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="CreatePost()" class="createpost"><b>Create a Post</b></button>
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="EditProfile()" class="editprofile"><b>Edit Profile</b></button>
+                    </div>
+
+                    <div class="mpbuttons">
+                        <button onClick="Logout()" class="log"><b>Logout</b></button>
+                    </div>
+
+                </div>
+
+                <div id="profilecontainer">
+                    <div id="profilepanel">
+                        <div id="profileinfo">
+                            <img class="dpholder2" src={{user.authorimg}}>
+                            <div id="infocontainer">
+                                <div class="username">{{user.authorusername}}</div>
+                                <div id="profiledpname">{{user.authorname}}</div>
+                                <div id="profilebio">{{user.authorbio}}</div>
+                                <div id="profilestats">
+                                    <span class="numposts"> {{user.postcount}} Posts </span>
+                                    <span class="numlikes"> {{user.likecount}} Likes </span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div id="profileposts">
+                            
+                            {{#each post}}
+                            <div class="post">
+                                <img class="dpholder2" src={{authorimg}}>
+                                <div class="postinfocontainer">
+                                    <div class="username">{{authorusername}}</div>
+                                    <div class="posttitle">
+                                        <a class="postlinks" href="/post/{{id}}">{{title}}</a>
+                                    </div>
+                                    <div class="date">
+                                        <i>{{timestamp}}</i>
+                                    </div>
+                                </div>
+                                <div class="poststats">
+                                    <div class="commentsprite"></div>
+                                    <div class="numcomments">{{comments.length}} replies</div>
+                                </div>
+                            </div>
+                            {{/each}}
+
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+
+
+        </div>

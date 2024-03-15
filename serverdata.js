@@ -2,7 +2,7 @@ let postlist = [
     {
         id: 1,
         authorid: 1,
-        authorname: "User-generated Author",
+        authorname: "KingOfKibble",
         authorusername: "@kibbleking",
         authorimg: "/images/profilepic1.jpg",
         title: "This is my user-generated post HOORAY YAYAYAYYAYA",
@@ -13,7 +13,7 @@ let postlist = [
             {
                 id: 11,
                 authorid: 2,
-                authorname: "User-generated 2nd Author",
+                authorname: "TotallyTurkey",
                 authorusername: "@carnivroar",
                 authorimg: "/images/profilepic2.jpg",
                 content: "This is my user-generated reply to the post :))",
@@ -23,7 +23,7 @@ let postlist = [
             {
                 id: 12,
                 authorid: 1,
-                authorname: "User-generated Author",
+                authorname: "KingOfKibble",
                 authorusername: "@kibbleking",
                 authorimg: "/images/profilepic1.jpg",
                 content: "this is a reply to THAT reply MUWAHAHAHA",
@@ -33,7 +33,7 @@ let postlist = [
             {
                 id: 13,
                 authorid: 3,
-                authorname: "THIRD of my name, User-generated author",
+                authorname: "SquirrelThe3RD",
                 authorusername: "@thegreatthirdwoof",
                 authorimg: "/images/profilepic3.jpg",
                 content: "This should be at the very bottom yay",
@@ -45,7 +45,7 @@ let postlist = [
     {
         id: 2,
         authorid: 2,
-        authorname: "User-generated 2nd Author",
+        authorname: "TotallyTurkey",
         authorusername: "@carnivroar",
         authorimg: "/images/profilepic2.jpg",
         title: "I am the second author, and this is MY user-generated post",
@@ -56,7 +56,7 @@ let postlist = [
             {
                 id: 21,
                 authorid: 2,
-                authorname: "User-generated 2nd Author",
+                authorname: "TotallyTurkey",
                 authorusername: "@carnivroar",
                 authorimg: "/images/profilepic2.jpg",
                 content: "LEMAO",
@@ -66,7 +66,7 @@ let postlist = [
             {
                 id: 22,
                 authorid: 1,
-                authorname: "User-generated Author",
+                authorname: "KingOfKibble",
                 authorusername: "@kibbleking",
                 authorimg: "/images/profilepic1.jpg",
                 content: "BORK BORK BORKEM",
@@ -78,7 +78,7 @@ let postlist = [
     {
         id: 3,
         authorid: 1,
-        authorname: "User-generated Author",
+        authorname: "KingOfKibble",
         authorusername: "@kibbleking",
         authorimg: "/images/profilepic1.jpg",
         title: "I am kibbleking and i have made a NEW POST!",
@@ -89,7 +89,7 @@ let postlist = [
             {
                 id: 31,
                 authorid: 2,
-                authorname: "User-generated 2nd Author",
+                authorname: "TotallyTurkey",
                 authorusername: "@carnivroar",
                 authorimg: "/images/profilepic2.jpg",
                 content: "interesting post my guy",
@@ -99,7 +99,7 @@ let postlist = [
             {
                 id: 32,
                 authorid: 1,
-                authorname: "User-generated Author",
+                authorname: "KingOfKibble",
                 authorusername: "@kibbleking",
                 authorimg: "/images/profilepic1.jpg",
                 content: "ACORN.",
@@ -109,7 +109,7 @@ let postlist = [
             {
                 id: 33,
                 authorid: 3,
-                authorname: "THIRD of my name, User-generated author",
+                authorname: "SquirrelThe3RD",
                 authorusername: "@thegreatthirdwoof",
                 authorimg: "/images/profilepic3.jpg",
                 content: "dude ur crazy for acorns huh",
@@ -119,7 +119,7 @@ let postlist = [
             {
                 id: 34,
                 authorid: 1,
-                authorname: "User-generated Author",
+                authorname: "KingOfKibble",
                 authorusername: "@kibbleking",
                 authorimg: "/images/profilepic1.jpg",
                 content: "Why yes my good sir I am.",
