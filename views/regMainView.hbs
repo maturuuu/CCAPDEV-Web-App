@@ -13,7 +13,7 @@
                     </div>
                     
                     <div class="profile">
-                        <button onClick="gotoProfile()" class="profilebtn"><b class="optiontext">Profile</b></button>
+                        <button onClick="gotoMyProfile()" class="profilebtn"><b class="optiontext">Profile</b></button>
                     </div>
     
                     <div class="search">
@@ -33,7 +33,7 @@
             <script>
 
                     function goHome(){
-                        window.location.href = "/home";
+                        window.location.href = "/home/@kibbleking";
                     }
 
                     function Login(){
@@ -52,8 +52,12 @@
                         window.location.href = "/userprofile";
                     }
 
+                    function gotoMyProfile(){
+                        window.location.href = "/profile"
+                    }
+
                     function EditProfile(){
-                        window.location.href = "EditProfile.html";
+                        window.location.href = "/editprofile";
                     }
 
             </script>

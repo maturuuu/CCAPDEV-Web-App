@@ -74,6 +74,59 @@ let postlist = [
                 isreply: true
             },
         ]
+    },
+    {
+        id: 3,
+        authorid: 1,
+        authorname: "User-generated Author",
+        authorusername: "@kibbleking",
+        authorimg: "/images/profilepic1.jpg",
+        title: "I am kibbleking and i have made a NEW POST!",
+        content: "I like squirrels do you like squirrels hehe",
+        timestamp: "Yesterday",
+        isedited: "",
+        comments: [
+            {
+                id: 31,
+                authorid: 2,
+                authorname: "User-generated 2nd Author",
+                authorusername: "@carnivroar",
+                authorimg: "/images/profilepic2.jpg",
+                content: "interesting post my guy",
+                isedited: "edited",
+                isreply: false
+            },
+            {
+                id: 32,
+                authorid: 1,
+                authorname: "User-generated Author",
+                authorusername: "@kibbleking",
+                authorimg: "/images/profilepic1.jpg",
+                content: "ACORN.",
+                isedited: "",
+                isreply: true
+            },
+            {
+                id: 33,
+                authorid: 3,
+                authorname: "THIRD of my name, User-generated author",
+                authorusername: "@thegreatthirdwoof",
+                authorimg: "/images/profilepic3.jpg",
+                content: "dude ur crazy for acorns huh",
+                isedited: "",
+                isreply: true
+            },
+            {
+                id: 34,
+                authorid: 1,
+                authorname: "User-generated Author",
+                authorusername: "@kibbleking",
+                authorimg: "/images/profilepic1.jpg",
+                content: "Why yes my good sir I am.",
+                isedited: "edited",
+                isreply: true
+            }
+        ]
     }
 ];
 //add likes later, make it so if current user id matches author id, you can edit.

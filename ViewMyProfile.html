@@ -44,27 +44,27 @@
                 <script>
 
                     function goHome(){
-                        window.location.href = "RegMainView.html";
+                        window.location.href = "/home/@kibbleking";
                     }
 
                     function Login(){
-                        window.location.href = "LoginView.html";
+                        window.location.href = "/login";
                     }
 
                     function Logout(){
-                        window.location.href = "nonRegMainView.html";
+                        window.location.href = "/";
                     }
 
                     function CreatePost(){
-                        window.location.href = "";
+                        window.location.href = "/newpost";
                     }
 
                     function gotoProfile(){
-                        window.location.href = "ViewMyProfile.html";
+                        window.location.href = "/profile";
                     }
 
                     function EditProfile(){
-                        window.location.href = "EditProfile.html";
+                        window.location.href = "/editprofile";
                     }
 
                 </script>
@@ -90,13 +90,13 @@
                                 <button id="editprofilebtn">Edit Profile</button>
                                 <script type="text/javascript">
                                     document.getElementById("editprofilebtn").onclick = function () {
-                                        location.href = "EditProfile.html";
+                                        location.href = "/editprofile";
                                     };
                                 </script>
                                 <button id="logoutbtn">Logout</button>
                                 <script type="text/javascript">
                                     document.getElementById("logoutbtn").onclick = function () {
-                                        location.href = "nonRegMainView.html";
+                                        location.href = "/";
                                     };
                                 </script>
 
