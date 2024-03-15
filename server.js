@@ -13,11 +13,7 @@ app.get('/', function(req, res){
 });
 
 
-app.use(express.static(__dirname)); //allows use of static files like css
-
-
 //add routes here
-
 app.get('/register', function(req, res){
     res.sendFile(__dirname + '/' + 'RegisterView.html')
 });
@@ -47,7 +43,7 @@ app.get('/post/:postId', function(req, res) {
 //handlebars for user main views
 app.get('/home/:username', function(req, res) {
     const username = req.params.username;
-    const user = userlist.find(user => user.username === username);
+    const user = userlist.find(user => user.authorusername === username);
     if (!user) {
         res.status(404).send('Oopsie, user not found!');
         return;
@@ -78,6 +74,8 @@ app.get('/newreply', function(req, res){
 app.get('/search', function(req, res){
     res.sendFile(__dirname + '/' + 'Search.html')
 });
+
+app.use(express.static(__dirname)); //allows use of static files like css
 
 var server = app.listen(3000, function(){
     console.log("Web App running at port 3000")

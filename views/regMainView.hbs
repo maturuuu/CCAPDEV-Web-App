@@ -30,6 +30,34 @@
 
             </div>
 
+            <script>
+
+                    function goHome(){
+                        window.location.href = "/home";
+                    }
+
+                    function Login(){
+                        window.location.href = "/login";
+                    }
+
+                    function Logout(){
+                        window.location.href = "/";
+                    }
+
+                    function CreatePost(){
+                        window.location.href = "/newpost";
+                    }
+
+                    function gotoProfile(){
+                        window.location.href = "/userprofile";
+                    }
+
+                    function EditProfile(){
+                        window.location.href = "EditProfile.html";
+                    }
+
+            </script>
+
             <div class="body">
 
                 <div class="miniprofile">
@@ -37,22 +65,22 @@
                     <div class="mini">
 
                         <div class="dpholder">
-                            <img class="display" src="{{../images/mainviews.profilepic}}">
+                            <img class="display" src={{user.authorimg}}>
                         </div>
 
                         <div class="username">
-                            <a class="postlinks" href="/profile"><b>{{mainviews.username}}</b></a>
+                            <a class="postlinks" href="/profile"><b>{{user.authorusername}}</b></a>
                         </div>
 
                         <div class="stats">
 
                             <div class="numposts">
-                                {{mainviews.posts.length}} <br>
+                                {{user.postcount}} <br>
                                 <b>Posts</b>
                             </div>
     
                             <div class="numlikes">
-                                {{mainviews.totallikes}}<br>
+                                {{user.likecount}}<br>
                                 <b>Likes</b>
                             </div>
 
@@ -101,88 +129,38 @@
 
                     </div>
 
+                    {{#each post}}
                     <div class="post1">
 
                         <div class="recipephoto">
-                            <img class="ulam" src="../images/profilepic1.jpg">
+                            <img class="pic" src={{authorimg}}>
                         </div>
 
                         <div class="postmetadata">
 
                             <div class="posteruser">
-                                <a class="postlinks" href="RegViewUser.html">@Chew-Barka</a>
+                                <a class="postlinks" href="/userprofile">{{authorusername}}</a>
                             </div>
 
                             <div class="forumtitle">
-                                <a class="postlinks" href="post.html"><b>[GENERAL] Best Wine and Kibble Pairings for Distinguished Gentlepups?</b></a>
+                                <a class="postlinks" href="/post/{{id}}"><b>{{title}}</b></a>
                             </div>
 
                             <div class="date">
-                                <i>01/01/2024</i>
+                                <i>{{timestamp}}</i>
                             </div>
 
                         </div>
 
                         <div class="commentcount">
-                            #1000
+                            {{comments.length}} replies
                         </div>
 
                     </div>
-
-                    <script id="post-template" type="text/x-handlebars-template">
-                        <div class="post1">
-                            <div class="recipephoto">
-                                <img class="ulam" src="./images/{{metadata.recipeimg}}">
-                            </div>
-                            <div class="postmetadata">
-                                <div class="posteruser">
-                                    <a class="postlinks" href="/userprofile">@{{user}}</a>
-                                </div>
-                                <div class="forumtitle">
-                                    <a class="postlinks" href="post.html"><b>{{recipename}}</b></a>
-                                </div>
-                                <div class="date">
-                                    <i>{{metadata.date}}</i>
-                                </div>
-                            </div>
-                            <div class="commentcount">
-                                #{{metadata.comments.length}}
-                            </div>
-                        </div>
-                    </script>
-
-                    <script src="../post.js"></script>
+                    {{/each}}
                     
                 </div>
 
             </div>
 
-            <script src="../userdata.js"></script>
-
-                <script>
-
-                    function goHome(){
-                        window.location.href = "/home";
-                    }
-
-                    function Login(){
-                        window.location.href = "/login";
-                    }
-
-                    function Logout(){
-                        window.location.href = "/";
-                    }
-
-                    function CreatePost(){
-                        window.location.href = "new-post.html";
-                    }
-
-                    function gotoProfile(){
-                        window.location.href = "/userprofile";
-                    }
-
-                    function EditProfile(){
-                        window.location.href = "EditProfile.html";
-                    }
-
-                </script>
+        </div>
