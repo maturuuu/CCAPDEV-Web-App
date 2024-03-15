@@ -57,7 +57,7 @@ app.get('/editprofile', function(req, res){
         res.status(404).send('Oopsie, you need to log in first!');
         return;
     }
-    res.render('editprofile', {user: user, layout: 'editpost'});
+    res.render('editprofile', {user: user, layout: 'editprofile'});
 });
 
 app.get('/post/:postId', function(req, res) {
@@ -84,8 +84,18 @@ app.get('/postnonreg', function(req, res){
     res.sendFile(__dirname + '/' + 'post-nonReg.html')
 });
 
-app.get('/editpost', function(req, res){
-    res.sendFile(__dirname + '/' + 'edit-post.html')
+app.get('/newpost', function(req, res){
+    res.sendFile(__dirname + '/' + 'new-post.html')
+});
+
+app.get('/editpost/:postId', function(req, res){
+    const postId = parseInt(req.params.postId);
+    const post = postlist.find(post => post.id === postId);
+    if (!post) {
+        res.status(404).send('Oopsie, post not found!');
+        return;
+    }
+    res.render('editpost', {post: post, layout: 'editpost'});
 });
 
 app.get('/editreply', function(req, res){

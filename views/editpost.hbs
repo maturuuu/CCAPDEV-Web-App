@@ -1,0 +1,58 @@
+<script src="post-and-reply.js"></script>
+
+        <div id="page-container">
+            <div id="header">
+                <button onclick="Home()" id="home-button" class="selected">HOME</button>
+                <button onclick="Profile()" id="profile-button" class="unselected">PROFILE</button>
+
+                <div id="searchbar-container">
+                    <input type="text" class="searchbar-input" name="search-input" placeholder="Search...">
+                    <button class="search-button">
+                        <img src="../../images/search.png">
+                    </button>
+                </div>  
+            </div>
+
+            <div id="content">
+                <div id="post-container">
+
+                    <div id="post-title">
+                        Edit your post
+                    </div>
+
+                    <textarea id="post-title-box" placeholder="{{post.title}}" rows="3"></textarea>
+
+                    <textarea id="post-content-box" placeholder="{{post.content}}" rows="10"></textarea>
+
+                    <div id="post-footer">
+                        <button onclick="BackToPost()" id="post-back-button">Go back</button>
+                        <button onclick="PostPost()" id="post-post-button">Post</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function BackToPost(){
+                window.location.href = "/post/{{post.id}}";
+            }
+
+            function PostPost(){
+                window.location.href = "/post/{{post.id}}";
+            }
+
+            function Home(){
+                window.location.href = "/home/@kibbleking"
+            }
+
+            function Profile(){
+                window.location.href = "/profile"
+            }
+
+            /*
+            ADD:
+            1. Home, Profile
+            2. Search bar
+            */
+        </script>
