@@ -1,33 +1,25 @@
 let userlist = [
     {
-        username: "",
-        profilepic: "jasmine.jpg",
-        firstname: "",
-        lastname: "",
-        posts: [],
-        totallikes: 0
-    },
-    {
-        username: "@matthew",
-        profilepic: "matthew.jpg",
-        firstname: "matthew",
-        lastname: "ong",
+        authorid: 1,
+        authorname: "User-generated Author",
+        authorusername: "@kibbleking",
+        authorimg: "/images/profilepic1.jpg",
         posts: [],
         totallikes: 47
     },
     {
-        username: "@mjasmine",
-        profilepic: "jasmine.jpg",
-        firstname: "jasmine",
-        lastname: "gayamo",
+        authorid: 2,
+        authorname: "User-generated 2nd Author",
+        authorusername: "@carnivroar",
+        authorimg: "/images/profilepic2.jpg",
         posts: [],
         totallikes: 57
     },
     {
-        username: "@jannah",
-        profilepic: "jannah.jpg",
-        firstname: "jannah",
-        lastname: "facultad",
+        authorid: 3,
+        authorname: "THIRD of my name, User-generated author",
+        authorusername: "@thegreatthirdwoof",
+        authorimg: "/images/profilepic3.jpg",
         posts: [],
         totallikes: 27
     }

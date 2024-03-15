@@ -8,9 +8,6 @@ app.engine('hbs', exphbs.engine());
 app.set('view engine', 'hbs');
 
 //default route to homepage
-// app.get('/', function(req, res){
-//     res.sendFile(__dirname + '\\' + 'nonRegMainView.html')
-// });
 app.get('/', function(req, res){
     res.render('nonRegMainView', {post: postlist})
 });
@@ -20,9 +17,6 @@ app.use(express.static(__dirname)); //allows use of static files like css
 
 
 //add routes here
-app.get('/home', function(req, res){
-    res.sendFile(__dirname + '/' + 'RegMainView.html')
-});
 
 app.get('/register', function(req, res){
     res.sendFile(__dirname + '/' + 'RegisterView.html')
@@ -55,10 +49,10 @@ app.get('/home/:username', function(req, res) {
     const username = req.params.username;
     const user = userlist.find(user => user.username === username);
     if (!user) {
-        res.status(404).send('Oopsie, post not found!');
+        res.status(404).send('Oopsie, user not found!');
         return;
     }
-    res.render('mainviews', { mainviews: user });
+    res.render('regMainView', { user: user, post: postlist });
 });
 
 app.get('/post', function(req, res){
