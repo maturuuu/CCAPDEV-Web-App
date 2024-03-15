@@ -4,7 +4,7 @@ const exphbs = require('express-handlebars');
 const postlist = require('./serverdata');
 const userlist = require('./userdata');
 
-let currentuser = null; // stores current user's username
+let currentuser = "@kibbleking"; // stores current user's username
 
 app.engine('hbs', exphbs.engine());
 app.set('view engine', 'hbs');
@@ -30,7 +30,7 @@ app.get('/profile', function(req, res){
     const username = currentuser;
     const user = userlist.find(user => user.authorusername === username);
     if (!user) {
-        res.status(404).send('Oopsie, user not found!');
+        res.status(404).send('Oopsie, you need to log in first!');
         return;
     }
     const userposts = postlist.filter(post => post.authorusername === username)

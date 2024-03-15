@@ -18,7 +18,7 @@
                 <div id="post-container">
                     <div id="user-container">
                         <img class="profile-pic" src = {{post.authorimg}}>
-                        <span class="username">{{post.authorname}}</span>
+                        <span class="username"><a href = "/userprofile/{{post.authorusername}}">{{post.authorname}}</a></span>
                         <button id="post-options-button">
                             <img src="../images/threedots.png">
                         </button>
@@ -64,7 +64,7 @@
                         <div class="comment {{#if isreply}}reply{{/if}}">
                             <div class="comment-header">
                                 <img class="comment-profile-pic" src = {{authorimg}}>
-                                <span class="comment-username">{{authorname}}</span>
+                                <span class="comment-username"><a href = "/userprofile/{{authorusername}}">{{authorname}}</a></span>
                                 <span class="vote-holder">
                                     <button class="comment-upvote-button">
                                         <img src="../images/upvote.png">

@@ -127,6 +127,49 @@ let postlist = [
                 isreply: true
             }
         ]
+    },
+    {
+        id: 4,
+        authorid: 3,
+        authorname: "SquirrelThe3RD",
+        authorusername: "@thegreatthirdwoof",
+        authorimg: "/images/profilepic3.jpg",
+        title: "Ateneo bulok pare",
+        content: "SHEEESH ANIMO GREEN I LOVE YOU",
+        timestamp: "1 hour ago",
+        isedited: "edited",
+        comments: [
+            {
+                id: 41,
+                authorid: 1,
+                authorname: "KingOfKibble",
+                authorusername: "@kibbleking",
+                authorimg: "/images/profilepic1.jpg",
+                content: "No dlsu bulok pare",
+                isedited: "",
+                isreply: false
+            },
+            {
+                id: 42,
+                authorid: 1,
+                authorname: "KingOfKibble",
+                authorusername: "@kibbleking",
+                authorimg: "/images/profilepic1.jpg",
+                content: "lol",
+                isedited: "",
+                isreply: false
+            },
+            {
+                id: 43,
+                authorid: 2,
+                authorname: "TotallyTurkey",
+                authorusername: "@carnivroar",
+                authorimg: "/images/profilepic2.jpg",
+                content: "I think i like peanuts",
+                isedited: "",
+                isreply: true
+            }
+        ]
     }
 ];
 //add likes later, make it so if current user id matches author id, you can edit.
