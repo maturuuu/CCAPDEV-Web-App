@@ -44,18 +44,18 @@ function displayResults(results) {
 
 function goHome() {
 
-    window.location.href = "RegMainView.html";
+    window.location.href = "/home/@kibbleking";
 
 }
 
 function gotoProfile() {
 
-    window.location.href = "ViewMyProfile.html";
+    window.location.href = "/profile";
 
 }
 
 function gotoSearch() {
 
-    window.location.href = "Search.html";
+    window.location.href = "/search";
     
 } 

@@ -19,6 +19,8 @@
                     <div id="user-container">
                         <img class="profile-pic" src = {{post.authorimg}}>
                         <span class="username"><a href = "/userprofile/{{post.authorusername}}">{{post.authorname}}</a></span>
+                        
+                        {{#if activeuser}}
                         <button id="post-options-button">
                             <img src="../images/threedots.png">
                         </button>
@@ -27,6 +29,7 @@
                             <button onclick="EditPost()" id="edit-post-button">Edit</button>
                             <button id="delete-post-button">Delete</button>
                         </div>
+                        {{/if}}
 
                     </div>
 
@@ -47,12 +50,14 @@
                     </div>
                     <div id="post-footer">
                         <span id="post-vote-holder">
+
                             <button class="comment-upvote-button">
                                 <img src="../images/upvote.png">
                             </button>
                             <button class="comment-downvote-button">
                                 <img src="../images/downvote.png">
                             </button>
+
                         </span>
                         <button onclick="NewReply()" id="post-reply-button">Reply</button>
                     </div>
@@ -66,12 +71,26 @@
                                 <img class="comment-profile-pic" src = {{authorimg}}>
                                 <span class="comment-username"><a href = "/userprofile/{{authorusername}}">{{authorname}}</a></span>
                                 <span class="vote-holder">
+
+                                    <button class="comment-options-button"> 
+                                        <img src="../images/threedots.png">
+                                    </button>
+                                    
+
                                     <button class="comment-upvote-button">
                                         <img src="../images/upvote.png">
                                     </button>
                                     <button class="comment-downvote-button">
                                         <img src="../images/downvote.png">
                                     </button>
+
+                                    
+                                    <div class="comment-options-menu">
+                                        <button onclick="EditReply()" class="edit-comment-button">Edit</button>
+                                        <button class="delete-comment-button">Delete</button>
+                                    </div>
+                                    
+
                                 </span>
                             </div>
                             <div class="comment-text">
@@ -98,7 +117,7 @@
             }
 
             function NewReply(){
-                window.location.href = "/newreply";
+                window.location.href = "/newreply/{{post.id}}";
             }
 
             function Home(){

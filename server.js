@@ -1,12 +1,15 @@
 var express = require('express');
 var app = express()
 const exphbs = require('express-handlebars');
+
+
 const postlist = require('./serverdata');
 const userlist = require('./userdata');
 
 let currentuser = "@kibbleking"; // stores current user's username
 
-app.engine('hbs', exphbs.engine());
+
+app.engine('hbs', exphbs.engine()); //without helpers
 app.set('view engine', 'hbs');
 
 //default route to homepage
@@ -67,7 +70,13 @@ app.get('/post/:postId', function(req, res) {
         res.status(404).send('Oopsie, post not found!');
         return;
     }
-    res.render('post', { post: post });
+    
+    let activeuser;
+    if (post.authorusername === currentuser){
+        activeuser = true;
+    }
+    
+    res.render('post', { post: post , activeuser: activeuser});
 });
 
 app.get('/home/:username', function(req, res) {
@@ -102,8 +111,14 @@ app.get('/editreply', function(req, res){
     res.sendFile(__dirname + '/' + 'edit-reply.html')
 });
 
-app.get('/newreply', function(req, res){
-    res.sendFile(__dirname + '/' + 'new-reply.html')
+app.get('/newreply/:postId', function(req, res){
+    const postId = parseInt(req.params.postId);
+    const post = postlist.find(post => post.id === postId);
+    if (!post) {
+        res.status(404).send('Oopsie, post not found!');
+        return;
+    }
+    res.render('newreply', {post: post, layout: 'newreply'});
 });
 
 app.get('/search', function(req, res){
