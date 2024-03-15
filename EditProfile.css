@@ -60,7 +60,7 @@
     position: relative;
 }
 #profiledp {
-    background-image: url(images/profilepic1.jpg);
+    /* background-image: url(images/profilepic1.jpg); */
     background-size: contain;
 
     border-radius: 100%;

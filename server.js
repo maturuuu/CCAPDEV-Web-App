@@ -51,7 +51,13 @@ app.get('/userprofile/:username', function(req, res){
 });
 
 app.get('/editprofile', function(req, res){
-    res.sendFile(__dirname + '/' + 'EditProfile.html')
+    const username = currentuser;
+    const user = userlist.find(user => user.authorusername === username);
+    if (!user) {
+        res.status(404).send('Oopsie, you need to log in first!');
+        return;
+    }
+    res.render('editprofile', {user: user, layout: 'editpost'});
 });
 
 app.get('/post/:postId', function(req, res) {
