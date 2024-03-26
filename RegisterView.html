@@ -17,42 +17,48 @@
                 </div>
     
                 <div class="loginproper">
-    
-                    <div class="datatype">
-                        Username
-                    </div>
-                    
-                    <div class="usertext">
-                        <textarea name="username" class="textarea" cols="30" rows="1"></textarea>
-                    </div>
 
-                    <div class="datatype">
-                        Email
-                    </div>
-    
-                    <div class="usertext">
-                        <textarea name="email" class="textarea" cols="30" rows="1"></textarea>  
-                    </div>
-    
-                    <div class="datatype">
-                        Password
-                    </div>
-    
-                    <div class="usertext">
-                        <textarea name="password" class="textarea" cols="30" rows="1"></textarea>  
-                    </div>
+                    <form action="/submit-data" method="post">
+
+                        <div class="datatype">
+                            Username <br>
+                        </div>
+
+                        <input type="text" name="username" class="textarea" required> <br>
+
+                        <div class="datatype">
+                            First Name <br>
+                        </div>
+
+                        <input type="text" name="firstname" class="textarea" required><br>
                         
-                    <div class="datatype">
-                        Confirm Password
-                    </div>
-    
-                    <div class="usertext">
-                        <textarea name="password" class="textarea" cols="30" rows="1"></textarea>  
-                    </div>
-    
-                    <div class="button">
-                        <button onClick="openMain()" class="btn" >Register</button>
-                    </div>
+                        <div class="datatype">
+                            Last Name <br>
+                        </div>
+
+                        <input type="text" name="lastname" class="textarea" required><br>
+
+                        <div class="datatype">
+                            Email <br>
+                        </div>
+                        
+                        <input type="text" name="email" class="textarea" required><br>
+
+                        <div class="datatype">
+                            Password <br>
+                        </div>
+
+                        <input type="text" name="password" class="textarea" required><br>
+
+                        <div class="datatype">
+                            Confirm Password <br>
+                        </div>
+
+                        <input type="text" name="passwordtwo" class="textarea" required><br>
+
+                        <input type="submit" class="btn">
+
+                    </form>
 
                     <script>
                         function openMain(){
