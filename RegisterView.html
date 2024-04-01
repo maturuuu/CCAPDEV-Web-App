@@ -48,21 +48,31 @@
                             Password <br>
                         </div>
 
-                        <input type="text" name="password" class="textarea" required><br>
+                        <input type="password" name="password" id="password" class="textarea" required><br>
 
                         <div class="datatype">
                             Confirm Password <br>
                         </div>
 
-                        <input type="text" name="passwordtwo" class="textarea" required><br>
-
-                        <input type="submit" class="btn">
+                        <input type="password" name="passwordtwo" id="confirm_password" class="textarea" required><br>
+                        <div class="errormsg" hidden>Passwords don't match!</div>
+                        <input type="submit" class="btn" onclick="validatePasswords()">
 
                     </form>
-
+                    
                     <script>
-                        function openMain(){
-                            window.location.href = "/home/@kibbleking";
+                        function validatePasswords() {
+                            var password = document.getElementById("password").value;
+                            var confirmPassword = document.getElementById("confirm_password").value;
+                            var msg = document.getElementsByClassName("errormsg");
+                    
+                            if (password !== confirmPassword) {
+                                msg[0].style.display = "block";
+                                return false;
+                            } else {
+                                msg[0].style.display = "none";
+                                return true;
+                            }
                         }
                     </script>
     
