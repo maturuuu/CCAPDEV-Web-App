@@ -65,9 +65,10 @@
                             var password = document.getElementById("password").value;
                             var confirmPassword = document.getElementById("confirm_password").value;
                             var msg = document.getElementsByClassName("errormsg");
-                    
+
                             if (password !== confirmPassword) {
                                 msg[0].style.display = "block";
+                                event.preventDefault();
                                 return false;
                             } else {
                                 msg[0].style.display = "none";
