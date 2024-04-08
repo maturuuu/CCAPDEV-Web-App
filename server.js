@@ -1,10 +1,17 @@
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/LetThemCook')
+
 var express = require('express');
 var app = express()
 const exphbs = require('express-handlebars');
 
+// arrays
+// const postlist = require('./serverdata');
+// const userlist = require('./userdata');
 
-const postlist = require('./serverdata');
-const userlist = require('./userdata');
+//database
+const User = require("./models/User") //this is userlist
+const Post = require("./models/Post") //this is postlist
 
 let currentuser = "@kibbleking"; // stores current user's username
 
