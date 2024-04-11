@@ -185,6 +185,7 @@ app.get('/editprofile', async function(req, res){
 //mongoDB
 app.get('/post/:postId', async function(req, res) {
     const postId = parseInt(req.params.postId);
+    const activeuser = currentuser
 
     try{
         const post = await Post.findOne({id:postId})    //match the postId in the URL
@@ -197,9 +198,9 @@ app.get('/post/:postId', async function(req, res) {
             return;
         }
 
-        let activeuser = false;
+        let isActiveuser = false;
         if(post.authorid.authorusername === currentuser){
-            activeuser = true;
+            isActiveuser = true;
         }
 
         post.comments.forEach(comment => {
@@ -208,7 +209,7 @@ app.get('/post/:postId', async function(req, res) {
 
         const postData = post.toObject();
 
-        res.render('post', { post: postData , activeuser: activeuser});
+        res.render('post', { post: postData, isActiveuser: isActiveuser, activeuser: activeuser});
     } 
     
     catch (error) {

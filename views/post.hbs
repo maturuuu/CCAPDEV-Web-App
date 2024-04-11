@@ -20,7 +20,7 @@
                         <img class="profile-pic" src = {{post.authorid.authorimg}}>
                         <span class="username"><a href = "/userprofile/{{post.authorid.authorusername}}">{{post.authorid.authorname}}</a></span>
                         
-                        {{#if activeuser}}
+                        {{#if isActiveuser}}
                         <button id="post-options-button">
                             <img src="../images/threedots.png">
                         </button>
@@ -39,8 +39,11 @@
 
                     <div id="other-post-info">
                         {{post.timestamp}}
+
+                        {{#if post.isEdited}}
                         <span id="editedspace">•</span>
-                        <span class="underlined-bold">{{post.isEdited}}</span>
+                        <span class="underlined-bold">edited</span>
+                        {{/if}}
                     </div>
 
                     <div id="post-content-box">
@@ -96,7 +99,9 @@
                                 {{content}}
                             </div>
                             <div class="comment-footer">
-                                <span class="comment-edited underlined-bold">{{isEdited}}</span>
+                                {{#if isEdited}}
+                                <span class="comment-edited underlined-bold">edited</span>
+                                {{/if}}
                                 <button onclick="NewReply({{id}})" class="comment-reply-button">Reply</button>
                             </div>
                         </div>
@@ -120,7 +125,7 @@
             }
 
             function Home(){
-                window.location.href = "/home/@kibbleking"
+                window.location.href = "/home/{{activeuser}}"
             }
 
             function Profile(){

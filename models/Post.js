@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema({
     title: String,
     content: String,
     timestamp: String, //consider changing to Date later
-    isEdited: String,
+    isEdited: Boolean,
     likecount: Number,
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}],
     isReply: Boolean,
