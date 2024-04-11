@@ -59,7 +59,7 @@
                             </button>
 
                         </span>
-                        <button onclick="NewReply()" id="post-reply-button">Reply</button>
+                        <button onclick="NewReply({{post.id}})" id="post-reply-button">Reply</button>
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@
 
                                     
                                     <div class="comment-options-menu">
-                                        <button onclick="EditReply()" class="edit-comment-button">Edit</button>
+                                        <button onclick="EditReply({{id}})" class="edit-comment-button">Edit</button>
                                         <button class="delete-comment-button">Delete</button>
                                     </div>
                                     
@@ -98,7 +98,7 @@
                             </div>
                             <div class="comment-footer">
                                 <span class="comment-edited underlined-bold">{{isEdited}}</span>
-                                <button onclick="NewReply()" class="comment-reply-button">Reply</button>
+                                <button onclick="NewReply({{id}})" class="comment-reply-button">Reply</button>
                             </div>
                         </div>
                     {{/each}}
@@ -112,12 +112,12 @@
                 window.location.href = "/editpost/{{post.id}}";
             }
 
-            function EditReply(){
-                window.location.href = "/editreply";
+            function EditReply(id){
+                window.location.href = "/editreply/" + id;
             }
 
-            function NewReply(){
-                window.location.href = "/newreply/{{post.id}}";
+            function NewReply(id){
+                window.location.href = "/newreply/" + id;
             }
 
             function Home(){

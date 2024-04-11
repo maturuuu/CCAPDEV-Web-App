@@ -81,9 +81,7 @@ async function createData() {
 const thisPost = await Post.findOne({id: 5}).populate("authorid").populate("comments").populate({path: "comments", populate: {path:"authorid"}})
 console.log(thisPost)
 }
-
 createData();
-
 
 
 
@@ -137,22 +135,7 @@ app.get('/editprofile', function(req, res){
     res.render('editprofile', {user: user, layout: 'editprofile'});
 });
 
-// app.get('/post/:postId', function(req, res) {
-//     const postId = parseInt(req.params.postId);
-//     const post = postlist.find(post => post.id === postId);
-//     if (!post) {
-//         res.status(404).send('Oopsie, post not found!');
-//         return;
-//     }
-    
-//     let activeuser;
-//     if (post.authorusername === currentuser){
-//         activeuser = true;
-//     }
-    
-//     res.render('post', { post: post , activeuser: activeuser});
-// });
-
+//mongoDB
 app.get('/post/:postId', async function(req, res) {
     const postId = parseInt(req.params.postId);
 
