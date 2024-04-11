@@ -33,10 +33,11 @@
 
         <script>
             function BackToPrevPage(){
-                window.location.href = "/post/{{post.id}}"; //make this something that goes back to wherever we were before
+                window.history.back();
             }
 
             function PostPost(){
+                //CRUD
                 window.location.href = "/profile";
             }
 

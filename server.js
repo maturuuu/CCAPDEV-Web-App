@@ -219,15 +219,9 @@ app.get('/post/:postId', async function(req, res) {
     }
 });
 
-//to follow during CRUD
-// app.get('/newpost', function(req, res){
-//     res.sendFile(__dirname + '/' + 'new-post.html')
-// });
-
+//mongoDB
 app.get('/newpost', function(req, res){
     const activeuser = currentuser
-
-    //to do: make the back button go back to the prev page
 
     res.render('newpost', {activeuser: activeuser, layout: 'editpost'})
 });

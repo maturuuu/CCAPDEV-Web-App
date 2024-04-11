@@ -31,11 +31,12 @@
 
         <script>
             function BackToPost(){
-                window.location.href = "/post/{{post.id}}";
+                window.history.back();
             }
 
             function PostComment(){
-                window.location.href = "/post/{{post.id}}";
+                //CRUD
+                window.history.back();
             }
 
             function Home(){
