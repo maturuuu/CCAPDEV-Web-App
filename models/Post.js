@@ -7,8 +7,10 @@ const postSchema = new mongoose.Schema({
     content: String,
     timestamp: String, //consider changing to Date later
     isEdited: String,
+    likecount: Number,
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}],
-    isReply: Boolean
+    isReply: Boolean,
+    isAuthor: Boolean,
 })
 
 const Post = mongoose.model('Post', postSchema)

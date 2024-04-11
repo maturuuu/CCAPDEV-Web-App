@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     authorusername: String,
     authorimg: String,
     authorbio: String,
-    likecount: Number
+    likecount: Number //delete
 })
 
 const User = mongoose.model('User', userSchema)

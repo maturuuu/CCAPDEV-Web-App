@@ -5,18 +5,16 @@ var express = require('express');
 var app = express()
 const exphbs = require('express-handlebars');
 
-// mco2 arrays
-// const postlist = require('./serverdata');
-// const userlist = require('./userdata');
-
 //database
 const User = require("./models/User") //this is userlist
 const Post = require("./models/Post") //this is postlist
 
-global.currentuser = "@kibbleking"; // stores current user's username
+global.currentuser = "@burkturk"; // stores current user's username
+// kibbleking / burkturk
 
 app.engine('hbs', exphbs.engine()); //without helpers
 app.set('view engine', 'hbs');
+
 
 //Create user and post
 async function createData() {
@@ -37,6 +35,7 @@ async function createData() {
 //     isEdited: "edited",
 //     comments: [],
 //     isReply: null
+//     isAuthor: false
 // })
 
 // const testComment = await Post.create({
@@ -47,7 +46,8 @@ async function createData() {
 //     timestamp: "5 hours ago", //consider changing to Date later
 //     isEdited: "",
 //     comments: [],
-//     isReply: false
+//     isReply: false,
+//     isAuthor: false
 // })
 
 // const testPost = await Post.findOne({id: 3})
@@ -88,12 +88,15 @@ app.get('/home/:username', async function(req, res) {
     const posts = await Post.find({title: {$ne: null}})
     .populate('authorid');
 
-    const userposts = posts.filter(post => post.authorid.authorusername === currentuser)
+    const userposts = posts.filter(post => post.authorid.authorusername === user.authorusername)
+
+    let userLikes = 0;
+    userposts.forEach(post => {userLikes += post.likecount})
     
     const userData = user.toObject();
     const postsData = posts.map(post => post.toObject());
 
-    res.render('regMainView', {user: userData, post: postsData, activeuser: currentuser, userposts: userposts});
+    res.render('regMainView', {user: userData, post: postsData, activeuser: currentuser, userposts: userposts, likes: userLikes});
 });
 
 //html only
@@ -122,10 +125,13 @@ app.get('/profile', async function(req, res){
     .populate('authorid');
     const thisuserposts = userposts.filter(post => post.authorid.authorusername === user.authorusername);
 
+    let userLikes = 0;
+    thisuserposts.forEach(post => {userLikes += post.likecount})
+
     const userData = user.toObject();
     const userpostsData = thisuserposts.map(post => post.toObject());
 
-    res.render('viewMyProfile', {user: userData, post: userpostsData});
+    res.render('viewMyProfile', {user: userData, post: userpostsData, likes: userLikes});
 })
 
 //mongoDB
@@ -146,12 +152,19 @@ app.get('/userprofile/:username', async function(req, res){
     const thisuserposts = userposts.filter(post => post.authorid.authorusername === user.authorusername);
     const activeuserposts = userposts.filter(post => post.authorid.authorusername === activeuser.authorusername)
 
+    let thisuserLikes = 0;
+    thisuserposts.forEach(post => {thisuserLikes += post.likecount})
+
+    let activeuserLikes = 0;
+    activeuserposts.forEach(post => {activeuserLikes += post.likecount})
+
     const userData = user.toObject();
     const activeuserData = activeuser.toObject();
     const userpostsData = thisuserposts.map(post => post.toObject());
     const activeuserpostsData = activeuserposts.map(post => post.toObject());
 
-    res.render('regViewUserProfile', {user: userData, post: userpostsData, activeuser: activeuserData, activeuserposts: activeuserpostsData});
+    res.render('regViewUserProfile', {user: userData, post: userpostsData, activeuser: activeuserData, activeuserposts: activeuserpostsData, 
+                                      thisuserlikes: thisuserLikes, activeuserlikes: activeuserLikes});
 });
 
 //mongoDB
@@ -189,6 +202,10 @@ app.get('/post/:postId', async function(req, res) {
             activeuser = true;
         }
 
+        post.comments.forEach(comment => {
+            comment.isAuthor = (comment.authorid.authorusername === currentuser);
+        });
+
         const postData = post.toObject();
 
         res.render('post', { post: postData , activeuser: activeuser});
@@ -207,6 +224,16 @@ app.get('/postnonreg', function(req, res){
 app.get('/newpost', function(req, res){
     res.sendFile(__dirname + '/' + 'new-post.html')
 });
+
+// app.get('/editpost/:postId', function(req, res){
+//     const postId = parseInt(req.params.postId);
+//     const post = postlist.find(post => post.id === postId);
+//     if (!post) {
+//         res.status(404).send('Oopsie, post not found!');
+//         return;
+//     }
+//     res.render('editpost', {post: post, layout: 'editpost'});
+// });
 
 app.get('/editpost/:postId', function(req, res){
     const postId = parseInt(req.params.postId);

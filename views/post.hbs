@@ -72,10 +72,16 @@
                                 <span class="comment-username"><a href = "/userprofile/{{authorid.authorusername}}">{{authorid.authorname}}</a></span>
                                 <span class="vote-holder">
 
+                                    {{#if isAuthor}}
                                     <button class="comment-options-button"> 
                                         <img src="../images/threedots.png">
                                     </button>
-                                    
+
+                                    <div class="comment-options-menu">
+                                        <button onclick="EditReply({{id}})" class="edit-comment-button">Edit</button>
+                                        <button class="delete-comment-button">Delete</button>
+                                    </div>
+                                    {{/if}}
 
                                     <button class="comment-upvote-button">
                                         <img src="../images/upvote.png">
@@ -83,14 +89,7 @@
                                     <button class="comment-downvote-button">
                                         <img src="../images/downvote.png">
                                     </button>
-
                                     
-                                    <div class="comment-options-menu">
-                                        <button onclick="EditReply({{id}})" class="edit-comment-button">Edit</button>
-                                        <button class="delete-comment-button">Delete</button>
-                                    </div>
-                                    
-
                                 </span>
                             </div>
                             <div class="comment-text">
