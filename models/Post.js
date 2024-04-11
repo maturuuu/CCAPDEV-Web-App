@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 
 const postSchema = new mongoose.Schema({
     id: Number,
-    authorid: Number,
+    authorid: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     title: String,
     content: String,
     timestamp: String, //consider changing to Date later
     isEdited: String,
-    comments: Array,
+    comments: [{type: mongoose.Schema.Types.ObjectID, ref: 'Post'}],
     isReply: Boolean
 })
 

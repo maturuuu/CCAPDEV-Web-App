@@ -17,8 +17,8 @@
             <div id="content">
                 <div id="post-container">
                     <div id="user-container">
-                        <img class="profile-pic" src = {{post.authorimg}}>
-                        <span class="username"><a href = "/userprofile/{{post.authorusername}}">{{post.authorname}}</a></span>
+                        <img class="profile-pic" src = {{post.authorid.authorimg}}>
+                        <span class="username"><a href = "/userprofile/{{post.authorid.authorusername}}">{{post.authorid.authorname}}</a></span>
                         
                         {{#if activeuser}}
                         <button id="post-options-button">
@@ -40,7 +40,7 @@
                     <div id="other-post-info">
                         {{post.timestamp}}
                         <span id="editedspace">•</span>
-                        <span class="underlined-bold">{{post.isedited}}</span>
+                        <span class="underlined-bold">{{post.isEdited}}</span>
                     </div>
 
                     <div id="post-content-box">
@@ -68,8 +68,8 @@
                     {{#each post.comments}}
                         <div class="comment {{#if isreply}}reply{{/if}}">
                             <div class="comment-header">
-                                <img class="comment-profile-pic" src = {{authorimg}}>
-                                <span class="comment-username"><a href = "/userprofile/{{authorusername}}">{{authorname}}</a></span>
+                                <img class="comment-profile-pic" src = {{authorid.authorimg}}>
+                                <span class="comment-username"><a href = "/userprofile/{{authorid.authorusername}}">{{authorid.authorname}}</a></span>
                                 <span class="vote-holder">
 
                                     <button class="comment-options-button"> 
@@ -97,7 +97,7 @@
                                 {{content}}
                             </div>
                             <div class="comment-footer">
-                                <span class="comment-edited underlined-bold">{{isedited}}</span>
+                                <span class="comment-edited underlined-bold">{{isEdited}}</span>
                                 <button onclick="NewReply()" class="comment-reply-button">Reply</button>
                             </div>
                         </div>
