@@ -13,7 +13,7 @@ const exphbs = require('express-handlebars');
 const User = require("./models/User") //this is userlist
 const Post = require("./models/Post") //this is postlist
 
-let currentuser = "@kibbleking"; // stores current user's username
+global.currentuser = "@kibbleking"; // stores current user's username
 
 app.engine('hbs', exphbs.engine()); //without helpers
 app.set('view engine', 'hbs');
@@ -78,38 +78,62 @@ async function createData() {
 //     { $push: { comments: testComment._id } } // Update operation using $push
 // )
 
-const thisPost = await Post.findOne({id: 5}).populate("authorid").populate("comments").populate({path: "comments", populate: {path:"authorid"}})
-console.log(thisPost)
+// const thisPost = await Post.findOne({id: 5}).populate("authorid").populate("comments").populate({path: "comments", populate: {path:"authorid"}})
+// console.log(thisPost)
 }
 createData();
 
 
 
 //default route to homepage
-app.get('/', function(req, res){
-    res.render('nonRegMainView', {post: postlist})
+//mongoDB
+app.get('/', async function(req, res){
+    const posts = await Post.find({title: {$ne: null}})
+    .populate('authorid');
+    const postsData = posts.map(post => post.toObject());
+    res.render('nonRegMainView', {post: postsData});
 });
 
-//add routes here
+//html only
 app.get('/register', function(req, res){
     currentuser = "@kibbleking" //logs in @kibbleking
     res.sendFile(__dirname + '/' + 'RegisterView.html')
 });
 
+//html only
 app.get('/login', function(req, res){
     currentuser = "@kibbleking" //logs in @kibbleking
     res.sendFile(__dirname + '/' + 'LoginView.html')
 });
 
-app.get('/profile', function(req, res){
+// app.get('/profile', function(req, res){
+//     const username = currentuser;
+//     const user = userlist.find(user => user.authorusername === username);
+//     if (!user) {
+//         res.status(404).send('Oopsie, you need to log in first!');
+//         return;
+//     }
+//     const userposts = postlist.filter(post => post.authorusername === username)
+//     res.render('viewMyProfile', {user: user, post: userposts});
+// })
+
+app.get('/profile', async function(req, res){
     const username = currentuser;
-    const user = userlist.find(user => user.authorusername === username);
+
+    const user = await User.findOne({authorusername: username});
     if (!user) {
-        res.status(404).send('Oopsie, you need to log in first!');
+        res.status(404).send('Oopsie, you need to log in as ' + username + ' first!');
         return;
     }
-    const userposts = postlist.filter(post => post.authorusername === username)
-    res.render('viewMyProfile', {user: user, post: userposts});
+
+    const userposts = await Post.find({title: {$ne: null}})
+    .populate('authorid');
+    const thisuserposts = userposts.filter(post => post.authorid.authorusername === user.authorusername);
+
+    const userData = user.toObject();
+    const thisuserpostsData = thisuserposts.map(post => post.toObject());
+
+    res.render('viewMyProfile', {user: userData, post: thisuserpostsData});
 })
 
 app.get('/userprofile/:username', function(req, res){
@@ -143,7 +167,7 @@ app.get('/post/:postId', async function(req, res) {
         const post = await Post.findOne({id:postId})    //match the postId in the URL
         .populate('authorid')   //populate the author field
         .populate('comments')  //populate the comments array
-        .populate({path: "comments", populate: {path:"authorid"}});
+        .populate({path: "comments", populate: {path:"authorid"}}); //populate the author field of each comment
 
         if (!post) {
             res.status(404).send('Oopsie, post not found!');

@@ -5,7 +5,6 @@ const userSchema = new mongoose.Schema({
     authorusername: String,
     authorimg: String,
     authorbio: String,
-    postcount: Number,
     likecount: Number
 })
 
