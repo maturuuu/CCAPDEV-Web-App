@@ -7,7 +7,7 @@ const postSchema = new mongoose.Schema({
     content: String,
     timestamp: String, //consider changing to Date later
     isEdited: String,
-    comments: [{type: mongoose.Schema.Types.ObjectID, ref: 'Post'}],
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}],
     isReply: Boolean
 })
 

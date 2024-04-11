@@ -18,60 +18,40 @@ global.currentuser = "@kibbleking"; // stores current user's username
 app.engine('hbs', exphbs.engine()); //without helpers
 app.set('view engine', 'hbs');
 
-
-//collection retrieval via console
-// User.find({})
-//     .exec()
-//     .then(posts => {
-//         console.log('Users:', posts);
-//     })
-//     .catch(err => {
-//         console.error('Error:', err);
-//     });
-// Post.find({})
-//     .exec()
-//     .then(posts => {
-//         console.log('Posts:', posts);
-//     })
-//     .catch(err => {
-//         console.error('Error:', err);
-//     });
-
 //Create user and post
 async function createData() {
 // const testUser = await User.create({
-//     authorname: "db author",
-//     authorusername: "@db1stperson",
-//     authorimg: "/images/profilepic1.jpg",
-//     authorbio: "This is my bio",
-//     postcount: 3,
-//     likecount: 69
+//     authorname: "TotallyTurkey",
+//     authorusername: "@burkturk",
+//     authorimg: "/images/profilepic2.jpg",
+//     authorbio: "I like turkey. A nice steaming hot leg of turkey. I like it roasted or broiled, pan-fried or spoiled. I always eat it oiled.",
+//     likecount: 38
 // })
 
 // const testPost = await Post.create({
-//     id: 5,
-//     authorid: testUser._id,
-//     title: "This is my database test post!",
-//     content: "If the database is working correctly, and the handlebars too, this should be visible in the post :))",
-//     timestamp: "An hour ago", //consider changing to Date later
-//     isEdited: true,
+//     id: 6,
+//     authorid: await User.findOne({authorusername: "@kibbleking"}),
+//     title: "Such a lonely collection of words",
+//     content: "With not even a single comment or reply to speak of...",
+//     timestamp: "Yesterday", //consider changing to Date later
+//     isEdited: "edited",
 //     comments: [],
 //     isReply: null
 // })
 
 // const testComment = await Post.create({
-//     id: 6,
-//     authorid: testUser._id,
-//     title: "This is a test comment",
-//     content: "And I hope it is visible too!",
-//     timestamp: "Just now", //consider changing to Date later
-//     isEdited: false,
+//     id: 5,
+//     authorid: await User.findOne({authorusername: "@burkturk"}),
+//     title: null,
+//     content: "Do you now?",
+//     timestamp: "5 hours ago", //consider changing to Date later
+//     isEdited: "",
 //     comments: [],
 //     isReply: false
 // })
 
-// const testPost = await Post.findOne({id: 5})
-// const testComment = await Post.findOne({id: 6})
+// const testPost = await Post.findOne({id: 3})
+// const testComment = await Post.findOne({id: 5})
 
 // await Post.findOneAndUpdate(
 //     { _id: testPost._id }, // Filter for the document to update
@@ -85,13 +65,35 @@ createData();
 
 
 
-//default route to homepage
 //mongoDB
-app.get('/', async function(req, res){
+app.get('/', async function(req, res){ //default route to homepage
     const posts = await Post.find({title: {$ne: null}})
     .populate('authorid');
+
     const postsData = posts.map(post => post.toObject());
+
     res.render('nonRegMainView', {post: postsData});
+});
+
+//mongoDB
+app.get('/home/:username', async function(req, res) {
+    const username = req.params.username;
+
+    const user = await User.findOne({authorusername: username});
+    if (!user) {
+        res.status(404).send('Oopsie, ' + username + ' does not exist!');
+        return;
+    }
+
+    const posts = await Post.find({title: {$ne: null}})
+    .populate('authorid');
+
+    const userposts = posts.filter(post => post.authorid.authorusername === currentuser)
+    
+    const userData = user.toObject();
+    const postsData = posts.map(post => post.toObject());
+
+    res.render('regMainView', {user: userData, post: postsData, activeuser: currentuser, userposts: userposts});
 });
 
 //html only
@@ -106,17 +108,7 @@ app.get('/login', function(req, res){
     res.sendFile(__dirname + '/' + 'LoginView.html')
 });
 
-// app.get('/profile', function(req, res){
-//     const username = currentuser;
-//     const user = userlist.find(user => user.authorusername === username);
-//     if (!user) {
-//         res.status(404).send('Oopsie, you need to log in first!');
-//         return;
-//     }
-//     const userposts = postlist.filter(post => post.authorusername === username)
-//     res.render('viewMyProfile', {user: user, post: userposts});
-// })
-
+//mongoDB
 app.get('/profile', async function(req, res){
     const username = currentuser;
 
@@ -131,32 +123,50 @@ app.get('/profile', async function(req, res){
     const thisuserposts = userposts.filter(post => post.authorid.authorusername === user.authorusername);
 
     const userData = user.toObject();
-    const thisuserpostsData = thisuserposts.map(post => post.toObject());
+    const userpostsData = thisuserposts.map(post => post.toObject());
 
-    res.render('viewMyProfile', {user: userData, post: thisuserpostsData});
+    res.render('viewMyProfile', {user: userData, post: userpostsData});
 })
 
-app.get('/userprofile/:username', function(req, res){
+//mongoDB
+app.get('/userprofile/:username', async function(req, res){
     const username = req.params.username;
-    const user = userlist.find(user => user.authorusername === username);
+    const activeusername = currentuser;
+
+    const user = await User.findOne({authorusername: username});
     if (!user) {
-        res.status(404).send('Oopsie, user profile not found!');
+        res.status(404).send('Oopsie, ' + username + ' does not exist!');
         return;
     }
-    const userposts = postlist.filter(post => post.authorusername === username)
-    const activeusername = currentuser;
-    const activeuser = userlist.find(activeuser => activeuser.authorusername === activeusername);
-    res.render('regViewUserProfile', {user: user, post: userposts, activeuser: activeuser});
+
+    const activeuser = await User.findOne({authorusername: activeusername});
+
+    const userposts = await Post.find({title: {$ne: null}})
+    .populate('authorid')
+    const thisuserposts = userposts.filter(post => post.authorid.authorusername === user.authorusername);
+    const activeuserposts = userposts.filter(post => post.authorid.authorusername === activeuser.authorusername)
+
+    const userData = user.toObject();
+    const activeuserData = activeuser.toObject();
+    const userpostsData = thisuserposts.map(post => post.toObject());
+    const activeuserpostsData = activeuserposts.map(post => post.toObject());
+
+    res.render('regViewUserProfile', {user: userData, post: userpostsData, activeuser: activeuserData, activeuserposts: activeuserpostsData});
 });
 
-app.get('/editprofile', function(req, res){
+//mongoDB
+app.get('/editprofile', async function(req, res){
     const username = currentuser;
-    const user = userlist.find(user => user.authorusername === username);
+
+    const user = await User.findOne({authorusername: username});
     if (!user) {
-        res.status(404).send('Oopsie, you need to log in first!');
+        res.status(404).send('User does not exist!');
         return;
     }
-    res.render('editprofile', {user: user, layout: 'editprofile'});
+
+    const userData = user.toObject();
+
+    res.render('editprofile', {user: userData, layout: 'editprofile'});
 });
 
 //mongoDB
@@ -188,16 +198,6 @@ app.get('/post/:postId', async function(req, res) {
         console.error('Error:', error);
         res.status(500).send('Error - post retrieval');
     }
-});
-
-app.get('/home/:username', function(req, res) {
-    const username = req.params.username;
-    const user = userlist.find(user => user.authorusername === username);
-    if (!user) {
-        res.status(404).send('Oopsie, user not found!');
-        return;
-    }
-    res.render('regMainView', {user: user, post: postlist});
 });
 
 app.get('/postnonreg', function(req, res){

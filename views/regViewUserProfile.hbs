@@ -30,7 +30,7 @@
                 <script>
 
                     function goHome(){
-                        window.location.href = "/home/@kibbleking";
+                        window.location.href = "/home/{{activeuser.authorusername}}";
                     }
 
                     function Login(){
@@ -73,7 +73,7 @@
                         <div class="stats">
 
                             <div class="numposts">
-                                {{activeuser.postcount}} <br>
+                                {{activeuserposts.length}} <br>
                                 <b>Posts</b>
                             </div>
     
@@ -109,7 +109,7 @@
                                 <div id="profiledpname">{{user.authorname}}</div>
                                 <div id="profilebio">{{user.authorbio}}</div>
                                 <div id="profilestats">
-                                    <span class="numposts"> {{user.postcount}} Posts </span>
+                                    <span class="numposts"> {{post.length}} Posts </span>
                                     <span class="numlikes"> {{user.likecount}} Likes </span>
                                 </div>
                             </div>
@@ -119,9 +119,9 @@
                             
                             {{#each post}}
                             <div class="post">
-                                <img class="dpholder2" src={{authorimg}}>
+                                <img class="dpholder2" src={{authorid.authorimg}}>
                                 <div class="postinfocontainer">
-                                    <div class="username">{{authorusername}}</div>
+                                    <div class="username">{{authorid.authorusername}}</div>
                                     <div class="posttitle">
                                         <a class="postlinks" href="/post/{{id}}">{{title}}</a>
                                     </div>

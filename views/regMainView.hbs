@@ -33,7 +33,7 @@
             <script>
 
                     function goHome(){
-                        window.location.href = "/home/@kibbleking";
+                        window.location.href = "/home/{{activeuser}}";
                     }
 
                     function Login(){
@@ -46,10 +46,6 @@
 
                     function CreatePost(){
                         window.location.href = "/newpost";
-                    }
-
-                    function gotoProfile(){
-                        window.location.href = "/userprofile";
                     }
 
                     function gotoMyProfile(){
@@ -79,7 +75,7 @@
                         <div class="stats">
 
                             <div class="numposts">
-                                {{user.postcount}} <br>
+                                {{userposts.length}} <br>
                                 <b>Posts</b>
                             </div>
     
@@ -137,13 +133,13 @@
                     <div class="post1">
 
                         <div class="recipephoto">
-                            <img class="pic" src={{authorimg}}>
+                            <img class="pic" src={{authorid.authorimg}}>
                         </div>
 
                         <div class="postmetadata">
 
                             <div class="posteruser">
-                                <a class="postlinks" href="/userprofile/{{authorusername}}">{{authorusername}}</a>
+                                <a class="postlinks" href="/userprofile/{{authorid.authorusername}}">{{authorid.authorusername}}</a>
                             </div>
 
                             <div class="forumtitle">
