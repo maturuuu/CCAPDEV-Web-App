@@ -1,5 +1,3 @@
-<script src="post-and-reply.js"></script>
-
         <div id="page-container">
             <div id="header">
                 <button onclick="Home()" id="home-button" class="selected">HOME</button>
@@ -43,16 +41,10 @@
             }
 
             function Home(){
-                window.location.href = "/home/@kibbleking"
+                window.location.href = "/home/{{activeuser}}"
             }
 
             function Profile(){
                 window.location.href = "/profile"
             }
-
-            /*
-            ADD:
-            1. Home, Profile
-            2. Search bar
-            */
         </script>

@@ -23,7 +23,6 @@ async function createData() {
 //     authorusername: "@burkturk",
 //     authorimg: "/images/profilepic2.jpg",
 //     authorbio: "I like turkey. A nice steaming hot leg of turkey. I like it roasted or broiled, pan-fried or spoiled. I always eat it oiled.",
-//     likecount: 38
 // })
 
 // const testPost = await Post.create({
@@ -32,7 +31,8 @@ async function createData() {
 //     title: "Such a lonely collection of words",
 //     content: "With not even a single comment or reply to speak of...",
 //     timestamp: "Yesterday", //consider changing to Date later
-//     isEdited: "edited",
+//     isEdited: true,
+//     likecount: 5,
 //     comments: [],
 //     isReply: null
 //     isAuthor: false
@@ -44,7 +44,8 @@ async function createData() {
 //     title: null,
 //     content: "Do you now?",
 //     timestamp: "5 hours ago", //consider changing to Date later
-//     isEdited: "",
+//     isEdited: false,
+//     likecount: 5,
 //     comments: [],
 //     isReply: false,
 //     isAuthor: false
@@ -218,46 +219,69 @@ app.get('/post/:postId', async function(req, res) {
     }
 });
 
-app.get('/postnonreg', function(req, res){
-    res.sendFile(__dirname + '/' + 'post-nonReg.html')
-});
-
-app.get('/newpost', function(req, res){
-    res.sendFile(__dirname + '/' + 'new-post.html')
-});
-
-// app.get('/editpost/:postId', function(req, res){
-//     const postId = parseInt(req.params.postId);
-//     const post = postlist.find(post => post.id === postId);
-//     if (!post) {
-//         res.status(404).send('Oopsie, post not found!');
-//         return;
-//     }
-//     res.render('editpost', {post: post, layout: 'editpost'});
+//to follow during CRUD
+// app.get('/newpost', function(req, res){
+//     res.sendFile(__dirname + '/' + 'new-post.html')
 // });
 
-app.get('/editpost/:postId', function(req, res){
+app.get('/newpost', function(req, res){
+    const activeuser = currentuser
+
+    //to do: make the back button go back to the prev page
+
+    res.render('newpost', {activeuser: activeuser, layout: 'editpost'})
+});
+
+//mongoDB
+app.get('/editpost/:postId', async function(req, res){
     const postId = parseInt(req.params.postId);
-    const post = postlist.find(post => post.id === postId);
+    const activeuser = currentuser
+
+    const post = await Post.findOne({id:postId});
     if (!post) {
         res.status(404).send('Oopsie, post not found!');
         return;
     }
-    res.render('editpost', {post: post, layout: 'editpost'});
+
+    const postData = post.toObject();
+
+    res.render('editpost', {post: postData, activeuser: activeuser, layout: 'editpost'});
 });
 
-app.get('/editreply', function(req, res){
-    res.sendFile(__dirname + '/' + 'edit-reply.html')
-});
-
-app.get('/newreply/:postId', function(req, res){
+//mongoDB
+app.get('/newreply/:postId', async function(req, res){
     const postId = parseInt(req.params.postId);
-    const post = postlist.find(post => post.id === postId);
+    const activeuser = currentuser;
+
+    const post = await Post.findOne({id:postId});
     if (!post) {
         res.status(404).send('Oopsie, post not found!');
         return;
     }
-    res.render('newreply', {post: post, layout: 'newreply'});
+
+    const postData = post.toObject();
+
+    res.render('newreply', {post: postData, activeuser: activeuser, layout: 'newreply'});
+});
+
+//mongoDB
+app.get('/editreply/:postId', async function(req, res){
+    const postId = parseInt(req.params.postId);
+    const activeuser = currentuser
+
+    const post = await Post.findOne({id:postId});
+    if (!post) {
+        res.status(404).send('Oopsie, post not found!');
+        return;
+    }
+
+    postData = post.toObject();
+
+    res.render('editreply', {post: postData, activeuser: activeuser, layout: 'newreply'});
+});
+
+app.get('/postnonreg', function(req, res){
+    res.sendFile(__dirname + '/' + 'post-nonReg.html')
 });
 
 app.get('/search', function(req, res){
