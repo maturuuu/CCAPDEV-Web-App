@@ -128,10 +128,10 @@
                                         </div>
                                         {{/if}}
 
-                                        <button class="comment-upvote-button">
+                                        <button onclick ="upvotePost({{id}})" class="comment-upvote-button">
                                             <img src="../images/upvote.png">
                                         </button>
-                                        <button class="comment-downvote-button">
+                                        <button onclick ="downvotePost({{id}})" class="comment-downvote-button">
                                             <img src="../images/downvote.png">
                                         </button>
                                     </span>
@@ -157,21 +157,30 @@
         </div>
 
         <script>
-            {{!-- document.addEventListener('DOMContentLoaded', function() {
-                localStorage.setItem('lastVisitedPage', window.location.href);
-                console.log("logged")
-            }); --}}
-
             function upvotePost(id){
-                
+                fetch("/upvote/"+id, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
 
-                location.reload();
+                setTimeout(function() {
+                    location.reload();
+                }, 30);
             }
 
             function downvotePost(id){
+                fetch("/downvote/"+id, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
 
-
-                location.reload();
+                setTimeout(function() {
+                    location.reload();
+                }, 30);
             }
 
             function EditPost(){

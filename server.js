@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const moment = require('moment');
 const session = require('express-session');
+const router = express.Router();
 
 //database
 const User = require("./models/User") //this is userlist
@@ -19,13 +20,13 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 300000,
+        maxAge: 1814400000,
         secure: false,
         httpOnly: true 
     }
 }));
 
-global.currentuser = ""; // stores current user's username
+global.currentuser = "@burkturk"; // stores current user's username
 // kibbleking / burkturk
 
 app.engine('hbs', exphbs.engine()); //without helpers
@@ -33,58 +34,6 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json()); //added after
-
-//Create user and post
-async function createData() {
-// const testUser = await User.create({
-//     authorname: "TotallyTurkey",
-//     authorusername: "@burkturk",
-//     authorimg: "/images/profilepic2.jpg",
-//     authorbio: "I like turkey. A nice steaming hot leg of turkey. I like it roasted or broiled, pan-fried or spoiled. I always eat it oiled.",
-// })
-
-// const testPost = await Post.create({
-//     id: 6,
-//     authorid: await User.findOne({authorusername: "@kibbleking"}),
-//     title: "Such a lonely collection of words",
-//     content: "With not even a single comment or reply to speak of...",
-//     timecreated: Date(),
-//     timestamp: "Yesterday", //consider changing to Date later
-//     isEdited: true,
-//     likecount: 5,
-//     likespositive: false,
-//     comments: [],
-//     isReply: null
-//     isAuthor: false
-// })
-
-// const testComment = await Post.create({
-//     id: 5,
-//     authorid: await User.findOne({authorusername: "@burkturk"}),
-//     title: null,
-//     content: "Do you now?",
-//     timecreated: Date(),
-//     timestamp: "5 hours ago", //consider changing to Date later
-//     isEdited: false,
-//     likecount: 5,
-//     likespositive: false,
-//     comments: [],
-//     isReply: false,
-//     isAuthor: false
-// })
-
-// const testPost = await Post.findOne({id: 3})
-// const testComment = await Post.findOne({id: 5})
-
-// await Post.findOneAndUpdate(
-//     { _id: testPost._id }, // Filter for the document to update
-//     { $push: { comments: testComment._id } } // Update operation using $push
-// )
-
-// const thisPost = await Post.findOne({id: 5}).populate("authorid").populate("comments").populate({path: "comments", populate: {path:"authorid"}})
-// console.log(thisPost)
-}
-createData();
 
 
 
@@ -168,34 +117,34 @@ app.get('/register', function(req, res){
     res.sendFile(__dirname + '/' + 'RegisterView.html')
 });
 
-app.post('/submit-data', async function(req,res){
-    var usern = req.body.username;
-    var firstn = req.body.firstname;
-    var lastn = req.body.lastname;
-    var emai = req.body.email;
-    var passw = req.body.password;
+// app.post('/submit-data', async function(req,res){
+//     var usern = req.body.username;
+//     var firstn = req.body.firstname;
+//     var lastn = req.body.lastname;
+//     var emai = req.body.email;
+//     var passw = req.body.password;
 
-    try {
-        const hash = await bcrypt.hash(passw, 10);
+//     try {
+//         const hash = await bcrypt.hash(passw, 10);
 
-        User.create({
-            authorname: firstn + ' ' + lastn,
-            authorusername: usern,
-            authoremail: emai, 
-            authorpassword: hash, 
-            authorimg: "../images/blank.png",
-            authorbio: "",
-        });
+//         User.create({
+//             authorname: firstn + ' ' + lastn,
+//             authorusername: usern,
+//             authoremail: emai, 
+//             authorpassword: hash, 
+//             authorimg: "../images/blank.png",
+//             authorbio: "",
+//         });
 
-        //currentuser = usern;
-        req.session.currentuser = usern;
-        res.redirect('/home/:username');
+//         //currentuser = usern;
+//         req.session.currentuser = usern;
+//         res.redirect('/home/:username');
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error registering user");
-    }
-});
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send("Error registering user");
+//     }
+// });
 
 //html only
 app.get('/login', function(req, res){
@@ -204,79 +153,79 @@ app.get('/login', function(req, res){
 });
 
 
-app.post('/loggingin', async function(req, res) {
-    try {
-        var usern = req.body.username;
-        var passw = req.body.password;
+// app.post('/loggingin', async function(req, res) {
+//     try {
+//         var usern = req.body.username;
+//         var passw = req.body.password;
 
-        const user = await User.findOne({ authorusername: usern });
+//         const user = await User.findOne({ authorusername: usern });
 
-        if (user) {
-            const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
+//         if (user) {
+//             const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
 
-            if (passwordMatch) { 
-                //currentuser = usern;
-                req.session.currentuser = usern;
-                console.log(req.session.currentuser);
-                res.redirect('/home/:username');
-            } else {
-                res.redirect('/login');
-            }
-        } else {
-            res.redirect('/login');
-        }
-    } catch (error) {
-        console.error('Error during login:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
+//             if (passwordMatch) { 
+//                 //currentuser = usern;
+//                 req.session.currentuser = usern;
+//                 console.log(req.session.currentuser);
+//                 res.redirect('/home/:username');
+//             } else {
+//                 res.redirect('/login');
+//             }
+//         } else {
+//             res.redirect('/login');
+//         }
+//     } catch (error) {
+//         console.error('Error during login:', error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// });
 
-// checkers for data in login/register
-app.post('/check-username', async function(req, res) {
-    const username = req.body.username;
+// // checkers for data in login/register
+// app.post('/check-username', async function(req, res) {
+//     const username = req.body.username;
 
-    const user = await User.findOne({ authorusername: username });
-    if (user) {
-        res.json({ taken: true });
-    } else {
-        res.json({ taken: false });
-    }
-});
+//     const user = await User.findOne({ authorusername: username });
+//     if (user) {
+//         res.json({ taken: true });
+//     } else {
+//         res.json({ taken: false });
+//     }
+// });
 
-app.post('/check-email', async function(req, res) {
+// app.post('/check-email', async function(req, res) {
 
-    const email = req.body.email;
-    const user = await User.findOne({ authoremail: email });
-    if (user) {
-        res.json({ taken: true });
-    } else {
-        res.json({ taken: false });
-    }
-});
+//     const email = req.body.email;
+//     const user = await User.findOne({ authoremail: email });
+//     if (user) {
+//         res.json({ taken: true });
+//     } else {
+//         res.json({ taken: false });
+//     }
+// });
 
-app.post('/check-password', async function(req, res) {
-    const usern = req.body.username;
-    const passw = req.body.password;
+// app.post('/check-password', async function(req, res) {
+//     const usern = req.body.username;
+//     const passw = req.body.password;
 
-    try {
-        const user = await User.findOne({ authorusername: usern });
+//     try {
+//         const user = await User.findOne({ authorusername: usern });
 
-        if (user) {
-            const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
+//         if (user) {
+//             const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
 
-            if (passwordMatch) {
-                res.json({ valid: true });
-            } else {
-                res.json({ valid: false }); 
-            }
-        } else {
-            res.json({ valid: false });
-        }
-    } catch (error) {
-        console.error('Error checking password:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
+//             if (passwordMatch) {
+//                 res.json({ valid: true });
+//             } else {
+//                 res.json({ valid: false }); 
+//             }
+//         } else {
+//             res.json({ valid: false });
+//         }
+//     } catch (error) {
+//         console.error('Error checking password:', error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// });
 
 
 //mongoDB
@@ -440,6 +389,26 @@ app.get('/post/:postId', async function(req, res) {
         console.error('Error:', error);
         res.status(500).send('Error - post retrieval');
     }
+});
+
+//CRUD
+app.post('/upvote/:postId', async function(req, res){
+    const postId = parseInt(req.params.postId);
+
+    const post = await Post.findOne({id: postId});
+
+    post.likecount += 1;
+    await post.save();
+});
+
+//CRUD
+app.post('/downvote/:postId', async function(req, res){
+    const postId = parseInt(req.params.postId);
+
+    const post = await Post.findOne({id: postId});
+
+    post.likecount -= 1;
+    await post.save();
 });
 
 //mongoDB
