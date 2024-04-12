@@ -27,7 +27,7 @@
 
                         <div id="post-options-menu">
                             <button onclick="EditPost()" id="edit-post-button">Edit</button>
-                            <button onclick="DeletePost()" id="delete-post-button">Delete</button>
+                            <button onclick="DeletePost({{post.id}})" id="delete-post-button">Delete</button>
                         </div>
                         {{/if}}
 
@@ -85,7 +85,7 @@
 
                                     <div class="comment-options-menu">
                                         <button onclick="EditReply({{id}})" class="edit-comment-button">Edit</button>
-                                        <button onclick="DeletePost()" class="delete-comment-button">Delete</button>
+                                        <button onclick="DeleteComment({{id}})" class="delete-comment-button">Delete</button>
                                     </div>
                                     {{/if}}
 
@@ -124,7 +124,7 @@
 
                                         <div class="comment-options-menu">
                                             <button onclick="EditReply({{id}})" class="edit-comment-button">Edit</button>
-                                            <button onclick="DeletePost()" class="delete-comment-button">Delete</button>
+                                            <button onclick="DeleteComment({{id}})" class="delete-comment-button">Delete</button>
                                         </div>
                                         {{/if}}
 
@@ -195,9 +195,29 @@
                 window.location.href = "/newreply/" + id;
             }
 
-            function DeletePost(){
+            function DeletePost(id){
+                fetch("/deletepost/"+id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
 
+                window.location.href = "/profile"
             }
+
+            function DeleteComment(id){
+                fetch("/deletecomment/"+id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                setTimeout(function() {
+                    location.reload();
+                }, 30);
+            }   
 
             function Home(){
                 window.location.href = "/home/{{activeuser}}"

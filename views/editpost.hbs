@@ -36,8 +36,25 @@
                 window.history.back();
             }
 
-            function PostPost(){
-                //CRUD
+            function PostPost(){ //CRUD
+                const newTitle = document.getElementById("post-title-box").value;
+                const newContent = document.getElementById("post-content-box").value;
+                const isEdited = true;
+
+                const updatedPost = {
+                    title: newTitle,
+                    content: newContent,
+                    isEdited: isEdited
+                };
+
+                fetch("/modifypost/{{post.id}}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedPost)
+                });
+                
                 window.history.back();
             }
 

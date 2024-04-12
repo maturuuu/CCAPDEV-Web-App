@@ -411,6 +411,33 @@ app.post('/downvote/:postId', async function(req, res){
     await post.save();
 });
 
+//CRUD
+app.delete('/deletepost/:postId', async function(req, res) {
+    const postId = parseInt(req.params.postId);
+
+    const postToDelete = await Post.findOne({id: postId});
+
+    await Post.deleteOne({ _id: postToDelete._id });
+    console.log("post removed!");
+});
+
+//CRUD
+app.delete('/deletecomment/:postId', async function(req, res) {
+    const postId = parseInt(req.params.postId);
+
+    const postToDelete = await Post.findOne({id: postId});
+    const parentPost = await Post.findOne({comments: postToDelete._id});
+    if (!parentPost) {
+        return res.status(404).send("Parent post not found");
+    }
+
+    parentPost.comments.pull(postToDelete._id);
+    await parentPost.save();
+
+    await Post.deleteOne({ _id: postToDelete._id });
+    console.log("comment removed!");
+});
+
 //mongoDB
 app.get('/newpost', async function(req, res){
     const currentid = await Post.countDocuments() + 1;
@@ -440,6 +467,22 @@ app.get('/editpost/:postId', async function(req, res){
     const postData = post.toObject();
 
     res.render('editpost', {post: postData, activeuser: activeuser, layout: 'editpost'});
+});
+
+//CRUD
+app.post('/modifypost/:postId', async function(req, res){
+    const postId = parseInt(req.params.postId);
+    const newTitle = req.body.title;
+    const newContent = req.body.content;
+    const newIsEdited = req.body.isEdited;
+
+    const post = await Post.findOne({id: postId});
+    post.title = newTitle;
+    post.content = newContent;
+    post.isEdited = newIsEdited;
+
+    await post.save();
+    console.log("post modified!");
 });
 
 //mongoDB
@@ -487,6 +530,20 @@ app.get('/editreply/:postId', async function(req, res){
     postData = post.toObject();
 
     res.render('editreply', {post: postData, activeuser: activeuser, layout: 'newreply'});
+});
+
+//CRUD
+app.post('/modifycomment/:postId', async function(req, res){
+    const postId = parseInt(req.params.postId);
+    const newContent = req.body.content;
+    const newIsEdited = req.body.isEdited;
+
+    const post = await Post.findOne({id: postId});
+    post.content = newContent;
+    post.isEdited = newIsEdited;
+
+    await post.save();
+    console.log("comment modified!");
 });
 
 app.get('/postnonreg', function(req, res){

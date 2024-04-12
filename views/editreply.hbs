@@ -34,8 +34,23 @@
                 window.history.back();
             }
 
-            function PostComment(){
-                //CRUD
+            function PostComment(){ //CRUD
+                const newContent = document.getElementById("reply-content-box").value;
+                const isEdited = true;
+
+                const updatedPost = {
+                    content: newContent,
+                    isEdited: isEdited
+                };
+
+                fetch("/modifycomment/{{post.id}}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedPost)
+                });
+
                 window.history.back();
             }
 
