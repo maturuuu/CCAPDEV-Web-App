@@ -139,6 +139,7 @@ app.post('/submit-data', async function(req,res){
 
         //currentuser = usern;
         req.session.currentuser = usern;
+        currentuser = usern; //testing
         res.redirect('/home/:username');
 
     } catch (error) {
