@@ -27,7 +27,7 @@
 
                         <div id="post-options-menu">
                             <button onclick="EditPost()" id="edit-post-button">Edit</button>
-                            <button id="delete-post-button">Delete</button>
+                            <button onclick="DeletePost()" id="delete-post-button">Delete</button>
                         </div>
                         {{/if}}
 
@@ -53,15 +53,18 @@
                     </div>
                     <div id="post-footer">
                         <span id="post-vote-holder">
-
                             <button class="comment-upvote-button">
                                 <img src="../images/upvote.png">
                             </button>
                             <button class="comment-downvote-button">
                                 <img src="../images/downvote.png">
                             </button>
-
                         </span>
+
+                        <span class="vote-count-holder {{#if post.likespositive}}positive{{else}}negative{{/if}}">
+                            {{post.likecount}}
+                        </span>
+
                         <button onclick="NewReply({{post.id}})" id="post-reply-button">Reply</button>
                     </div>
                 </div>
@@ -82,7 +85,7 @@
 
                                     <div class="comment-options-menu">
                                         <button onclick="EditReply({{id}})" class="edit-comment-button">Edit</button>
-                                        <button class="delete-comment-button">Delete</button>
+                                        <button onclick="DeletePost()" class="delete-comment-button">Delete</button>
                                     </div>
                                     {{/if}}
 
@@ -92,7 +95,9 @@
                                     <button class="comment-downvote-button">
                                         <img src="../images/downvote.png">
                                     </button>
-                                    
+                                </span>
+                                <span class="vote-count-holder-comment {{#if likespositive}}positive{{else}}negative{{/if}}">
+                                    {{likecount}}
                                 </span>
                             </div>
                             <div class="comment-text">
@@ -122,6 +127,10 @@
 
             function NewReply(id){
                 window.location.href = "/newreply/" + id;
+            }
+
+            function DeletePost(){
+
             }
 
             function Home(){

@@ -326,7 +326,30 @@ body {
 }
 
 #post-vote-holder {
+    
+}
 
+.vote-count-holder {
+    background: transparent;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.vote-count-holder-comment {
+    background: transparent;
+    font-weight: bold;
+    font-size: 14px;
+    padding: none;
+    margin-right: 10px;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: var(--thumbs-down-red);
 }
 
 #post-content-text {
@@ -416,7 +439,7 @@ body {
     border: none;
     position: absolute;
     top: 0%;
-    right: 60px;
+    right: 66px;
     cursor: pointer;
 }
 

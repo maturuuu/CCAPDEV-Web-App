@@ -263,9 +263,16 @@
 
 .numcomments {
     margin: 5px 0 0 0;
-
+    margin-left: auto;
+    margin-right: 18px;
     font-size: 18px;
     font-weight: bold;
     color: #737373;
+}
 
+.vote-count-holder-viewMyProfile{
+    display: block;
+    margin: 5px 0 0 0;
+    font-size: 18px;
+    font-weight: bold;
 }

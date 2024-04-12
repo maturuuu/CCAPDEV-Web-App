@@ -130,7 +130,9 @@
                                     </div>
                                 </div>
                                 <div class="poststats">
-                                    <div class="commentsprite"></div>
+                                    <div class="vote-count-holder-viewMyProfile {{#if likespositive}}positive{{else}}negative{{/if}}">
+                                        {{likecount}} likes
+                                    </div>
                                     <div class="numcomments">{{comments.length}} replies</div>
                                 </div>
                             </div>

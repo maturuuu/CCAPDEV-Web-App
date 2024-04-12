@@ -12,7 +12,7 @@ const bcrypt = require('bcryptjs');
 const User = require("./models/User") //this is userlist
 const Post = require("./models/Post") //this is postlist
 
-global.currentuser = "@burkturk"; // stores current user's username
+global.currentuser = "@kibbleking"; // stores current user's username
 // kibbleking / burkturk
 
 app.engine('hbs', exphbs.engine()); //without helpers
@@ -36,6 +36,7 @@ async function createData() {
 //     timestamp: "Yesterday", //consider changing to Date later
 //     isEdited: true,
 //     likecount: 5,
+//     likespositive: false,
 //     comments: [],
 //     isReply: null
 //     isAuthor: false
@@ -49,6 +50,7 @@ async function createData() {
 //     timestamp: "5 hours ago", //consider changing to Date later
 //     isEdited: false,
 //     likecount: 5,
+//     likespositive: false,
 //     comments: [],
 //     isReply: false,
 //     isAuthor: false
@@ -74,6 +76,10 @@ app.get('/', async function(req, res){ //default route to homepage
     const posts = await Post.find({title: {$ne: null}})
     .populate('authorid');
 
+    posts.forEach(post => {
+        post.likespositive = (post.likecount >= 0);
+    });
+
     const postsData = posts.map(post => post.toObject());
 
     res.render('nonRegMainView', {post: postsData});
@@ -93,6 +99,10 @@ app.get('/home/:username', async function(req, res) {
     .populate('authorid');
 
     const userposts = posts.filter(post => post.authorid.authorusername === user.authorusername)
+
+    posts.forEach(post => {
+        post.likespositive = (post.likecount >= 0);
+    });
 
     let userLikes = 0;
     userposts.forEach(post => {userLikes += post.likecount})
@@ -237,6 +247,10 @@ app.get('/profile', async function(req, res){
     let userLikes = 0;
     thisuserposts.forEach(post => {userLikes += post.likecount})
 
+    thisuserposts.forEach(post => {
+        post.likespositive = (post.likecount >= 0);
+    });
+
     const userData = user.toObject();
     const userpostsData = thisuserposts.map(post => post.toObject());
 
@@ -260,6 +274,10 @@ app.get('/userprofile/:username', async function(req, res){
     .populate('authorid')
     const thisuserposts = userposts.filter(post => post.authorid.authorusername === user.authorusername);
     const activeuserposts = userposts.filter(post => post.authorid.authorusername === activeuser.authorusername)
+
+    thisuserposts.forEach(post => {
+        post.likespositive = (post.likecount >= 0);
+    });
 
     let thisuserLikes = 0;
     thisuserposts.forEach(post => {thisuserLikes += post.likecount})
@@ -314,7 +332,10 @@ app.get('/post/:postId', async function(req, res) {
 
         post.comments.forEach(comment => {
             comment.isAuthor = (comment.authorid.authorusername === currentuser);
+            comment.likespositive = (comment.likecount >= 0);
         });
+
+        post.likespositive = (post.likecount >= 0);
 
         const postData = post.toObject();
 
