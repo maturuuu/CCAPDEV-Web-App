@@ -38,11 +38,17 @@
 
             function PostPost(){
                 //CRUD
+                const id = {{newid}}
+                const authorid = {{activeuser._id}}
+                const title = document.getElementById("post-title-box").value;
+                const content = document.getElementById("post-title-box").value;
+                
+
                 window.location.href = "/profile";
             }
 
             function Home(){
-                window.location.href = "/home/{{activeuser}}"
+                window.location.href = "/home/{{activeuser.authorusername}}"
             }
 
             function Profile(){

@@ -5,7 +5,8 @@ const postSchema = new mongoose.Schema({
     authorid: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     title: String,
     content: String,
-    timestamp: String, //consider changing to Date later
+    timecreated: Date,
+    timestamp: String,
     isEdited: Boolean,
     likecount: Number,
     likespositive: Boolean,

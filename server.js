@@ -7,6 +7,7 @@ const exphbs = require('express-handlebars');
 
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const moment = require('moment');
 
 //database
 const User = require("./models/User") //this is userlist
@@ -33,6 +34,7 @@ async function createData() {
 //     authorid: await User.findOne({authorusername: "@kibbleking"}),
 //     title: "Such a lonely collection of words",
 //     content: "With not even a single comment or reply to speak of...",
+//     timecreated: Date(),
 //     timestamp: "Yesterday", //consider changing to Date later
 //     isEdited: true,
 //     likecount: 5,
@@ -47,6 +49,7 @@ async function createData() {
 //     authorid: await User.findOne({authorusername: "@burkturk"}),
 //     title: null,
 //     content: "Do you now?",
+//     timecreated: Date(),
 //     timestamp: "5 hours ago", //consider changing to Date later
 //     isEdited: false,
 //     likecount: 5,
@@ -349,10 +352,13 @@ app.get('/post/:postId', async function(req, res) {
 });
 
 //mongoDB
-app.get('/newpost', function(req, res){
-    const activeuser = currentuser
+app.get('/newpost', async function(req, res){
+    const currentid = await Post.countDocuments() + 1;
 
-    res.render('newpost', {activeuser: activeuser, layout: 'editpost'})
+    const activeuser = await User.findOne({authorusername: currentuser});
+    const activeuserData = activeuser.toObject();
+
+    res.render('newpost', {activeuser: activeuserData, newid: currentid, layout: 'editpost'})
 });
 
 //mongoDB
