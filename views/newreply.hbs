@@ -36,9 +36,15 @@
                 window.history.back();
             }
 
-            function PostComment(){
-                //CRUD
+            function PostComment(){ //CRUD
+                const content
+
+
                 window.history.back();
+
+                //reload the page to render changes
+                const timestamp = new Date().getTime();
+                window.location.href = `/?timestamp=${timestamp}`;
             }
 
             function Home(){

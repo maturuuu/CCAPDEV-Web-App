@@ -36,15 +36,45 @@
                 window.history.back();
             }
 
-            function PostPost(){
-                //CRUD
-                const id = {{newid}}
-                const authorid = {{activeuser._id}}
+            function PostPost(){ //CRUD
+                const id = {{newid}};
+                const authorid = "{{activeuser._id}}";
                 const title = document.getElementById("post-title-box").value;
-                const content = document.getElementById("post-title-box").value;
-                
+                const content = document.getElementById("post-content-box").value;
+                const timecreated = new Date();
+                const timestamp = "";
+                const isEdited = false;
+                const likecount = 0;
+                const likespositive = true;
+                const comments = [];
+                const isReply = false;
+                const isAuthor = false;
 
-                window.location.href = "/profile";
+                const newPost = {
+                    id: id,
+                    authorid: authorid,
+                    title: title,
+                    content: content,
+                    timecreated: timecreated,
+                    timestamp: timestamp,
+                    isEdited: isEdited,
+                    likecount: likecount,
+                    likespositive: likespositive,
+                    comments: comments,
+                    isReply: isReply,
+                    isAuthor: isAuthor
+                }
+                
+                fetch("/createpost", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newPost)
+                });
+
+                console.log("redirect is reached")
+                window.location.href = "/profile"
             }
 
             function Home(){

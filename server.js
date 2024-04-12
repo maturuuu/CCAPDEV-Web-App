@@ -13,12 +13,14 @@ const moment = require('moment');
 const User = require("./models/User") //this is userlist
 const Post = require("./models/Post") //this is postlist
 
-global.currentuser = "@kibbleking"; // stores current user's username
+global.currentuser = "@burkturk"; // stores current user's username
 // kibbleking / burkturk
 
 app.engine('hbs', exphbs.engine()); //without helpers
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.json()); //added after
 
 //Create user and post
 async function createData() {
@@ -81,6 +83,7 @@ app.get('/', async function(req, res){ //default route to homepage
 
     posts.forEach(post => {
         post.likespositive = (post.likecount >= 0);
+        post.timestamp = moment(post.timecreated).fromNow();
     });
 
     const postsData = posts.map(post => post.toObject());
@@ -105,6 +108,7 @@ app.get('/home/:username', async function(req, res) {
 
     posts.forEach(post => {
         post.likespositive = (post.likecount >= 0);
+        post.timestamp = moment(post.timecreated).fromNow();
     });
 
     let userLikes = 0;
@@ -248,7 +252,10 @@ app.get('/profile', async function(req, res){
     const thisuserposts = userposts.filter(post => post.authorid.authorusername === user.authorusername);
 
     let userLikes = 0;
-    thisuserposts.forEach(post => {userLikes += post.likecount})
+    thisuserposts.forEach(post => {
+        userLikes += post.likecount
+        post.timestamp = moment(post.timecreated).fromNow();
+    })
 
     thisuserposts.forEach(post => {
         post.likespositive = (post.likecount >= 0);
@@ -280,6 +287,7 @@ app.get('/userprofile/:username', async function(req, res){
 
     thisuserposts.forEach(post => {
         post.likespositive = (post.likecount >= 0);
+        post.timestamp = moment(post.timecreated).fromNow();
     });
 
     let thisuserLikes = 0;
@@ -340,6 +348,8 @@ app.get('/post/:postId', async function(req, res) {
 
         post.likespositive = (post.likecount >= 0);
 
+        post.timestamp = moment(post.timecreated).fromNow();
+
         const postData = post.toObject();
 
         res.render('post', { post: postData, isActiveuser: isActiveuser, activeuser: activeuser});
@@ -361,6 +371,11 @@ app.get('/newpost', async function(req, res){
     res.render('newpost', {activeuser: activeuserData, newid: currentid, layout: 'editpost'})
 });
 
+//CRUD
+app.post('/createpost', async function(req, res){
+    Post.create(req.body);
+});
+
 //mongoDB
 app.get('/editpost/:postId', async function(req, res){
     const postId = parseInt(req.params.postId);
@@ -380,7 +395,9 @@ app.get('/editpost/:postId', async function(req, res){
 //mongoDB
 app.get('/newreply/:postId', async function(req, res){
     const postId = parseInt(req.params.postId);
-    const activeuser = currentuser;
+    const currentid = await Post.countDocuments() + 1;
+
+    const activeuser = await User.findOne({authorusername: currentuser});
 
     const post = await Post.findOne({id:postId});
     if (!post) {
@@ -389,8 +406,9 @@ app.get('/newreply/:postId', async function(req, res){
     }
 
     const postData = post.toObject();
+    const activeuserData = activeuser.toObject();
 
-    res.render('newreply', {post: postData, activeuser: activeuser, layout: 'newreply'});
+    res.render('newreply', {post: postData, activeuser: activeuserData, newid: currentid, layout: 'newreply'});
 });
 
 //mongoDB
