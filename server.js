@@ -13,7 +13,7 @@ const moment = require('moment');
 const User = require("./models/User") //this is userlist
 const Post = require("./models/Post") //this is postlist
 
-global.currentuser = "@burkturk"; // stores current user's username
+global.currentuser = ""; // stores current user's username
 // kibbleking / burkturk
 
 app.engine('hbs', exphbs.engine()); //without helpers
@@ -137,19 +137,17 @@ app.post('/submit-data', async function(req,res){
         const hash = await bcrypt.hash(passw, 10);
 
         User.create({
-            authorid: 0, 
             authorname: firstn + ' ' + lastn,
             authorusername: usern,
             authoremail: emai, 
             authorpassword: hash, 
-            authorimg: "",
+            authorimg: "../images/blank.png",
             authorbio: "",
-            postcount: 0,
-            likecount: 0
         });
 
         currentuser = usern;
-        res.redirect('/home/:' + usern);
+
+        res.redirect('/home/:username');
 
     } catch (error) {
         console.error(error);
@@ -176,7 +174,8 @@ app.post('/loggingin', async function(req, res) {
 
             if (passwordMatch) { 
                 currentuser = usern;
-                res.redirect('/home/:' + usern);
+                console.log(currentuser);
+                res.redirect('/home/:username');
             } else {
                 res.redirect('/login');
             }
