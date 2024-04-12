@@ -8,10 +8,22 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const moment = require('moment');
+const session = require('express-session');
 
 //database
 const User = require("./models/User") //this is userlist
 const Post = require("./models/Post") //this is postlist
+
+app.use(session({
+    secret: 'sec',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 300000,
+        secure: false,
+        httpOnly: true 
+    }
+}));
 
 global.currentuser = ""; // stores current user's username
 // kibbleking / burkturk
@@ -122,7 +134,7 @@ app.get('/home/:username', async function(req, res) {
 
 //html only
 app.get('/register', function(req, res){
-    currentuser = "@kibbleking" //logs in @kibbleking
+    console.log(req.sessionID);
     res.sendFile(__dirname + '/' + 'RegisterView.html')
 });
 
@@ -145,8 +157,8 @@ app.post('/submit-data', async function(req,res){
             authorbio: "",
         });
 
-        currentuser = usern;
-
+        //currentuser = usern;
+        req.session.currentuser = usern;
         res.redirect('/home/:username');
 
     } catch (error) {
@@ -157,7 +169,7 @@ app.post('/submit-data', async function(req,res){
 
 //html only
 app.get('/login', function(req, res){
-    currentuser = "@kibbleking" //logs in @kibbleking
+    console.log(req.sessionID);
     res.sendFile(__dirname + '/' + 'LoginView.html')
 });
 
@@ -173,8 +185,9 @@ app.post('/loggingin', async function(req, res) {
             const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
 
             if (passwordMatch) { 
-                currentuser = usern;
-                console.log(currentuser);
+                //currentuser = usern;
+                req.session.currentuser = usern;
+                console.log(req.session.currentuser);
                 res.redirect('/home/:username');
             } else {
                 res.redirect('/login');
