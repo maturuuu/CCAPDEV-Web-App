@@ -350,9 +350,11 @@ app.post('/modifyprofile', async function(req, res){
     const user = await User.findOne({authorusername: currentuser});
     const newName = req.body.authorname;
     const newBio = req.body.authorbio;
+    const newImg = req.body.authorimg;
 
     user.authorname = newName;
     user.authorbio = newBio;
+    user.authorimg = newImg;
 
     await user.save();
     console.log("User modified!");

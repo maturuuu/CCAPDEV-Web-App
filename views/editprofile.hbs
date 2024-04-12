@@ -43,10 +43,12 @@
                         function updateProfile(){
                             const newAuthorName = document.getElementById("authorname-field").value;
                             const newAuthorBio = document.getElementById("authorbio-field").value;
+                            const newAuthorImg = document.getElementById("authorimg-field").value;
 
                             const updatedProfile = {
                                 authorname: newAuthorName,
-                                authorbio: newAuthorBio
+                                authorbio: newAuthorBio,
+                                authorimg: newAuthorImg
                             };
 
                             fetch("/modifyprofile", {
@@ -95,6 +97,10 @@
                                 <div class="heading">Bio</div>
                                 <div id="biobox">
                                     <textarea id="authorbio-field" name="profilebio" class="input" maxlength="500" placeholder="{{user.authorbio}}"></textarea>
+                                </div>
+                                <div class="heading">Profile image path</div>
+                                <div id="namebox">
+                                    <textarea id="authorimg-field" name="profileimg" class="input" maxlength="100" placeholder="{{user.authorimg}}"></textarea>
                                 </div>
                             </div>
                         </div>
