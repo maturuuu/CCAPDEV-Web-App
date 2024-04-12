@@ -5,6 +5,9 @@ var express = require('express');
 var app = express()
 const exphbs = require('express-handlebars');
 
+const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+
 //database
 const User = require("./models/User") //this is userlist
 const Post = require("./models/Post") //this is postlist
@@ -14,7 +17,7 @@ global.currentuser = "@burkturk"; // stores current user's username
 
 app.engine('hbs', exphbs.engine()); //without helpers
 app.set('view engine', 'hbs');
-
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //Create user and post
 async function createData() {
@@ -106,11 +109,116 @@ app.get('/register', function(req, res){
     res.sendFile(__dirname + '/' + 'RegisterView.html')
 });
 
+app.post('/submit-data', async function(req,res){
+    var usern = req.body.username;
+    var firstn = req.body.firstname;
+    var lastn = req.body.lastname;
+    var emai = req.body.email;
+    var passw = req.body.password;
+
+    try {
+        const hash = await bcrypt.hash(passw, 10);
+
+        User.create({
+            authorid: 0, 
+            authorname: firstn + ' ' + lastn,
+            authorusername: usern,
+            authoremail: emai, 
+            authorpassword: hash, 
+            authorimg: "",
+            authorbio: "",
+            postcount: 0,
+            likecount: 0
+        });
+
+        currentuser = usern;
+        res.redirect('/home/:' + usern);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error registering user");
+    }
+});
+
 //html only
 app.get('/login', function(req, res){
     currentuser = "@kibbleking" //logs in @kibbleking
     res.sendFile(__dirname + '/' + 'LoginView.html')
 });
+
+
+app.post('/loggingin', async function(req, res) {
+    try {
+        var usern = req.body.username;
+        var passw = req.body.password;
+
+        const user = await User.findOne({ authorusername: usern });
+
+        if (user) {
+            const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
+
+            if (passwordMatch) { 
+                currentuser = usern;
+                res.redirect('/home/:' + usern);
+            } else {
+                res.redirect('/login');
+            }
+        } else {
+            res.redirect('/login');
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// checkers for data in login/register
+app.post('/check-username', async function(req, res) {
+    const username = req.body.username;
+
+    const user = await User.findOne({ authorusername: username });
+    if (user) {
+        res.json({ taken: true });
+    } else {
+        res.json({ taken: false });
+    }
+});
+
+app.post('/check-email', async function(req, res) {
+
+    const email = req.body.email;
+    const user = await User.findOne({ authoremail: email });
+    if (user) {
+        res.json({ taken: true });
+    } else {
+        res.json({ taken: false });
+    }
+});
+
+app.post('/check-password', async function(req, res) {
+    const usern = req.body.username;
+    const passw = req.body.password;
+
+    try {
+        const user = await User.findOne({ authorusername: usern });
+
+        if (user) {
+            const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
+
+            if (passwordMatch) {
+                res.json({ valid: true });
+            } else {
+                res.json({ valid: false }); 
+            }
+        } else {
+            res.json({ valid: false });
+        }
+    } catch (error) {
+        console.error('Error checking password:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 
 //mongoDB
 app.get('/profile', async function(req, res){
