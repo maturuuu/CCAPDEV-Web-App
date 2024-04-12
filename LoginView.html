@@ -4,6 +4,7 @@
     <head>
         <title>Login</title>
         <link rel="stylesheet" href="RegLogView.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     
     <body>
@@ -24,21 +25,54 @@
                             Username <br>
                         </div>
 
-                        <input type="text" name="username" class="textarea" required> <br>
+                        <input type="text" name="username" onchange="checkUsername(this.value)" class="textarea" required> <br>
 
                         <div class="datatype">
                             Password <br>
                         </div>
 
-                        <input type="text" name="password" class="textarea" required><br>
-
+                        <input type="password" name="password" onchange="checkPassword(this.value)" class="textarea" required><br>
+                        <div class="errormsg" hidden>Username doesn't exist</div>
+                        <div class="errormsg" hidden>Wrong Password!</div>     
+                        <button class="btn" onclick="noAccount()">Don't have an Account?</button> 
                         <input type="submit" class="btn">
                     </form>
 
-                    
                     <script>
-                        function openMain(){
-                            window.location.href = "/home/@kibbleking";
+
+                        function noAccount(){
+                            window.location.href = "/register";
+                        }
+
+                        function checkUsername(username) {
+                            $.post('/check-username', { username: username }, function(res) {
+                                if (!res.taken) {
+                                    $(".errormsg").eq(0).show();
+                                    event.preventDefault();
+                                } else {
+                                    $(".errormsg").eq(0).hide();
+                                }
+                            });
+                            return false;
+                        }
+                        
+                        $(document).ready(function() {
+                            $("input[name='password']").on("blur", function() {
+                                var username = $("input[name='username']").val();
+                                var password = $(this).val();
+                                checkPassword(username, password);
+                            });
+                        });
+
+                        function checkPassword(username, password) {
+                            $.post('/check-password', { username: username, password: password }, function(res) {
+                                if (res.valid) {
+                                    $(".errormsg").eq(1).hide();
+                                } else {
+                                    $(".errormsg").eq(1).show();
+                                }
+                            });
+                            return false;
                         }
                     </script>
     
@@ -46,8 +80,6 @@
     
             </div>
         </div>
-
-
 
     </body>
 
