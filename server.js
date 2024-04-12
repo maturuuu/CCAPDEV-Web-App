@@ -26,7 +26,7 @@ app.use(session({
     }
 }));
 
-global.currentuser = "@carnivroar"; // stores current user's username
+global.currentuser = ""; // stores current user's username
 // kibbleking / burkturk / carnivroar
 
 app.engine('hbs', exphbs.engine()); //without helpers
@@ -69,7 +69,8 @@ app.get('/', async function(req, res){ //default route to homepage
 
 //mongoDB
 app.get('/home/:username', async function(req, res) {
-    const username = req.params.username;
+    // const username = req.params.username;
+    const username = req.session.currentuser;
 
     const user = await User.findOne({authorusername: username});
     if (!user) {
@@ -164,8 +165,8 @@ app.post('/loggingin', async function(req, res) {
             const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
 
             if (passwordMatch) { 
-                //currentuser = usern;
                 req.session.currentuser = usern;
+                currentuser = usern; //testing
                 console.log(req.session.currentuser);
                 res.redirect('/home/:username');
             } else {
