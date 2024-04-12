@@ -26,8 +26,8 @@ app.use(session({
     }
 }));
 
-global.currentuser = "@burkturk"; // stores current user's username
-// kibbleking / burkturk
+global.currentuser = "@carnivroar"; // stores current user's username
+// kibbleking / burkturk / carnivroar
 
 app.engine('hbs', exphbs.engine()); //without helpers
 app.set('view engine', 'hbs');
@@ -117,34 +117,34 @@ app.get('/register', function(req, res){
     res.sendFile(__dirname + '/' + 'RegisterView.html')
 });
 
-// app.post('/submit-data', async function(req,res){
-//     var usern = req.body.username;
-//     var firstn = req.body.firstname;
-//     var lastn = req.body.lastname;
-//     var emai = req.body.email;
-//     var passw = req.body.password;
+app.post('/submit-data', async function(req,res){
+    var usern = req.body.username;
+    var firstn = req.body.firstname;
+    var lastn = req.body.lastname;
+    var emai = req.body.email;
+    var passw = req.body.password;
 
-//     try {
-//         const hash = await bcrypt.hash(passw, 10);
+    try {
+        const hash = await bcrypt.hash(passw, 10);
 
-//         User.create({
-//             authorname: firstn + ' ' + lastn,
-//             authorusername: usern,
-//             authoremail: emai, 
-//             authorpassword: hash, 
-//             authorimg: "../images/blank.png",
-//             authorbio: "",
-//         });
+        User.create({
+            authorname: firstn + ' ' + lastn,
+            authorusername: usern,
+            authoremail: emai, 
+            authorpassword: hash, 
+            authorimg: "../images/blank.png",
+            authorbio: "",
+        });
 
-//         //currentuser = usern;
-//         req.session.currentuser = usern;
-//         res.redirect('/home/:username');
+        //currentuser = usern;
+        req.session.currentuser = usern;
+        res.redirect('/home/:username');
 
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).send("Error registering user");
-//     }
-// });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error registering user");
+    }
+});
 
 //html only
 app.get('/login', function(req, res){
@@ -153,79 +153,79 @@ app.get('/login', function(req, res){
 });
 
 
-// app.post('/loggingin', async function(req, res) {
-//     try {
-//         var usern = req.body.username;
-//         var passw = req.body.password;
+app.post('/loggingin', async function(req, res) {
+    try {
+        var usern = req.body.username;
+        var passw = req.body.password;
 
-//         const user = await User.findOne({ authorusername: usern });
+        const user = await User.findOne({ authorusername: usern });
 
-//         if (user) {
-//             const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
+        if (user) {
+            const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
 
-//             if (passwordMatch) { 
-//                 //currentuser = usern;
-//                 req.session.currentuser = usern;
-//                 console.log(req.session.currentuser);
-//                 res.redirect('/home/:username');
-//             } else {
-//                 res.redirect('/login');
-//             }
-//         } else {
-//             res.redirect('/login');
-//         }
-//     } catch (error) {
-//         console.error('Error during login:', error);
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// });
+            if (passwordMatch) { 
+                //currentuser = usern;
+                req.session.currentuser = usern;
+                console.log(req.session.currentuser);
+                res.redirect('/home/:username');
+            } else {
+                res.redirect('/login');
+            }
+        } else {
+            res.redirect('/login');
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
-// // checkers for data in login/register
-// app.post('/check-username', async function(req, res) {
-//     const username = req.body.username;
+// checkers for data in login/register
+app.post('/check-username', async function(req, res) {
+    const username = req.body.username;
 
-//     const user = await User.findOne({ authorusername: username });
-//     if (user) {
-//         res.json({ taken: true });
-//     } else {
-//         res.json({ taken: false });
-//     }
-// });
+    const user = await User.findOne({ authorusername: username });
+    if (user) {
+        res.json({ taken: true });
+    } else {
+        res.json({ taken: false });
+    }
+});
 
-// app.post('/check-email', async function(req, res) {
+app.post('/check-email', async function(req, res) {
 
-//     const email = req.body.email;
-//     const user = await User.findOne({ authoremail: email });
-//     if (user) {
-//         res.json({ taken: true });
-//     } else {
-//         res.json({ taken: false });
-//     }
-// });
+    const email = req.body.email;
+    const user = await User.findOne({ authoremail: email });
+    if (user) {
+        res.json({ taken: true });
+    } else {
+        res.json({ taken: false });
+    }
+});
 
-// app.post('/check-password', async function(req, res) {
-//     const usern = req.body.username;
-//     const passw = req.body.password;
+app.post('/check-password', async function(req, res) {
+    const usern = req.body.username;
+    const passw = req.body.password;
 
-//     try {
-//         const user = await User.findOne({ authorusername: usern });
+    try {
+        const user = await User.findOne({ authorusername: usern });
 
-//         if (user) {
-//             const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
+        if (user) {
+            const passwordMatch = await bcrypt.compare(passw, user.authorpassword);
 
-//             if (passwordMatch) {
-//                 res.json({ valid: true });
-//             } else {
-//                 res.json({ valid: false }); 
-//             }
-//         } else {
-//             res.json({ valid: false });
-//         }
-//     } catch (error) {
-//         console.error('Error checking password:', error);
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// });
+            if (passwordMatch) {
+                res.json({ valid: true });
+            } else {
+                res.json({ valid: false }); 
+            }
+        } else {
+            res.json({ valid: false });
+        }
+    } catch (error) {
+        console.error('Error checking password:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 
 //mongoDB
@@ -341,6 +341,19 @@ app.get('/editprofile', async function(req, res){
     const userData = user.toObject();
 
     res.render('editprofile', {user: userData, layout: 'editprofile'});
+});
+
+//CRUD
+app.post('/modifyprofile', async function(req, res){
+    const user = await User.findOne({authorusername: currentuser});
+    const newName = req.body.authorname;
+    const newBio = req.body.authorbio;
+
+    user.authorname = newName;
+    user.authorbio = newBio;
+
+    await user.save();
+    console.log("User modified!");
 });
 
 //mongoDB

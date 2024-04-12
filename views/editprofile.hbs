@@ -36,24 +36,30 @@
                             window.location.href = "/home/{{user.authorusername}}";
                         }
     
-                        function Login(){
-                            window.location.href = "/login";
-                        }
-    
-                        function Logout(){
-                            window.location.href = "/";
-                        }
-    
-                        function CreatePost(){
-                            window.location.href = "/newpost";
-                        }
-    
                         function gotoProfile(){
                             window.location.href = "/profile";
                         }
     
-                        function EditProfile(){
-                            window.location.href = "/editprofile";
+                        function updateProfile(){
+                            const newAuthorName = document.getElementById("authorname-field").value;
+                            const newAuthorBio = document.getElementById("authorbio-field").value;
+
+                            const updatedProfile = {
+                                authorname: newAuthorName,
+                                authorbio: newAuthorBio
+                            };
+
+                            fetch("/modifyprofile", {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(updatedProfile)
+                            });
+
+                            setTimeout(function() {
+                                window.location.href = "/profile";
+                            }, 30);
                         }
     
                     </script>
@@ -84,11 +90,11 @@
                             <div id="infocontainer">
                                 <div class="heading">Name</div>
                                 <div id="namebox">
-                                    <textarea name="dpname" class="input" maxlength="14" placeholder="{{user.authorname}}"></textarea>
+                                    <textarea id="authorname-field" name="dpname" class="input" maxlength="20" placeholder="{{user.authorname}}"></textarea>
                                 </div>
                                 <div class="heading">Bio</div>
                                 <div id="biobox">
-                                    <textarea name="profilebio" class="input" maxlength="140" placeholder="{{user.authorbio}}"></textarea>
+                                    <textarea id="authorbio-field" name="profilebio" class="input" maxlength="500" placeholder="{{user.authorbio}}"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -100,12 +106,7 @@
                                         location.href = "/profile";
                                     };
                                 </script>
-                                <button id="updatebtn">Update</button>
-                                <script type="text/javascript">
-                                    document.getElementById("updatebtn").onclick = function () {
-                                        location.href = "/profile";
-                                    };
-                                </script>
+                                <button id="updatebtn" onclick = "updateProfile()">Update</button>
                             </div>
                            
                         </div>
