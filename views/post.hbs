@@ -53,10 +53,10 @@
                     </div>
                     <div id="post-footer">
                         <span id="post-vote-holder">
-                            <button class="comment-upvote-button">
+                            <button onclick ="upvotePost({{post.id}})" class="comment-upvote-button">
                                 <img src="../images/upvote.png">
                             </button>
-                            <button class="comment-downvote-button">
+                            <button onclick ="downvotePost({{post.id}})" class="comment-downvote-button">
                                 <img src="../images/downvote.png">
                             </button>
                         </span>
@@ -89,10 +89,10 @@
                                     </div>
                                     {{/if}}
 
-                                    <button class="comment-upvote-button">
+                                    <button onclick ="upvotePost({{id}})" class="comment-upvote-button">
                                         <img src="../images/upvote.png">
                                     </button>
-                                    <button class="comment-downvote-button">
+                                    <button onclick ="downvotePost({{id}})" class="comment-downvote-button">
                                         <img src="../images/downvote.png">
                                     </button>
                                 </span>
@@ -110,6 +110,46 @@
                                 <button onclick="NewReply({{id}})" class="comment-reply-button">Reply</button>
                             </div>
                         </div>
+                        {{#each this.comments}}
+                            <div class="comment {{#if isReply}}reply{{/if}}">
+                                <div class="comment-header">
+                                    <img class="comment-profile-pic" src = {{authorid.authorimg}}>
+                                    <span class="comment-username"><a href = "/userprofile/{{authorid.authorusername}}">{{authorid.authorname}}</a></span>
+                                    <span class="vote-holder">
+
+                                        {{#if isAuthor}}
+                                        <button class="comment-options-button"> 
+                                            <img src="../images/threedots.png">
+                                        </button>
+
+                                        <div class="comment-options-menu">
+                                            <button onclick="EditReply({{id}})" class="edit-comment-button">Edit</button>
+                                            <button onclick="DeletePost()" class="delete-comment-button">Delete</button>
+                                        </div>
+                                        {{/if}}
+
+                                        <button class="comment-upvote-button">
+                                            <img src="../images/upvote.png">
+                                        </button>
+                                        <button class="comment-downvote-button">
+                                            <img src="../images/downvote.png">
+                                        </button>
+                                    </span>
+                                    <span class="vote-count-holder-comment {{#if likespositive}}positive{{else}}negative{{/if}}">
+                                        {{likecount}}
+                                    </span>
+                                </div>
+                                <div class="comment-text">
+                                    {{content}}
+                                </div>
+                                <div class="comment-footer">
+                                    {{#if isEdited}}
+                                    <span class="comment-edited underlined-bold">edited</span>
+                                    {{/if}}
+                                    <button onclick="NewReply({{id}})" class="comment-reply-button">Reply</button>
+                                </div>
+                            </div>
+                        {{/each}}
                     {{/each}}
 
                 </div>
@@ -117,6 +157,23 @@
         </div>
 
         <script>
+            {{!-- document.addEventListener('DOMContentLoaded', function() {
+                localStorage.setItem('lastVisitedPage', window.location.href);
+                console.log("logged")
+            }); --}}
+
+            function upvotePost(id){
+                
+
+                location.reload();
+            }
+
+            function downvotePost(id){
+
+
+                location.reload();
+            }
+
             function EditPost(){
                 window.location.href = "/editpost/{{post.id}}";
             }

@@ -91,16 +91,31 @@ createData();
 //mongoDB
 app.get('/', async function(req, res){ //default route to homepage
     const posts = await Post.find({title: {$ne: null}})
-    .populate('authorid');
+    .populate('authorid')
+    .populate('comments');  //populate the comments array
 
     posts.forEach(post => {
         post.likespositive = (post.likecount >= 0);
         post.timestamp = moment(post.timecreated).fromNow();
     });
 
-    const postsData = posts.map(post => post.toObject());
+    //get comment count including nested
+    const postsWithCommentCount = posts.map(post => {
+        return {
+            ...post.toObject(),
+            commentcount: 0
+        };
+    });
+    postsWithCommentCount.forEach(post => {
+        post.commentcount += post.comments.length;
+        post.comments.forEach(nestedPost => {
+            post.commentcount += nestedPost.comments.length;
+        });
+    });
 
-    res.render('nonRegMainView', {post: postsData});
+    // const postsData = postsWithCommentCount.map(post => post.toObject());
+
+    res.render('nonRegMainView', {post: postsWithCommentCount});
 });
 
 //mongoDB
@@ -114,7 +129,8 @@ app.get('/home/:username', async function(req, res) {
     }
 
     const posts = await Post.find({title: {$ne: null}})
-    .populate('authorid');
+    .populate('authorid')
+    .populate('comments');  //populate the comments array
 
     const userposts = posts.filter(post => post.authorid.authorusername === user.authorusername)
 
@@ -126,10 +142,24 @@ app.get('/home/:username', async function(req, res) {
     let userLikes = 0;
     userposts.forEach(post => {userLikes += post.likecount})
     
-    const userData = user.toObject();
-    const postsData = posts.map(post => post.toObject());
+    //get comment count including nested
+    const postsWithCommentCount = posts.map(post => {
+        return {
+            ...post.toObject(),
+            commentcount: 0
+        };
+    });
+    postsWithCommentCount.forEach(post => {
+        post.commentcount += post.comments.length;
+        post.comments.forEach(nestedPost => {
+            post.commentcount += nestedPost.comments.length;
+        });
+    });
 
-    res.render('regMainView', {user: userData, post: postsData, activeuser: currentuser, userposts: userposts, likes: userLikes});
+    const userData = user.toObject();
+    // const postsData = posts.map(post => post.toObject());
+
+    res.render('regMainView', {user: userData, post: postsWithCommentCount, activeuser: currentuser, userposts: userposts, likes: userLikes});
 });
 
 //html only
@@ -260,7 +290,8 @@ app.get('/profile', async function(req, res){
     }
 
     const userposts = await Post.find({title: {$ne: null}})
-    .populate('authorid');
+    .populate('authorid')
+    .populate('comments');
     const thisuserposts = userposts.filter(post => post.authorid.authorusername === user.authorusername);
 
     let userLikes = 0;
@@ -273,10 +304,24 @@ app.get('/profile', async function(req, res){
         post.likespositive = (post.likecount >= 0);
     });
 
-    const userData = user.toObject();
-    const userpostsData = thisuserposts.map(post => post.toObject());
+    //get comment count including nested
+    const postsWithCommentCount = thisuserposts.map(post => {
+        return {
+            ...post.toObject(),
+            commentcount: 0
+        };
+    });
+    postsWithCommentCount.forEach(post => {
+        post.commentcount += post.comments.length;
+        post.comments.forEach(nestedPost => {
+            post.commentcount += nestedPost.comments.length;
+        });
+    });
 
-    res.render('viewMyProfile', {user: userData, post: userpostsData, likes: userLikes});
+    const userData = user.toObject();
+    // const userpostsData = thisuserposts.map(post => post.toObject());
+
+    res.render('viewMyProfile', {user: userData, post: postsWithCommentCount, likes: userLikes});
 })
 
 //mongoDB
@@ -294,8 +339,9 @@ app.get('/userprofile/:username', async function(req, res){
 
     const userposts = await Post.find({title: {$ne: null}})
     .populate('authorid')
+    .populate('comments');
     const thisuserposts = userposts.filter(post => post.authorid.authorusername === user.authorusername);
-    const activeuserposts = userposts.filter(post => post.authorid.authorusername === activeuser.authorusername)
+    const activeuserposts = userposts.filter(post => post.authorid.authorusername === activeuser.authorusername);
 
     thisuserposts.forEach(post => {
         post.likespositive = (post.likecount >= 0);
@@ -303,17 +349,33 @@ app.get('/userprofile/:username', async function(req, res){
     });
 
     let thisuserLikes = 0;
-    thisuserposts.forEach(post => {thisuserLikes += post.likecount})
+    thisuserposts.forEach(post => {
+        thisuserLikes += post.likecount
+    })
 
     let activeuserLikes = 0;
     activeuserposts.forEach(post => {activeuserLikes += post.likecount})
 
+    //get comment count including nested
+    const postsWithCommentCount = thisuserposts.map(post => {
+        return {
+            ...post.toObject(),
+            commentcount: 0
+        };
+    });
+    postsWithCommentCount.forEach(post => {
+        post.commentcount += post.comments.length;
+        post.comments.forEach(nestedPost => {
+            post.commentcount += nestedPost.comments.length;
+        });
+    });
+
     const userData = user.toObject();
     const activeuserData = activeuser.toObject();
-    const userpostsData = thisuserposts.map(post => post.toObject());
+    // const userpostsData = thisuserposts.map(post => post.toObject());
     const activeuserpostsData = activeuserposts.map(post => post.toObject());
 
-    res.render('regViewUserProfile', {user: userData, post: userpostsData, activeuser: activeuserData, activeuserposts: activeuserpostsData, 
+    res.render('regViewUserProfile', {user: userData, post: postsWithCommentCount, activeuser: activeuserData, activeuserposts: activeuserpostsData, 
                                       thisuserlikes: thisuserLikes, activeuserlikes: activeuserLikes});
 });
 
@@ -341,7 +403,8 @@ app.get('/post/:postId', async function(req, res) {
         const post = await Post.findOne({id:postId})    //match the postId in the URL
         .populate('authorid')   //populate the author field
         .populate('comments')  //populate the comments array
-        .populate({path: "comments", populate: {path:"authorid"}}); //populate the author field of each comment
+        .populate({path: "comments", populate: {path:"authorid"}}) //populate the author field of each comment
+        .populate({path: "comments", populate: {path:"comments", populate: {path:"authorid"}}}) //populate the comments of each comment and their authors
 
         if (!post) {
             res.status(404).send('Oopsie, post not found!');
@@ -356,6 +419,12 @@ app.get('/post/:postId', async function(req, res) {
         post.comments.forEach(comment => {
             comment.isAuthor = (comment.authorid.authorusername === currentuser);
             comment.likespositive = (comment.likecount >= 0);
+            comment.isReply = false;
+
+            comment.comments.forEach(nestedComment => {
+                    nestedComment.isReply = true;
+                    nestedComment.isAuthor = (nestedComment.authorid.authorusername === currentuser);
+            }); 
         });
 
         post.likespositive = (post.likecount >= 0);
@@ -421,6 +490,18 @@ app.get('/newreply/:postId', async function(req, res){
     const activeuserData = activeuser.toObject();
 
     res.render('newreply', {post: postData, activeuser: activeuserData, newid: currentid, layout: 'newreply'});
+});
+
+//CRUD
+app.post('/createreply/:postId', async function(req, res){
+    const newReply = await Post.create(req.body);
+
+    const postId = parseInt(req.params.postId);
+    const parentPost = await Post.findOne({id: postId});
+
+    //add newReply to the comments field of parentPost
+    parentPost.comments.push(newReply._id);
+    await parentPost.save();
 });
 
 //mongoDB

@@ -37,18 +37,52 @@
             }
 
             function PostComment(){ //CRUD
-                const content
+                const id = {{newid}};
+                const authorid = "{{activeuser._id}}";
+                const title = null;
+                const content = document.getElementById("reply-content-box").value;
+                const timecreated = new Date();
+                const timestamp = "";
+                const isEdited = false;
+                const likecount = 0;
+                const likespositive = true;
+                const comments = [];
+                const isReply = false;
+                const isAuthor = false;
 
+                const newReply = {
+                    id: id,
+                    authorid: authorid,
+                    title: title,
+                    content: content,
+                    timecreated: timecreated,
+                    timestamp: timestamp,
+                    isEdited: isEdited,
+                    likecount: likecount,
+                    likespositive: likespositive,
+                    comments: comments,
+                    isReply: isReply,
+                    isAuthor: isAuthor
+                }
+
+                fetch("/createreply/{{post.id}}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newReply)
+                });
+
+                {{!-- setTimeout(function() {
+                    let lastVisitedWindow = localStorage.getItem('lastVisitedWindow');
+                    window.location.href = lastVisitedWindow;
+                }, 50); --}}
 
                 window.history.back();
-
-                //reload the page to render changes
-                const timestamp = new Date().getTime();
-                window.location.href = `/?timestamp=${timestamp}`;
             }
 
             function Home(){
-                window.location.href = "/home/{{activeuser}}"
+                window.location.href = "/home/{{activeuser.authorusername}}"
             }
 
             function Profile(){
