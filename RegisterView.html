@@ -19,13 +19,13 @@
     
                 <div class="loginproper">
 
-                    <form action="/submit-data" method="post">
+                    <form action="/submit-data" method="post" onsubmit="return validateForm(event)">
 
                         <div class="datatype">
                             Username <br>
                         </div>
 
-                        <input type="text" name="username" class="textarea" onchange="checkUsername(this.value)" required> <br>
+                        <input type="text" name="username" class="textarea" onchange="checkUsername(this.value, event)" required> <br>
 
                         <div class="datatype">
                             First Name <br>
@@ -43,7 +43,7 @@
                             Email <br>
                         </div>
                         
-                        <input type="text" name="email" onchange="checkEmail(this.value)" class="textarea" required><br>
+                        <input type="text" name="email" onchange="checkEmail(this.value, event)" class="textarea" required><br>
 
                         <div class="datatype">
                             Password <br>
@@ -59,13 +59,12 @@
                         <div class="errormsg" hidden>Username is taken!</div>
                         <div class="errormsg" hidden>Email is taken!</div>
                         <div class="errormsg" hidden>Passwords don't match!</div>
-                        <input type="submit" class="btn" onclick="validatePasswords()">
-
+                        <input type="submit" class="btn">
                     </form>
 
                     <script>
 
-                      function checkUsername(username) {
+                      function checkUsername(username, event) {
                             $.post('/check-username', { username: username }, function(res) {
                                 if (res.taken) {
                                     $(".errormsg").eq(0).show(); 
@@ -76,7 +75,7 @@
                             });
                         }
 
-                        function checkEmail(email) {
+                        function checkEmail(email, event) {
                             $.post('/check-email', { email: email }, function(res) {
                                 if (res.taken) {
                                     $(".errormsg").eq(1).show();
@@ -94,12 +93,23 @@
                     
                             if (password !== confirmPassword) {
                                 msg.eq(2).show(); 
-                                event.preventDefault();
                                 return false;
                             } else {
                                 msg.eq(2).hide(); 
                                 return true;
                             }
+                        }
+
+                        function validateForm(event) {
+                            var isUsernameTaken = $(".errormsg").eq(0).is(":visible");
+                            var isEmailTaken = $(".errormsg").eq(1).is(":visible");
+
+                            if (isUsernameTaken || isEmailTaken) {
+                                event.preventDefault();
+                                return false;
+                            }
+
+                            return validatePasswords();
                         }
                     </script>
                     
@@ -109,8 +119,6 @@
     
             </div>
         </div>
-
-
 
     </body>
 
