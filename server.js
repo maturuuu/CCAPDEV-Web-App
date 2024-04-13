@@ -389,6 +389,7 @@ app.get('/post/:postId', async function(req, res) {
 
             comment.comments.forEach(nestedComment => {
                     nestedComment.isReply = true;
+                    nestedComment.likespositive = (nestedComment.likecount >= 0);
                     nestedComment.isAuthor = (nestedComment.authorid.authorusername === currentuser);
             }); 
         });
